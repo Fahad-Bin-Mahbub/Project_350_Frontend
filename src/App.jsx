@@ -9,8 +9,10 @@ function App() {
   return (
     <>
       <h1 className="text-3xl font-bold underline text-red-900">
-        Hello world!
+        Hello world
       </h1>
+      <a className='text-blue-600' href="www.google.com">Big bang</a>
+
     </>
   )
 }
