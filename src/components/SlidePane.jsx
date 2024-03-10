@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icons } from "../assets/icons";
+import { FaUserCircle, FaCalendarAlt } from "react-icons/fa";
 
 const SlidePane = () => {
     return (
@@ -21,29 +21,44 @@ const SlidePane = () => {
                             </button>
                         </div>
                         <div className="border border-slate-300 w-full"></div>
-                        <form action="" className='flex flex-col gap-12 pt-16 pl-12'>
+                        <form action="" className='flex flex-col gap-12 py-16 px-12'>
                             <div>
                                 <input type="text" placeholder="Course Title" className="input input-ghost w-full text-4xl font-medium" />
                             </div>
-                            <div className='space-x-[120px]'>
-                                <label className='w-20 font-bold'>Assignee</label>
-                                <img src={Icons.icon_account} alt="" />
-                                <input type="text" placeholder="No Assignee" className="input input-ghost w-full max-w-xs" />
+                            <div className='grid grid-cols-2 items-center'>
+                                <label className='w-20 font-bold text-base'>Assignee</label>
+                                <div className='inline-flex justify-between'>
+                                    <FaUserCircle size={44} style={{ color: '#C3C3C3' }} />
+                                    <input type="text" placeholder="No Assignee" className="input input-ghost w-full max-w-xs" />
+                                </div>
                             </div>
-                            <div className='space-x-[120px]'>
-                                <label className='w-20 font-bold'>Due Date</label>
-                                <input type="text" placeholder="No Due Date" className="input input-ghost w-full max-w-xs mt-1" />
+                            <div className='grid grid-cols-2 items-center'>
+                                <label className='w-20 font-bold text-base'>Due Date</label>
+                                <div className='inline-flex justify-between'>
+                                    <FaCalendarAlt size={40} style={{ color: '#C3C3C3' }} />
+                                    <input type="text" placeholder="No Due Date" className="input input-ghost w-full max-w-xs mt-1" />
+                                </div>
+
                             </div>
-                            <div className='space-x-[150px]'>
-                                <label className='w-20 font-bold'>Exam</label>
+                            <div className='grid grid-cols-2 items-center'>
+                                <label className='w-20 font-bold text-base'>Exam</label>
                                 <input type="text" placeholder="Semester" className="input input-ghost w-full max-w-xs" />
                             </div>
-                            <div className='space-x-[162px]'>
-                                <label className='w-20 font-bold'>Part</label>
+                            <div className='grid grid-cols-2 items-center'>
+                                <label className='w-20 font-bold text-base'>Part</label>
                                 <input type="text" placeholder="Part A/B" className="input input-ghost w-full max-w-xs" />
                             </div>
                         </form>
-
+                        <div>
+                            <div tabIndex={0} className="collapse border border-base-300 bg-white">
+                                <div className="collapse-title text-xl font-medium">
+                                    Comments
+                                </div>
+                                <div className="collapse-content">
+                                    <p>tabIndex={0} attribute is necessary to make the div focusable</p>
+                                </div>
+                            </div>
+                        </div>
                     </ul>
                 </div>
             </div>
