@@ -3,6 +3,7 @@ import dashboardIcon from "../assets/icons/dashboard.svg";
 import accountIcon from "../assets/icons/account.svg";
 import settingsIcon from "../assets/icons/settings.svg";
 import logoutIcon from "../assets/icons/logout.svg";
+import { Icons } from "../assets/icons";
 const ClosedSidebar = ({ toggleSidebar }) => {
   return (
     <div>
@@ -17,6 +18,7 @@ const ClosedSidebar = ({ toggleSidebar }) => {
             >
               <div className="flex gap-8 text-base font-bold">
                 <img src={dashboardIcon} />
+                <img src={Icons.icon_exam} />
               </div>
             </li>
             <li

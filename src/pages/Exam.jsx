@@ -1,13 +1,14 @@
-import React from 'react'
-import SlidePane from '../components/SlidePane'
-
+import React from "react";
+import SlidePane from "../components/SlidePane";
+import { Icons } from "../assets/icons";
 
 const Exam = () => {
-    return (
-        <>
-            <SlidePane />
-        </>
-    )
-}
+	return (
+		<>
+			<img src={Icons.icon_exam} alt="" />
+			<SlidePane />
+		</>
+	);
+};
 
-export default Exam
+export default Exam;
