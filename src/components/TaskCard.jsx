@@ -1,42 +1,47 @@
-import React from "react";
+// import React from "react";
+import { FaCalendarDays, FaEllipsis } from "react-icons/fa6";
 
 const TaskTag = ({ TagName }) => {
 	return (
-		<div className="w-61 h-24 bg-emerald-400 text-8 rounded-full items-center justify-center mr-3 text-black content-center py-1.5">
+		<div
+			className={`w-61 h-24 ${
+				randomColors[Math.floor(Math.random() * (randomColors.length - 1))]
+			} text-8 rounded-full items-center justify-center mr-3 text-black content-center py-1.5`}
+		>
 			<div>{TagName}</div>
 		</div>
 	);
 };
 
-const TaskCard = ({ status, courseCode, semester }) => {
+const randomColors = ["bg-tag-1", "bg-tag-2", "bg-tag-3", "bg-tag-4"];
+
+const statusColors = {
+	ACCEPTED: "bg-accepted",
+	"IN PROGRESS": "bg-ongoing",
+	DELIVERED: "bg-delivered",
+	CHECKED: "bg-checked",
+};
+
+const TaskCard = ({ status, courseCode, semester, teacher }) => {
 	status = status.toUpperCase();
 	courseCode = courseCode.toUpperCase();
 
 	return (
 		//whole card
-		<div className="w-312 h-172 bg-white rounded-2xl py-5 px-6">
+		<div className="w-312 h-172 bg-white rounded-2xl py-5 px-6 flex flex-col my-2">
+			{/* //TODO: make Notification badge */}
+			{/* <div className="size-2 bg-secondary rounded-full fixed top-0 right-0"></div> */}
 			<div className="justify-between flex">
 				<div className="text-left flex">
 					{/* status */}
-					<div className="size-2 bg-green-800 rounded-full mt-1 mr-2"></div>
+					<div
+						className={`size-2 ${statusColors[status]} rounded-full mt-1 mr-2`}
+					></div>
 					<div className="text-10 text-grey">{status}</div>
 				</div>
 				{/* three dots */}
 				<div>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						className="h-6 w-6 text-black"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-						/>
-					</svg>
+					<FaEllipsis />
 				</div>
 			</div>
 			{/* course code */}
@@ -48,10 +53,18 @@ const TaskCard = ({ status, courseCode, semester }) => {
 				<TaskTag TagName={semester} />
 				<TaskTag TagName="Part A" />
 			</div>
-
-			<div className="text-10 text-right mt-5">
-				<div className="">Due</div>
-				<div className="text-black">March 19</div>
+			<div className="flex-grow"></div>
+			<div className="flex justify-between items-center">
+				<div className="size-7 rounded-full bg-rose-500 flex justify-center text-center items-center text-8 text-white">
+					{teacher}
+				</div>
+				{/* //TODO: display different item by role */}
+				<div className="text-10 text-right">
+					<div className="">Due</div>
+					{/* //TODO: Change text color according to the date */}
+					<div className="text-alert">March 19</div>
+				</div>
+				{/* <FaCalendarDays /> */}
 			</div>
 		</div>
 	);
