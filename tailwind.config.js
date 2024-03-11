@@ -14,6 +14,7 @@ export default {
 				primary: "#0A2463",
 				secondary: "#DB2B39",
 				// black: "242423",
+				darkGrey: "#D9D9D9",
 				background: "#F2F2F2",
 				accepted: "#4682B4",
 				ongoing: "#2297F1",
@@ -41,10 +42,12 @@ export default {
 			172: "172px",
 			24: "24px",
 			840: "840px",
+			32: "32px",
 		},
 		fontSize: {
 			8: "8px",
 			10: "10px",
+			12: "12px",
 		},
 		fontFamily: {
 			poppins: ["Poppins", "sans-serif"],

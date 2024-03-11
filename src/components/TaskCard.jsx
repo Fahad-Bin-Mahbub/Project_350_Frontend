@@ -22,6 +22,7 @@ const statusColors = {
 	CHECKED: "bg-checked",
 };
 
+// TODO: pass the date prop to the TaskCard
 const TaskCard = ({ status, courseCode, semester, teacher }) => {
 	status = status.toUpperCase();
 	courseCode = courseCode.toUpperCase();
