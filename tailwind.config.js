@@ -22,32 +22,18 @@ export default {
 				checked: "#FFB627",
 				alert: "#F04337",
 				tag: {
-					1: "#7BD3EA",
-					2: "#A1EEBD",
-					3: "#F6F7C4",
-					4: "#F6D6D6",
+					A: "#C7E9C0", // Light Green
+					B: "#C7E9F1", // Light Blue
+					1: "#D0BFFF",
+					2: "#DFCCFB",
+					3: "#D8BFD8",
+					4: "#D8BFD8",
 					5: "#B9F3FC",
 					6: "#AEE2FF",
 					7: "#93C6E7",
 					8: "#FEDEFF",
 				},
 			},
-		},
-		width: {
-			312: "312px",
-			61: "61px",
-			360: "360px",
-		},
-		height: {
-			172: "172px",
-			24: "24px",
-			840: "840px",
-			32: "32px",
-		},
-		fontSize: {
-			8: "8px",
-			10: "10px",
-			12: "12px",
 		},
 		fontFamily: {
 			poppins: ["Poppins", "sans-serif"],
