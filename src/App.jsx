@@ -1,17 +1,13 @@
 import React from 'react'
 import './App.css'
-import NavBar from './components/NavBar';
-import OpenSidebar from './components/OpenSidebar';
-import ClosedSidebar from './components/ClosedSidebar';
-
-import Exam from './pages/Exam';
+import Sidebar from './components/Sidebar';
 
 function App() {
   return (
     <>
-      <Exam></Exam>
+      <Sidebar></Sidebar>
     </>
   )
 }
 
-export default App
+export default App;
