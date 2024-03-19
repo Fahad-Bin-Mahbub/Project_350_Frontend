@@ -5,8 +5,6 @@ import { PiExamFill } from "react-icons/pi";
 const Exam = () => {
 	return (
 		<>
-			<img src={Icons.icon_exam} alt="" />
-			<PiExamFill />
 			<SlidePane />
 		</>
 	);
