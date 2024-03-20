@@ -1,12 +1,13 @@
 import React from 'react';
 import NavBar from './../../components/NavBar';
 import Sidebar from '../../components/Sidebar';
+import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
     return (
         <>
             <NavBar />
-            <div className="flex">
+            <div className="flex admin-dashboard">
                 <Sidebar />
                 {/* className="flex-grow flex flex-col justify-center items-center" */}
                 <div className='m-8'>
@@ -28,6 +29,60 @@ const AdminDashboard = () => {
                                 <div>
                                     <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl">Add task</button>
                                 </div>
+                            </div>
+                        </div>
+                        <div className='task-table-container'>
+                            <div className="overflow-x-auto mt-4">
+                                <table className="table">
+                                    {/* head */}
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <label>
+                                                    <input type="checkbox" className="checkbox" />
+                                                </label>
+                                            </th>
+                                            <th>Course Code</th>
+                                            <th>Assignee </th>
+                                            <th>Email Address</th>
+                                            <th>Department</th>
+                                            <th>Role</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {/* row 1 */}
+                                        <tr>
+                                            <th>
+                                                <label>
+                                                    <input type="checkbox" className="checkbox" />
+                                                </label>
+                                            </th>
+                                            <td>
+                                                <div className="flex items-center gap-3">
+                                                    <div className="avatar">
+                                                        <div className="mask mask-squircle w-12 h-12">
+                                                            <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold">Hart Hagerty</div>
+                                                        <div className="text-sm opacity-50">United States</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                Zemlak, Daniel and Leannon
+                                                <br />
+                                                <span className="badge badge-ghost badge-sm">Desktop Support Technician</span>
+                                            </td>
+                                            <td>Purple</td>
+                                            <th>
+                                                <button className="btn btn-ghost btn-xs">details</button>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </section>

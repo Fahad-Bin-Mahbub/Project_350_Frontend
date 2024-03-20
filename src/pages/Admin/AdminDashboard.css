@@ -1,0 +1,17 @@
+.admin-dashboard {
+    background-color: #F2F2F2;
+}
+
+thead {
+    background-color: #EAEAEA;
+}
+
+th {
+    color: rgb(0, 0, 0);
+    /* font-family: Poppins; */
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 1%;
+    text-align: left;
+}

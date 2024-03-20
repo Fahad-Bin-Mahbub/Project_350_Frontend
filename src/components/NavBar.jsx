@@ -4,7 +4,7 @@ import React from 'react'
 const NavBar = () => {
     return (
         <div>
-            <div className="navbar bg-base-100 rounded-full">
+            <div className="navbar bg-[#F2F2F2]">
                 <div className="flex-1">
                     <a className="btn btn-ghost text-xl font-bold">Dashboard</a>
                 </div>
