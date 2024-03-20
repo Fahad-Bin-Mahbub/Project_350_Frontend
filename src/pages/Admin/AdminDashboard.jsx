@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavBar from './../../components/NavBar';
 import Sidebar from '../../components/Sidebar';
 import "./AdminDashboard.css";
 import AddTeacherModal from '../../components/admin modals/AddTeacherModal';
 
 const AdminDashboard = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const openModal = () => {
-        setIsModalOpen(!isModalOpen);
-    };
+    // const openModal = () => {
+    //     setIsModalOpen(!isModalOpen);
+    // };
     return (
         <>
             <NavBar />
@@ -182,8 +182,15 @@ const AdminDashboard = () => {
                                     </label>
                                 </div>
                                 <div>
-                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl" onClick={openModal}>Add teacher</button>
-                                    {isModalOpen && <AddTeacherModal />}
+                                    {/* <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl" onClick={openModal}>Add teacher</button>
+                                    {isModalOpen && <AddTeacherModal />} */}
+                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2x" onClick={() => document.getElementById('my_modal_2').showModal()}>Add teacher</button>
+                                    <dialog id="my_modal_2" className="modal">
+
+                                        <AddTeacherModal />
+
+                                    </dialog>
                                 </div>
                             </div>
                         </div>
