@@ -120,6 +120,7 @@ const AdminDashboard = () => {
 										},
 									}}
 									data={data}
+                                    selectableRows
 									// pagination
 								/>
 							</div>
