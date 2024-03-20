@@ -2,7 +2,9 @@
     background-color: #F2F2F2;
 }
 
-section {}
+section {
+    margin-bottom: 150px;
+}
 
 thead {
     background-color: #EAEAEA;

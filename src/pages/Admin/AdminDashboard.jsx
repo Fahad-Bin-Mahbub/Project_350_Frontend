@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import NavBar from './../../components/NavBar';
 import Sidebar from '../../components/Sidebar';
 import "./AdminDashboard.css";
+import AddTeacherModal from '../../components/admin modals/AddTeacherModal';
 
 const AdminDashboard = () => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
     return (
         <>
             <NavBar />
@@ -176,7 +182,8 @@ const AdminDashboard = () => {
                                     </label>
                                 </div>
                                 <div>
-                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl">Add teacher</button>
+                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl" onClick={openModal}>Add teacher</button>
+                                    {isModalOpen && <AddTeacherModal />}
                                 </div>
                             </div>
                         </div>
@@ -191,11 +198,10 @@ const AdminDashboard = () => {
                                                     <input type="checkbox" className="checkbox" />
                                                 </label>
                                             </th>
-                                            <th>Course Code</th>
-                                            <th>Assignee </th>
-                                            <th>Email Address</th>
-                                            <th>Department</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
                                             <th>Role</th>
+                                            <th>Department</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
