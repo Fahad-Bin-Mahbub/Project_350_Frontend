@@ -7,7 +7,7 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 	const AddCard = ({ onClick }) => {
 		return (
 			<div
-				className="w-[312px] h-[32px] bg-[#D9D9D9] rounded-xl flex items-center justify-center"
+				className="w-[312px] h-[32px] bg-[#D9D9D9] rounded-xl flex items-center justify-center mb-2"
 				onClick={onClick}
 			>
 				<FaPlus className="mx-2" />
@@ -34,7 +34,7 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 	SectionName = SectionName.toUpperCase();
 
 	return (
-		<div className=" h-[90vh] min-h-[800px] bg-[#E9E9E9] rounded-xl flex flex-col  p-6 mx-3 mb-6 ">
+		<div className=" h-[90vh]  bg-[#E9E9E9] rounded-xl flex flex-col  p-6 mx-3 mb-6 ">
 			<div className="flex justify-between pb-6">
 				<div className="text-sm text-black">{SectionName}</div>
 				<div className="flex">
