@@ -1,15 +1,24 @@
-import React from 'react'
-// import './App.css'
-import Sidebar from './components/Sidebar';
-import AdminDashboard from './pages/Admin/AdminDashboard';
+import React from "react";
+import "./App.css";
+// import CardSection from "./components/CardSection";
+// import NavBar from "./components/NavBar";
+// import TaskCard from "./components/TaskCard";
+// import Exam from "./pages/Exam";
+// import Sidebar from "./pages/Sidebar";
+// import AdminDashboard from "./pages/Admin/AdminDashboard";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
-  return (
-    <>
-      {/* <Sidebar></Sidebar> */}
-      <AdminDashboard/>
-    </>
-  )
+	return (
+		<>
+			{/* <NavBar /> */}
+			{/* <OpenSidebar /> */}
+			{/* <ClosedSidebar /> */}
+			{/* <Sidebar /> */}
+			{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
+			<DashboardPage />
+		</>
+	);
 }
 
 export default App;

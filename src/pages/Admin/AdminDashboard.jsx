@@ -101,7 +101,7 @@ const AdminDashboard = () => {
 								</div>
 							</div>
 							<div>
-								<DataTable
+								{/* <DataTable
 									columns={columns}
 									className=" min-h-fit-content"
 									customStyles={{
@@ -122,7 +122,7 @@ const AdminDashboard = () => {
 									data={data}
                                     selectableRows
 									// pagination
-								/>
+								/> */}
 							</div>
 							<div className="task-table-container">
 								<div className="overflow-x-auto mt-4">
