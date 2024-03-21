@@ -3,6 +3,8 @@ import NavBar from './../../components/NavBar';
 import Sidebar from '../../components/Sidebar';
 import "./AdminDashboard.css";
 import AddTeacherModal from '../../components/admin modals/AddTeacherModal';
+import AddDepartmentModal from '../../components/admin modals/AddDepartmentModal';
+import AddTaskModal from '../../components/admin modals/AddTaskModal';
 
 const AdminDashboard = () => {
     // const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,7 +35,12 @@ const AdminDashboard = () => {
                                     </label>
                                 </div>
                                 <div>
-                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl">Add task</button>
+                                    {/* <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl">Add task</button> */}
+                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2x" onClick={() => document.getElementById('task-modal').showModal()}>Add task</button>
+                                    <dialog id="task-modal" className="modal">
+                                        <AddTaskModal />
+                                    </dialog>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +116,11 @@ const AdminDashboard = () => {
                                     </label>
                                 </div>
                                 <div>
-                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl">Add department</button>
+                                    {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2x" onClick={() => document.getElementById('department-modal').showModal()}>Add department</button>
+                                    <dialog id="department-modal" className="modal">
+                                        <AddDepartmentModal />
+                                    </dialog>
                                 </div>
                             </div>
                         </div>
@@ -185,11 +196,9 @@ const AdminDashboard = () => {
                                     {/* <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2xl" onClick={openModal}>Add teacher</button>
                                     {isModalOpen && <AddTeacherModal />} */}
                                     {/* Open the modal using document.getElementById('ID').showModal() method */}
-                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2x" onClick={() => document.getElementById('my_modal_2').showModal()}>Add teacher</button>
-                                    <dialog id="my_modal_2" className="modal">
-
+                                    <button className="btn bg-[#0A2463] text-white w-[160px] rounded-2x" onClick={() => document.getElementById('teacher-modal').showModal()}>Add teacher</button>
+                                    <dialog id="teacher-modal" className="modal">
                                         <AddTeacherModal />
-
                                     </dialog>
                                 </div>
                             </div>
