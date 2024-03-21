@@ -6,18 +6,18 @@ import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.png";
 
-const Sidebar = () => {
+const Sidebar = ({children}) => {
 	const menus = [
 		{ name: "Dashboard", link: "/", icon: MdOutlineDashboard },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
 		{ name: "Logout", link: "/", icon: MdLogout },
 	];
-	const [open, setOpen] = useState(true);
+	const [open, setOpen] = useState(false);
 	return (
-		<section className="flex gap-6">
+		<section className="relative flex h-screen">
 			<div
-				className={`bg-blue-950 min-h-screen ${
+				className={`bg-blue-950 min-h-screen flex flex-col justify-center ${
 					open ? "w-72" : "w-16"
 				} duration-500 text-gray-100 px-4`}
 			>
@@ -67,6 +67,9 @@ const Sidebar = () => {
 						</Link>
 					))}
 				</div>
+			</div>
+			<div className="h-screen w-full">
+				{children}
 			</div>
 		</section>
 	);

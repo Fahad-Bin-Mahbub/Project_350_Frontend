@@ -34,7 +34,7 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 	SectionName = SectionName.toUpperCase();
 
 	return (
-		<div className=" h-[90vh]  bg-[#E9E9E9] rounded-xl flex flex-col  p-6 mx-3 mb-6 ">
+		<div className=" h-[86vh] bg-[#E9E9E9] rounded-xl flex flex-col  p-6 mx-3 mb-6 ">
 			<div className="flex justify-between pb-6">
 				<div className="text-sm text-black">{SectionName}</div>
 				<div className="flex">

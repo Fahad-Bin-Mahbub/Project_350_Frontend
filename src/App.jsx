@@ -7,6 +7,7 @@ import "./App.css";
 // import Sidebar from "./pages/Sidebar";
 // import AdminDashboard from "./pages/Admin/AdminDashboard";
 import DashboardPage from "./pages/DashboardPage";
+import AdminDashboard from "./pages/Admin/AdminDashboard";
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 			{/* <Sidebar /> */}
 			{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
 			<DashboardPage />
+			{/* <AdminDashboard /> */}
 		</>
 	);
 }

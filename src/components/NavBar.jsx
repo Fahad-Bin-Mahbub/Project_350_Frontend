@@ -1,46 +1,51 @@
 import React from "react";
-
+import { IoIosNotifications } from "react-icons/io";
+import { Icons } from "../assets/icons";
+import { Transition, Menu } from "@headlessui/react";
+import { FaUser } from "react-icons/fa6";
 const NavBar = () => {
 	return (
-		<div>
-			<div className="navbar bg-grey-100 w-full rounded-full flex justify-between">
-				<div className="flex-1">
-					<a className="btn btn-ghost text-xl font-bold">Dashboard</a>
-				</div>
-				<div className="">
-					<ul className="menu menu-horizontal px-1 flex justify-center">
-						<li className="mt-2">
-							<a>Link</a>
-						</li>
-						<li>
-							<div className="avatar">
-								<div className="w-12 h-12 rounded-full">
-									<img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+			<div className="navbar bg-grey-100 w-full rounded-full flex justify-between ">
+				<div className="font-bold text-[30px] text-black pl-8">Dashboard</div>
+				<div className="flex gap-7">
+					<IoIosNotifications size={30} />
+					<FaUser size={30} />
+					<Menu
+						as="div"
+						className="outline-none relative inline-block text-center"
+					>
+						<div>
+							<Menu.Button className="inline-flex items-center gap-2 w-full justify-center rounded-md text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+								<div className=" h-8 w-20 rounded-full flex items-center justify-center">
+									<p className="text-black">Admin</p>
 								</div>
-							</div>
-						</li>
-						<li>
-							<details>
-								<summary>
-									<h3 className="mt-2"> Danielle Campbell</h3>
-								</summary>
-								<ul className="p-2 bg-base-100 rounded-t-none">
-									<li>
-										<a>Dark</a>
-									</li>
-									<li>
-										<a>Feedback</a>
-									</li>
-									<li>
-										<a>Logout</a>
-									</li>
-								</ul>
-							</details>
-						</li>
-					</ul>
+							</Menu.Button>
+						</div>
+						<Transition
+							as={React.Fragment}
+							enter="transition ease-out duration-100"
+							enterFrom="transform opacity-0 scale-95"
+							enterTo="transform opacity-100 scale-100"
+							leave="transition ease-in duration-75"
+							leaveFrom="transform opacity-100 scale-100"
+							leaveTo="transform opacity-0 scale-95"
+						>
+							<Menu.Items className="absolute right-0 mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+								<div className="px-1 py-1 text-black">
+									<Menu.Item as="button" onClick={() => console.log("Logout")}>
+										Profile
+									</Menu.Item>
+								</div>
+								<div className="px-1 py-1 text-black">
+									<Menu.Item as="button" onClick={() => console.log("Logout")}>
+										Logout
+									</Menu.Item>
+								</div>
+							</Menu.Items>
+						</Transition>
+					</Menu>
 				</div>
 			</div>
-		</div>
 	);
 };
 
