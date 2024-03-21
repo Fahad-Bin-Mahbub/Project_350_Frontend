@@ -7,7 +7,7 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 	const AddCard = ({ onClick }) => {
 		return (
 			<div
-				className="w-[312px] h-[32px] bg-gray-200 rounded-xl flex items-center justify-center"
+				className="w-[312px] h-[32px] bg-[#D9D9D9] rounded-xl flex items-center justify-center"
 				onClick={onClick}
 			>
 				<FaPlus className="mx-2" />
@@ -16,13 +16,16 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 		);
 	};
 	const addNewCard = () => {
-		console.log("clicked");
+		// console.log("clicked");
 		setCards([
 			{
+				//TODO: Determine and add appropriate default values for the new card
 				status: "accepted",
-				courseCode: "CSE",
-				semester: "1/1",
-				teacher: "EH",
+				courseCode: "test",
+				semester: "4/2",
+				part: "B",
+				paperCount: 1,
+				teacher: "SC",
 			},
 			...cards,
 		]);
@@ -31,7 +34,7 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 	SectionName = SectionName.toUpperCase();
 
 	return (
-		<div className="w-[360px] h-[840px] bg-gray-100 rounded-xl flex flex-col p-6 ">
+		<div className=" h-[90vh] min-h-[800px] bg-[#E9E9E9] rounded-xl flex flex-col  p-6 mx-3 mb-6 ">
 			<div className="flex justify-between pb-6">
 				<div className="text-sm text-black">{SectionName}</div>
 				<div className="flex">
@@ -40,12 +43,11 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 					<FaEllipsis />
 				</div>
 			</div>
-			<div className="overflow-x-hidden no-scrollbar">
+			<div className="overflow-y-auto no-scrollbar">
 				{cards.map((card, index) => (
 					<TaskCard {...card} key={index} />
 				))}
 				<AddCard onClick={addNewCard} />
-				{/* <button onClick={addNewCard}>Add</button> */}
 			</div>
 		</div>
 	);

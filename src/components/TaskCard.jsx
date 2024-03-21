@@ -23,7 +23,14 @@ const randomColors = {
 };
 
 // TODO: pass the date prop to the TaskCard
-const TaskCard = ({ status, courseCode, semester, part, teacher }) => {
+const TaskCard = ({
+	status,
+	courseCode,
+	semester,
+	part,
+	paperCount,
+	teacher,
+}) => {
 	status = status.toUpperCase();
 	courseCode = courseCode.toUpperCase();
 	part = part.toUpperCase();
@@ -54,6 +61,7 @@ const TaskCard = ({ status, courseCode, semester, part, teacher }) => {
 			<div className="flex">
 				<TaskTag TagName={semester} tagColor={randomColors[semester]} />
 				<TaskTag TagName={`Part ${part}`} tagColor={randomColors[part]} />
+				<TaskTag TagName={`${paperCount}`} tagColor={randomColors[part]} />
 			</div>
 			<div className="flex-grow"></div>
 			<div className="flex justify-between items-center">

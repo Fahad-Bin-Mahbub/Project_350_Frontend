@@ -1,15 +1,4 @@
-import React from "react";
-import "./App.css";
-import CardSection from "./components/CardSection";
-import ClosedSidebar from "./components/ClosedSidebar";
-import NavBar from "./components/NavBar";
-import OpenSidebar from "./components/OpenSidebar";
-import TaskCard from "./components/TaskCard";
-import DashboardPage from "./pages/DashboardPage";
-import Exam from "./pages/Exam";
-import Sidebar from "./pages/Sidebar";
-
-const taskCardData = [
+export const taskCardData = [
 	{
 		status: "delivered",
 		courseCode: "CSE461",
@@ -75,18 +64,3 @@ const taskCardData = [
 		teacher: "SC",
 	},
 ];
-
-function App() {
-	return (
-		<>
-			{/* <NavBar /> */}
-			{/* <OpenSidebar /> */}
-			{/* <ClosedSidebar /> */}
-			{/* <Sidebar /> */}
-			{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
-			<DashboardPage />
-		</>
-	);
-}
-
-export default App;
