@@ -1,7 +1,7 @@
 import CardSection from "../components/CardSection";
 import NavBar from "../components/NavBar";
+import Sidebar from "../components/Sidebar.jsx";
 import { taskCardData } from "../data/data.js";
-import Sidebar from "../pages/Sidebar";
 const DashboardPage = () => {
 	return (
 		<>
