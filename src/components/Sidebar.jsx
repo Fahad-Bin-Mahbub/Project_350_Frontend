@@ -6,7 +6,7 @@ import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.png";
 
-const Sidebar = ({children}) => {
+const Sidebar = ({ children }) => {
 	const menus = [
 		{ name: "Dashboard", link: "/", icon: MdOutlineDashboard },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
@@ -15,9 +15,9 @@ const Sidebar = ({children}) => {
 	];
 	const [open, setOpen] = useState(false);
 	return (
-		<section className="relative flex h-screen">
+		<section className="flex min-h-screen">
 			<div
-				className={`bg-blue-950 min-h-screen flex flex-col justify-center ${
+				className={`bg-blue-950 flex flex-col justify-center ${
 					open ? "w-72" : "w-16"
 				} duration-500 text-gray-100 px-4`}
 			>
@@ -68,9 +68,7 @@ const Sidebar = ({children}) => {
 					))}
 				</div>
 			</div>
-			<div className="h-screen w-full">
-				{children}
-			</div>
+			<div className="h-screen w-full overflow-x-auto">{children}</div>
 		</section>
 	);
 };

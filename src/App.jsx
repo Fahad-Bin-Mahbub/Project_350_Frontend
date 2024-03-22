@@ -6,8 +6,8 @@ import "./App.css";
 // import Exam from "./pages/Exam";
 // import Sidebar from "./pages/Sidebar";
 // import AdminDashboard from "./pages/Admin/AdminDashboard";
-import DashboardPage from "./pages/DashboardPage";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
 	return (

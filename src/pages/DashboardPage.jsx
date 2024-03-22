@@ -5,49 +5,47 @@ import { taskCardData } from "../data/data.js";
 const DashboardPage = () => {
 	return (
 		<>
-			<div className="bg-blue-950">
+			<div className="bg-blue-950 w-screen">
 				<Sidebar>
-					<div className="w-[1463px] h-screen bg-white rounded-s-badge flex-col">
+					<div className=" bg-white rounded-s-badge h-screen min-h-screen overflow-hidden">
 						<NavBar />
-						<div className=" flex overflow-auto pl-3">
-							<div className="flex">
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-								<CardSection
-									TaskCardsData={taskCardData}
-									SectionName={"All cards"}
-								/>
-							</div>
+						<div className=" flex px-3 w-full overflow-x-auto no-scrollbar">
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							{/* <CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/>
+							<CardSection
+								TaskCardsData={taskCardData}
+								SectionName={"All cards"}
+							/> */}
 						</div>
 					</div>
 				</Sidebar>
