@@ -3,6 +3,7 @@ import { FaCalendarAlt, FaUserCircle } from "react-icons/fa";
 import { Drawer, Form, Input, Placeholder, Tag } from "rsuite";
 import FormControlLabel from "rsuite/esm/FormControlLabel";
 import { useTaskCard } from "../context/TaskCardProvider";
+import Comments from "./Comments";
 import StatusTag from "./StatusTag";
 
 const Textarea = React.forwardRef((props, ref) => (
@@ -184,30 +185,10 @@ const SlidePane = () => {
 							className="text-2xl font-medium focus:outline-none border-none"
 						/>
 					</Form.Group>
-					<div>
-						<div className="hS-[80%] overflow-y-auto">
-							<div className="bg-red-100 w-full flex px-2 items-center">
-								<div className="flex">
-									<div className="text-2xl mr-2 size-11 rounded-full bg-yellow-500 text-center content-center flex-none">
-										IC
-									</div>
-									<div className="text-xl mx-2 font-bold">ishrar chowdhury</div>
-								</div>
-								<div className="text-xl mx-2">
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Tenetur quidem perferendis fuga modi ullam sequi nihil illo.
-									Quo, maxime, atque ut aperiam quaerat corporis alias, ea
-									provident iusto sit neque.
-								</div>
-								<div className="text-xl mx-2">time</div>
-							</div>
-						</div>
-					</div>
-					<Form.Group controlId="textarea">
-						<Form.ControlLabel>Textarea</Form.ControlLabel>
-						<Form.Control rows={5} name="textarea" accepter={Textarea} />
-					</Form.Group>
 				</Form>
+				<div>
+					<Comments userId="1" />
+				</div>
 			</Drawer.Body>
 		</div>
 	);

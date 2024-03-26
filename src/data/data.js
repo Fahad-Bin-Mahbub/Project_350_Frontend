@@ -64,3 +64,36 @@ export const taskCardData = [
 		teacher: "SC",
 	},
 ];
+
+export const getComments = async () => {
+	return [
+		{
+			id: 1,
+			body: "This is a comment",
+			userId: 1,
+			username: "Ishrar Chowdhury",
+			createdAt: new Date().toISOString(),
+		},
+		{
+			id: 2,
+			body: "This is a comment",
+			userId: 1,
+			username: "Ishrar Chowdhury",
+			createdAt: new Date().toISOString(),
+		},
+		{
+			id: 3,
+			body: "This is a comment",
+			userId: 1,
+			username: "Ishrar Chowdhury",
+			createdAt: new Date().toISOString(),
+		},
+		{
+			id: 4,
+			body: "This is a comment",
+			userId: 1,
+			username: "Ishrar Chowdhury",
+			createdAt: new Date().toISOString(),
+		},
+	];
+};

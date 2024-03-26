@@ -15,10 +15,8 @@ function App() {
 				{/* <ClosedSidebar /> */}
 				{/* <Sidebar /> */}
 				{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
-				{/* <DashboardPage /> */}
+				<DashboardPage />
 				{/* <AdminDashboard /> */}
-				<Comment comment="Ishrar chowdhury" userName="Ishrar Chowdhury" />
-				{/* <StatusTag /> */}
 			</TaskCardProvider>
 		</>
 	);
