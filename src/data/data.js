@@ -68,32 +68,11 @@ export const taskCardData = [
 export const getComments = async () => {
 	return [
 		{
-			id: 1,
-			body: "This is a comment",
-			userId: 1,
+			id: "1",
+			body: "Can't make it in the due date, extend the deadline please.",
 			username: "Ishrar Chowdhury",
-			createdAt: new Date().toISOString(),
-		},
-		{
-			id: 2,
-			body: "This is a comment",
-			userId: 1,
-			username: "Ishrar Chowdhury",
-			createdAt: new Date().toISOString(),
-		},
-		{
-			id: 3,
-			body: "This is a comment",
-			userId: 1,
-			username: "Ishrar Chowdhury",
-			createdAt: new Date().toISOString(),
-		},
-		{
-			id: 4,
-			body: "This is a comment",
-			userId: 1,
-			username: "Ishrar Chowdhury",
-			createdAt: new Date().toISOString(),
+			userId: "1",
+			createdAt: "2024-03-24T23:00:33.010",
 		},
 	];
 };

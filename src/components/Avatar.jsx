@@ -5,12 +5,12 @@ const Avatar = ({ content, color = "bg-rose-500" }) => {
 		.split(" ")
 		.map((word) => word[0])
 		.join("");
-	console.log(content);
+	// console.log(content);
 
 	return (
 		<div
 			className={
-				`size-7 rounded-full flex justify-center text-center items-center text-[8px] text-white ` +
+				`size-7 rounded-full flex justify-center text-center items-center text-sm text-white ` +
 				color
 			}
 		>

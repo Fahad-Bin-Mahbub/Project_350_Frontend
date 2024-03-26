@@ -6,10 +6,6 @@ import { useTaskCard } from "../context/TaskCardProvider";
 import Comments from "./Comments";
 import StatusTag from "./StatusTag";
 
-const Textarea = React.forwardRef((props, ref) => (
-	<Input {...props} as="textarea" ref={ref} />
-));
-
 const SlidePane = () => {
 	const { taskCardData } = useTaskCard();
 	// console.log(taskCardData);
@@ -186,7 +182,7 @@ const SlidePane = () => {
 						/>
 					</Form.Group>
 				</Form>
-				<div>
+				<div className="w-full self-end">
 					<Comments userId="1" />
 				</div>
 			</Drawer.Body>
