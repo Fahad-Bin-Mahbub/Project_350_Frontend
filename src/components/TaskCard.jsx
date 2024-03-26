@@ -1,12 +1,16 @@
 // import React from "react";
 import { FaCalendarDays, FaEllipsis } from "react-icons/fa6";
+import { Badge } from "rsuite";
+import "rsuite/dist/rsuite.min.css";
+import { useTaskCard } from "../context/TaskCardProvider";
+import Avatar from "./Avatar";
 import TaskTag from "./TaskTag";
 
 const statusColors = {
-	ACCEPTED: "bg-accepted",
-	"IN PROGRESS": "bg-ongoing",
-	DELIVERED: "bg-delivered",
-	CHECKED: "bg-checked",
+	ACCEPTED: "bg-[#4682B4]",
+	"ON GOING": "bg-[#2297F1]",
+	SUBMITTED: "bg-[#40856A]",
+	CHECKED: "bg-[#FFB627]",
 };
 
 const randomColors = {
@@ -30,16 +34,34 @@ const TaskCard = ({
 	part,
 	paperCount,
 	teacher,
+	clickHandler,
 }) => {
 	status = status.toUpperCase();
 	courseCode = courseCode.toUpperCase();
 	part = part.toUpperCase();
 
+	const { taskCardData, updateTaskCardData } = useTaskCard();
+
 	return (
 		//whole card
-		<div className="w-[312px] h-[172px] bg-white rounded-2xl py-5 px-6 flex flex-col my-2">
+		<div
+			className="w-[312px] h-[172px] bg-white rounded-2xl py-5 px-6 flex flex-col my-2"
+			onClick={() => {
+				clickHandler();
+				updateTaskCardData({
+					status,
+					courseCode,
+					semester,
+					part,
+					paperCount,
+					teacher,
+				});
+				// console.log(taskCardData);
+			}}
+		>
 			{/* //TODO: make Notification badge */}
-			{/* <div className="size-2 bg-secondary rounded-full fixed top-0 right-0"></div> */}
+			{/* <div className="indicator">
+			</div> */}
 			<div className="justify-between flex">
 				<div className="text-left flex">
 					{/* status */}
@@ -49,8 +71,9 @@ const TaskCard = ({
 					<div className="text-[10px] text-grey">{status}</div>
 				</div>
 				{/* three dots */}
-				<div>
+				<div className="flex">
 					<FaEllipsis />
+					{/* <div className="size-2 bg-secondary rounded-full absolute top-0 right-0"></div> */}
 				</div>
 			</div>
 			{/* course code */}
@@ -61,13 +84,11 @@ const TaskCard = ({
 			<div className="flex">
 				<TaskTag TagName={semester} tagColor={randomColors[semester]} />
 				<TaskTag TagName={`Part ${part}`} tagColor={randomColors[part]} />
-				<TaskTag TagName={`${paperCount}`} tagColor={randomColors[part]} />
+				<TaskTag TagName={`${paperCount}`} tagColor="bg-tag-count" />
 			</div>
 			<div className="flex-grow"></div>
 			<div className="flex justify-between items-center">
-				<div className="size-7 rounded-full bg-rose-500 flex justify-center text-center items-center text-[8px] text-white">
-					{teacher}
-				</div>
+				<Avatar content={teacher} />
 				{/* //TODO: display different item by role */}
 				<div className="text-[10px] text-right">
 					<div className="">Due</div>

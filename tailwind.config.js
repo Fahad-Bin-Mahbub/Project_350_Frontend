@@ -22,16 +22,17 @@ export default {
 				checked: "#FFB627",
 				alert: "#F04337",
 				tag: {
-					A: "#C7E9C0", // Light Green
-					B: "#C7E9F1", // Light Blue
-					1: "#D0BFFF",
-					2: "#DFCCFB",
-					3: "#D8BFD8",
-					4: "#D8BFD8",
-					5: "#B9F3FC",
-					6: "#AEE2FF",
-					7: "#93C6E7",
-					8: "#FEDEFF",
+					A: "#C6E0B3", // Light Green
+					B: "#BED6A9", // Light Blue
+					1: "#F8CCCC",
+					2: "#F5BBBB",
+					3: "#B9D6E2",
+					4: "#AFE0E6",
+					5: "#FFD9B3",
+					6: "#FFE4B5",
+					7: "#CBB6D8",
+					8: "#C9AADB",
+					count: "#C8C3B7",
 				},
 			},
 		},

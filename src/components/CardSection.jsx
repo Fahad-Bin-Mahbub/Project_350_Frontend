@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FaEllipsis, FaPlus } from "react-icons/fa6";
 import TaskCard from "./TaskCard";
 
-const CardSection = ({ SectionName, TaskCardsData }) => {
+const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 	const [cards, setCards] = useState(TaskCardsData);
 	const AddCard = ({ onClick }) => {
 		return (
@@ -16,16 +16,16 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 		);
 	};
 	const addNewCard = () => {
-		// console.log("clicked");
 		setCards([
 			{
 				//TODO: Determine and add appropriate default values for the new card
-				status: "accepted",
-				courseCode: "test",
-				semester: "4/2",
-				part: "B",
-				paperCount: 1,
-				teacher: "SC",
+				status: "Status",
+				courseCode: "Course Code",
+				semester: "Semester",
+				part: "A",
+				paperCount: 0,
+				teacher: "",
+				clickHandler: clickHandler,
 			},
 			...cards,
 		]);
@@ -45,7 +45,7 @@ const CardSection = ({ SectionName, TaskCardsData }) => {
 			</div>
 			<div className="overflow-y-auto no-scrollbar">
 				{cards.map((card, index) => (
-					<TaskCard {...card} key={index} />
+					<TaskCard {...card} key={index} clickHandler={clickHandler} />
 				))}
 				<AddCard onClick={addNewCard} />
 			</div>

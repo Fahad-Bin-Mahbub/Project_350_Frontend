@@ -1,24 +1,25 @@
 import React from "react";
 import "./App.css";
-// import CardSection from "./components/CardSection";
-// import NavBar from "./components/NavBar";
-// import TaskCard from "./components/TaskCard";
-// import Exam from "./pages/Exam";
-// import Sidebar from "./pages/Sidebar";
-// import AdminDashboard from "./pages/Admin/AdminDashboard";
+import Comment from "./components/Comment";
+import StatusTag from "./components/StatusTag";
+import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import DashboardPage from "./pages/DashboardPage";
 
 function App() {
 	return (
 		<>
-			{/* <NavBar /> */}
-			{/* <OpenSidebar /> */}
-			{/* <ClosedSidebar /> */}
-			{/* <Sidebar /> */}
-			{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
-			<DashboardPage />
-			{/* <AdminDashboard /> */}
+			<TaskCardProvider>
+				{/* <NavBar /> */}
+				{/* <OpenSidebar /> */}
+				{/* <ClosedSidebar /> */}
+				{/* <Sidebar /> */}
+				{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
+				{/* <DashboardPage /> */}
+				{/* <AdminDashboard /> */}
+				<Comment comment="Ishrar chowdhury" userName="Ishrar Chowdhury" />
+				{/* <StatusTag /> */}
+			</TaskCardProvider>
 		</>
 	);
 }
