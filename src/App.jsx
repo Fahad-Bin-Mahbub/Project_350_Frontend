@@ -5,7 +5,7 @@ import StatusTag from "./components/StatusTag";
 import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import DashboardPage from "./pages/DashboardPage";
-// import LoginPage from "./pages/LoginPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
 	return (
@@ -16,9 +16,9 @@ function App() {
 				{/* <ClosedSidebar /> */}
 				{/* <Sidebar /> */}
 				{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
-				<DashboardPage />
+				{/* <DashboardPage /> */}
 				{/* <AdminDashboard /> */}
-				{/* <LoginPage /> */}
+				<LoginPage />
 			</TaskCardProvider>
 		</>
 	);

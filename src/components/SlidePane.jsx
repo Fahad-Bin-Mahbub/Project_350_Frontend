@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { FaCalendarAlt, FaUserCircle } from "react-icons/fa";
-import { Drawer, Form, Input, Placeholder, Tag } from "rsuite";
+import { Drawer, Form } from "rsuite";
 import FormControlLabel from "rsuite/esm/FormControlLabel";
 import { useTaskCard } from "../context/TaskCardProvider";
 import Comments from "./Comments";
@@ -11,89 +11,7 @@ const SlidePane = () => {
 	// console.log(taskCardData);
 	const { status, courseCode, semester, part, paperCount, teacher } =
 		taskCardData;
-	// return (
-	// 	<>
-	// 		<ul className="menu p-4 w-[680px] min-h-full bg-base-200 text-base-content">
-	// 			{/* Sidebar content here */}
-	// 			<div className="flex justify-between px-8 py-3">
-	// 				<button className="btn btn-sm bg-[#E6F8F1] border-[#40856A] text-[#40856A]">
-	// 					{status}
-	// 				</button>
-	// 				<button>x</button>
-	// 			</div>
-	// 			<div className="border border-slate-300 w-full"></div>
-	// 			<form action="" className="flex flex-col gap-12 py-16 px-12">
-	// 				<div>
-	// 					<input
-	// 						type="text"
-	// 						placeholder={courseCode}
-	// 						className="input input-ghost w-full text-4xl font-medium"
-	// 					/>
-	// 				</div>
-	// 				<div className="grid grid-cols-2 items-center">
-	// 					<label className="w-20 font-bold text-base">Assignee</label>
-	// 					<div className="inline-flex justify-between">
-	// 						<FaUserCircle size={44} style={{ color: "#C3C3C3" }} />
-	// 						<input
-	// 							type="text"
-	// 							placeholder={teacher}
-	// 							className="input input-ghost w-full max-w-xs"
-	// 						/>
-	// 					</div>
-	// 				</div>
-	// 				<div className="grid grid-cols-2 items-center">
-	// 					<label className="w-20 font-bold text-base">Due Date</label>
-	// 					<div className="inline-flex justify-between items-center">
-	// 						{/* //TODO: pass date as prop */}
-	// 						<input
-	// 							type="date"
-	// 							placeholder="No Due Date"
-	// 							className="input input-ghost w-full max-w-xs mt-1"
-	// 						/>
-	// 					</div>
-	// 				</div>
-	// 				<div className="grid grid-cols-2 items-center">
-	// 					<label className="w-20 font-bold text-base">Exam</label>
-	// 					<input
-	// 						type="text"
-	// 						placeholder={semester}
-	// 						className="input input-ghost w-full max-w-xs"
-	// 					/>
-	// 				</div>
-	// 				<div className="grid grid-cols-2 items-center">
-	// 					<label className="w-20 font-bold text-base">Part</label>
 
-	// 					{/* //TODO: set selected value from the props */}
-	// 					<select className="input input-ghost w-full max-w-xs">
-	// 						<option value="A">A</option>
-	// 						<option value="B">B</option>
-	// 					</select>
-	// 				</div>
-	// 				<div className="grid grid-cols-2 items-center">
-	// 					<label className="w-20 font-bold text-base">Total papers</label>
-	// 					<input
-	// 						type="text"
-	// 						placeholder={paperCount}
-	// 						className="input input-ghost w-full max-w-xs"
-	// 					/>
-	// 				</div>
-	// 			</form>
-	// 			<div>
-	// 				<div
-	// 					tabIndex={0}
-	// 					className="collapse border border-base-300 bg-white"
-	// 				>
-	// 					<div className="collapse-title text-xl font-medium">Comments</div>
-	// 					<div className="collapse-content">
-	// 						<p>
-	// 							tabIndex={0} attribute is necessary to make the div focusable
-	// 						</p>
-	// 					</div>
-	// 				</div>
-	// 			</div>
-	// 		</ul>
-	// 	</>
-	// );
 	const [cc, setCc] = useState(courseCode);
 	const [t, setT] = useState(teacher);
 	const [pc, setPc] = useState(paperCount);
