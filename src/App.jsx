@@ -16,9 +16,9 @@ function App() {
 				{/* <ClosedSidebar /> */}
 				{/* <Sidebar /> */}
 				{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
-				{/* <DashboardPage /> */}
+				<DashboardPage />
 				{/* <AdminDashboard /> */}
-				<LoginPage />
+				{/* <LoginPage /> */}
 			</TaskCardProvider>
 		</>
 	);

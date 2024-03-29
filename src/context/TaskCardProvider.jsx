@@ -8,12 +8,13 @@ export const useTaskCard = () => {
 
 export const TaskCardProvider = ({ children }) => {
 	const [taskCardData, setTaskCardData] = useState({
-		status: "accepted",
-		courseCode: "test",
-		semester: "4/2",
-		part: "B",
-		paperCount: 1,
-		teacher: "SC",
+		status: "Status",
+		courseCode: "Course Code",
+		semester: "1/1",
+		part: "A",
+		paperCount: 0,
+		teacher: "Teacher Name",
+		date: new Date(),
 	});
 
 	const updateTaskCardData = (newTaskCardData) => {

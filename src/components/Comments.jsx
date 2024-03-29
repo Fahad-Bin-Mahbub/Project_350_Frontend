@@ -32,7 +32,7 @@ const Comments = (userid) => {
 					Comments
 				</div>
 			</div>
-			<div className="w-full h-[25dvh] flex flex-col overflow-y-auto flex-grow">
+			<div className="w-full h-[25dvh] flex flex-col overflow-y-auto flex-grow no-scrollbar">
 				{comments.map((comment) => (
 					<Comment key={comment.id} comment={comment} />
 				))}

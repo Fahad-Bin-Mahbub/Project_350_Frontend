@@ -15,6 +15,7 @@ const LoginPage = () => {
 
 	const doLogin = () => {
 		// TODO: call api for login
+		if (email === "" || pass === "") return;
 
 		setEmail("");
 		setPass("");
@@ -27,7 +28,7 @@ const LoginPage = () => {
 	return (
 		<div className="h-screen bg-gray-300 ">
 			<div className="mx-auto max-w-sm  bg-gray-600 px-5 py-6 rounded-xl">
-				<div className="py-6">
+				<div className="pb-8">
 					<div className="text-2xl text-white">Login</div>
 				</div>
 				<div className="grid gap-4">
@@ -37,7 +38,7 @@ const LoginPage = () => {
 							<Input
 								id="email"
 								type="email"
-								placeholder="m@example.com"
+								placeholder="email@example.com"
 								required
 								value={email}
 								onChange={(value) => setEmail(value)}
@@ -55,6 +56,7 @@ const LoginPage = () => {
 							<Input
 								type={visible ? "text" : "password"}
 								required
+								placeholder="Password"
 								value={pass}
 								onChange={(value) => setPass(value)}
 							/>
@@ -63,16 +65,22 @@ const LoginPage = () => {
 							</InputGroup.Button>
 						</InputGroup>
 					</div>
-					<Button type="submit" className="w-full text-white" onClick={doLogin}>
-						Login
-					</Button>
-					<Button
-						variant="outline"
-						className="w-full text-white"
-						onClick={doGoogleLogin}
-					>
-						Login with Google
-					</Button>
+					<div className="my-5">
+						<Button
+							type="submit"
+							className="w-full text-white "
+							onClick={doLogin}
+						>
+							Login
+						</Button>
+						<Button
+							variant="outline"
+							className="w-full text-white"
+							onClick={doGoogleLogin}
+						>
+							Login with Google
+						</Button>
+					</div>
 				</div>
 			</div>
 		</div>

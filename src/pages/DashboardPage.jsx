@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
 import CardSection from "../components/CardSection";
 import NavBar from "../components/NavBar";
@@ -11,7 +11,7 @@ const DashboardPage = () => {
 
 	return (
 		<>
-			<div className="bg-blue-950 w-screen">
+			<div className="bg-blue-950 ">
 				<Sidebar>
 					<div className=" bg-white rounded-s-badge h-screen min-h-screen overflow-hidden">
 						<NavBar />

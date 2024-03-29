@@ -5,7 +5,8 @@ export const taskCardData = [
 		semester: "1/1",
 		part: "A",
 		paperCount: 3,
-		teacher: "AT",
+		teacher: "Ayesha Tasnim",
+		dueDate: "2024-03-24",
 	},
 	{
 		status: "on going",
@@ -13,7 +14,8 @@ export const taskCardData = [
 		semester: "1/2",
 		part: "A",
 		paperCount: 3,
-		teacher: "FC",
+		teacher: "Farida Chowdhury",
+		dueDate: "2024-03-26",
 	},
 	{
 		status: "Submitted",
@@ -21,7 +23,8 @@ export const taskCardData = [
 		semester: "2/1",
 		part: "B",
 		paperCount: 3,
-		teacher: "IZ",
+		teacher: "Ishtiak Zahid",
+		dueDate: "2024-02-24",
 	},
 	{
 		status: "checked",
@@ -29,7 +32,8 @@ export const taskCardData = [
 		semester: "2/2",
 		part: "A",
 		paperCount: 3,
-		teacher: "EH",
+		teacher: "Enamul Haque",
+		dueDate: "2024-01-01",
 	},
 	{
 		status: "accepted",
@@ -37,7 +41,8 @@ export const taskCardData = [
 		semester: "3/1",
 		part: "B",
 		paperCount: 3,
-		teacher: "SC",
+		teacher: "John Doe",
+		dueDate: "2024-03-01",
 	},
 	{
 		status: "accepted",
@@ -45,7 +50,8 @@ export const taskCardData = [
 		semester: "3/2",
 		part: "B",
 		paperCount: 3,
-		teacher: "SC",
+		teacher: "Jhonny Doe",
+		dueDate: "2024-03-20",
 	},
 	{
 		status: "accepted",
@@ -53,7 +59,8 @@ export const taskCardData = [
 		semester: "4/1",
 		part: "B",
 		paperCount: 3,
-		teacher: "SC",
+		teacher: "Jafor Iqbal",
+		dueDate: "2024-02-02",
 	},
 	{
 		status: "accepted",
@@ -61,7 +68,8 @@ export const taskCardData = [
 		semester: "4/2",
 		part: "B",
 		paperCount: 3,
-		teacher: "SC",
+		teacher: "Saifur Rahman",
+		dueDate: "2024-03-26",
 	},
 ];
 
@@ -72,6 +80,13 @@ export const getComments = async () => {
 			body: "Can't make it in the due date, extend the deadline please.",
 			username: "Ishrar Chowdhury",
 			userId: "1",
+			createdAt: "2024-03-24T23:00:33.010",
+		},
+		{
+			id: "2",
+			body: "Sure, I will extend the deadline.",
+			username: "Fathoor Rabbani",
+			userId: "2",
 			createdAt: "2024-03-24T23:00:33.010",
 		},
 	];

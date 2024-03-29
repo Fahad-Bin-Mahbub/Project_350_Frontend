@@ -34,11 +34,34 @@ const TaskCard = ({
 	part,
 	paperCount,
 	teacher,
+	dueDate,
 	clickHandler,
 }) => {
-	status = status.toUpperCase();
+	const formatDate = (date) => {
+		const monthName = [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+		];
+
+		const month = monthName[date.getMonth()];
+
+		return `${month} ${date.getDate()}`;
+	};
+
 	courseCode = courseCode.toUpperCase();
 	part = part.toUpperCase();
+	status = status.toUpperCase();
+	dueDate = formatDate(new Date(dueDate));
 
 	const { taskCardData, updateTaskCardData } = useTaskCard();
 
@@ -55,13 +78,11 @@ const TaskCard = ({
 					part,
 					paperCount,
 					teacher,
+					dueDate,
 				});
-				// console.log(taskCardData);
 			}}
 		>
 			{/* //TODO: make Notification badge */}
-			{/* <div className="indicator">
-			</div> */}
 			<div className="justify-between flex">
 				<div className="text-left flex">
 					{/* status */}
@@ -93,7 +114,7 @@ const TaskCard = ({
 				<div className="text-[10px] text-right">
 					<div className="">Due</div>
 					{/* //TODO: Change text color according to the date */}
-					<div className="text-alert">March 19</div>
+					<div className="text-alert">{dueDate}</div>
 				</div>
 				{/* <FaCalendarDays /> */}
 			</div>
