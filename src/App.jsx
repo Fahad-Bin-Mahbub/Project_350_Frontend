@@ -1,27 +1,29 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Comment from "./components/Comment";
-import StatusTag from "./components/StatusTag";
-import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
-import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
-	return (
-		<>
-			<TaskCardProvider>
-				{/* <NavBar /> */}
-				{/* <OpenSidebar /> */}
-				{/* <ClosedSidebar /> */}
-				{/* <Sidebar /> */}
-				{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
-				<DashboardPage />
-				{/* <AdminDashboard /> */}
-				{/* <LoginPage /> */}
-			</TaskCardProvider>
-		</>
-	);
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/Admin/Dashboard" element={<AdminDashboard />} />
+      </Routes>
+
+      {/* <TaskCardProvider> */}
+      {/* <NavBar /> */}
+      {/* <OpenSidebar /> */}
+      {/* <ClosedSidebar /> */}
+      {/* <Sidebar /> */}
+      {/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
+      {/* <DashboardPage /> */}
+      {/* <AdminDashboard /> */}
+      {/* <LoginPage /> */}
+      {/* </TaskCardProvider> */}
+    </>
+  );
 }
 
 export default App;
