@@ -25,15 +25,19 @@ const LoginPage = () => {
     });
     console.log(data);
     if (data.success) {
-      if (data.data.roles.includes("admin")) navigate("/Admin/Dashboard");
+      if (data.data.roles.includes("admin")) navigate("/admin/dashboard");
       // To-do: handle unauthorized access
     }
+    // To-do: handle unauthorized access
     setEmail("");
     setPass("");
   };
 
-  const doGoogleLogin = () => {
+  const doGoogleLogin = async () => {
     // TODO: call api for google login
+    const currentUrl = window.location.href;
+    const encodedParam = encodeURI(`?redirectUrl=${currentUrl}`);
+    window.location.href = `http://localhost:5000/auth/google${encodedParam}`;
   };
 
   return (

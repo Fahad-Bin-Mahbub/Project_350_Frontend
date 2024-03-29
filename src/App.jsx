@@ -1,7 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import DashboardPage from "./pages/DashboardPage";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
@@ -9,7 +11,15 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/Admin/Dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/dashboard"
+          element={
+            <TaskCardProvider>
+              <DashboardPage />
+            </TaskCardProvider>
+          }
+        />
       </Routes>
 
       {/* <TaskCardProvider> */}
