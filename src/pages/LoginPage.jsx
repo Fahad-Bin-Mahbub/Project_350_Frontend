@@ -1,6 +1,8 @@
 import EyeIcon from "@rsuite/icons/legacy/Eye";
 import EyeSlashIcon from "@rsuite/icons/legacy/EyeSlash";
+import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Input, InputGroup } from "rsuite";
 
 // TODO: place the card center of the page
@@ -8,21 +10,34 @@ const LoginPage = () => {
 	const [visible, setVisible] = useState(false);
 	const [email, setEmail] = useState("");
 	const [pass, setPass] = useState("");
+	const navigate = useNavigate();
 
 	const handleChange = () => {
 		setVisible(!visible);
 	};
 
-	const doLogin = () => {
+	const doLogin = async () => {
 		// TODO: call api for login
 		if (email === "" || pass === "") return;
-
+		const { data } = await axios.post("http://localhost:5000/api/admin/login", {
+			email,
+			password: pass,
+		});
+		console.log(data);
+		if (data.success) {
+			if (data.data.roles.includes("admin")) navigate("/admin/dashboard");
+			// To-do: handle unauthorized access
+		}
+		// To-do: handle unauthorized access
 		setEmail("");
 		setPass("");
 	};
 
-	const doGoogleLogin = () => {
+	const doGoogleLogin = async () => {
 		// TODO: call api for google login
+		const currentUrl = window.location.href;
+		const encodedParam = encodeURI(`?redirectUrl=${currentUrl}`);
+		window.location.href = `http://localhost:5000/auth/google${encodedParam}`;
 	};
 
 	return (
