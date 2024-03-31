@@ -26,8 +26,8 @@ const LoginPage = () => {
 	};
 
 	return (
-		<div className="h-screen bg-gray-300 ">
-			<div className="mx-auto max-w-sm  bg-gray-600 px-5 py-6 rounded-xl">
+		<div className="h-screen bg-gray-300 flex items-center justify-center ">
+			<div className="mx-auto max-w-sm w-1/2 bg-gray-600 px-5 py-6 rounded-xl">
 				<div className="pb-8">
 					<div className="text-2xl text-white">Login</div>
 				</div>

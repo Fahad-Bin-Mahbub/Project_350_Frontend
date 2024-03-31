@@ -1,80 +1,77 @@
-import React, { useState } from "react";
-import { FaCalendar, FaUserCircle } from "react-icons/fa";
-import { DateInput, DatePicker, Drawer, Form, SelectPicker } from "rsuite";
+import { useFormik } from "formik";
+import React from "react";
+import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
 import { useTaskCard } from "../context/TaskCardProvider";
 import Comments from "./Comments";
+import {
+	Datepicker,
+	MenuPopover,
+	PaperSelection,
+	SemesterSelection,
+} from "./SlidePaneFormComponents";
 import StatusTag from "./StatusTag";
-
-const Datepicker = React.forwardRef((props, ref) => (
-	<DatePicker
-		appearance="subtle"
-		oneTap
-		size="lg"
-		format="dd-MM-yyyy"
-		{...props}
-		caretAs={FaCalendar}
-		ref={ref}
-		className="text-2xl font-medium focus:outline-none border-none"
-	/>
-));
-
-const semesterSelcetion = React.forwardRef((props, ref) => {
-	const data = ["1/1", "1/2", "2/1", "2/2", "3/1", "3/2", "4/1", "4/2"].map(
-		(item) => ({ label: item, value: item })
-	);
-	return (
-		<SelectPicker
-			appearance="subtle"
-			data={data}
-			className="text-2xl font-medium focus:outline-none border-none"
-			block
-			size="lg"
-		/>
-	);
-});
-
-const paperSelcetion = React.forwardRef((props, ref) => {
-	const data = ["A", "B"].map((item) => ({ label: item, value: item }));
-	return (
-		<SelectPicker
-			appearance="subtle"
-			data={data}
-			className="text-2xl font-medium focus:outline-none border-none"
-			block
-			size="lg"
-		/>
-	);
-});
 
 const SlidePane = () => {
 	const { taskCardData } = useTaskCard();
-	// console.log(taskCardData);
-	const { status, courseCode, semester, part, paperCount, teacher } =
+	const [changed, setChanged] = React.useState(false);
+	const { status, courseCode, semester, part, paperCount, teacher, dueDate } =
 		taskCardData;
 
-	const [cc, setCc] = useState(courseCode);
-	const [t, setT] = useState(teacher);
-	const [pc, setPc] = useState(paperCount);
-	const [s, setS] = useState(semester);
-	const [date, setDate] = useState(new Date());
-	const [p, setP] = useState(part);
-	const [stat, setStat] = useState(status);
+	const formik = useFormik({
+		initialValues: {
+			status: status,
+			courseCode: courseCode,
+			semester: semester,
+			part: part,
+			paperCount: paperCount,
+			teacher: teacher,
+			date: dueDate,
+		},
+		onSubmit: (values) => {},
+	});
+
+	const tempRef = React.useRef();
+	const handleStatusSelection = (status) => {
+		setChanged(true);
+		formik.setFieldValue("status", status);
+		tempRef.current.close();
+	};
+
+	const handleSaveChanges = () => {
+		//TODO: save changes to the database and API call
+		console.log(formik.values);
+	};
 
 	return (
 		<div className="h-screen">
 			<Drawer.Header>
-				<Drawer.Title>
-					<StatusTag status={stat} />
+				<Drawer.Title className="flex justify-between items-center">
+					<Whisper
+						placement="rightStart"
+						trigger="click"
+						ref={tempRef}
+						speaker={<MenuPopover onSelect={handleStatusSelection} />}
+					>
+						<IconButton icon={<StatusTag status={formik.values.status} />} />
+					</Whisper>
+					{changed && (
+						<Button onClick={handleSaveChanges} appearance="subtle">
+							Save Changes
+						</Button>
+					)}
 				</Drawer.Title>
 			</Drawer.Header>
 			<Drawer.Body className="no-scrollbar">
-				<Form fluid>
+				<Form fluid className="pb-3">
 					<Form.Group controlId="course-code">
 						<Form.Control
 							name="Course"
 							placeholder={`Course`}
-							value={cc}
-							onChange={(value) => setCc(value)}
+							value={formik.values.courseCode}
+							onChange={(value) => {
+								setChanged(true);
+								formik.setFieldValue("courseCode", value);
+							}}
 							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none"
 						/>
 					</Form.Group>
@@ -85,9 +82,12 @@ const SlidePane = () => {
 						<Form.Control
 							name="Assignee"
 							placeholder={`Assignee`}
-							value={t}
-							onChange={(value) => setT(value)}
-							className="text-2xl font-medium focus:outline-none border-none"
+							value={formik.values.teacher}
+							onChange={(value) => {
+								setChanged(true);
+								formik.setFieldValue("teacher", value);
+							}}
+							size="lg"
 						/>
 					</Form.Group>
 					<Form.Group controlId="due-date" className="flex mb-0">
@@ -97,9 +97,14 @@ const SlidePane = () => {
 						<Form.Control
 							accepter={Datepicker}
 							name="due"
-							value={date}
-							onChange={(value) => setDate(value)}
-							// className="text-2xl font-medium focus:outline-none border-none"
+							value={new Date(formik.values.date)}
+							onChange={(value) => {
+								setChanged(true);
+								formik.setFieldValue(
+									"date",
+									new Date(value === null ? new Date() : value)
+								);
+							}}
 						/>
 					</Form.Group>
 					<Form.Group controlId="exam" className="flex">
@@ -107,12 +112,14 @@ const SlidePane = () => {
 							Exam
 						</Form.ControlLabel>
 						<Form.Control
-							accepter={semesterSelcetion}
+							accepter={SemesterSelection}
 							name="exam"
 							placeholder={`semester`}
-							value={s}
-							onChange={(value) => setS(value)}
-							// className="text-2xl font-medium focus:outline-none border-none"
+							value={formik.values.semester}
+							onChange={(value) => {
+								setChanged(true);
+								formik.setFieldValue("semester", value);
+							}}
 						/>
 					</Form.Group>
 					<Form.Group controlId="Part" className="flex">
@@ -120,11 +127,14 @@ const SlidePane = () => {
 							Part
 						</Form.ControlLabel>
 						<Form.Control
+							accepter={PaperSelection}
 							name="part"
 							placeholder={`part`}
-							value={p}
-							onChange={(value) => setP(value)}
-							className="text-2xl font-medium focus:outline-none border-none"
+							value={formik.values.part}
+							onChange={(value) => {
+								setChanged(true);
+								formik.setFieldValue("part", value);
+							}}
 						/>
 					</Form.Group>
 
@@ -135,9 +145,12 @@ const SlidePane = () => {
 						<Form.Control
 							name="paper-count"
 							placeholder={`0`}
-							value={pc}
-							onChange={(value) => setPc(value)}
-							className="text-2xl font-medium focus:outline-none border-none"
+							value={formik.values.paperCount}
+							onChange={(value) => {
+								setChanged(true);
+								formik.setFieldValue("paperCount", value);
+							}}
+							size="lg"
 						/>
 					</Form.Group>
 				</Form>
