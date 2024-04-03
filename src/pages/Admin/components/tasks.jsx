@@ -1,9 +1,16 @@
 import DataTable from "react-data-table-component";
-import Button from "../../../components/Button";
+// import Button from "../../../components/Button";
 import { LiaEditSolid } from "react-icons/lia";
 import { BiSearch } from "react-icons/bi";
 import { MdDeleteOutline } from "react-icons/md";
+import AddTaskModal from "../../../components/admin modals/AddTaskModal";
+import { useState } from 'react';
 const Tasks = () => {
+	// const [isModalOpen, setIsModalOpen] = useState(false);
+
+	// const toggleModal = () => {
+	// 	setIsModalOpen(!isModalOpen);
+	// };
 	const columns = [
 		{
 			name: "Course Code",
@@ -67,7 +74,7 @@ const Tasks = () => {
 					</div>
 				</div>
 				<div className="flex gap-4 items-center flex-wrap">
-					<div class="pt-2 mx-auto text-gray-600">
+					<div className="pt-2 mx-auto text-gray-600">
 						<input
 							className="border-2 border-gray-300 bg-white h-10 p-3 rounded-full text-sm focus:outline-none"
 							type="search"
@@ -75,7 +82,8 @@ const Tasks = () => {
 							placeholder="Search"
 						/>
 					</div>
-					<Button className="w-44" title="Add Task" />
+					{/* <Button className="btn w-44" title="Add Task" /> */}
+					<AddTaskModal></AddTaskModal>
 				</div>
 			</div>
 			<DataTable
@@ -98,9 +106,10 @@ const Tasks = () => {
 				}}
 				data={data}
 				selectableRows
-				// pagination
+			// pagination
 			/>
 		</div>
+
 	);
 };
 
