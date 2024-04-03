@@ -1,6 +1,5 @@
 import Button from "../Button";
 
-
 const AddTaskModal = () => {
     return (
         <div>
