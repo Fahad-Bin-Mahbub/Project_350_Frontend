@@ -19,12 +19,13 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 		setCards([
 			{
 				//TODO: Determine and add appropriate default values for the new card
-				status: "Status",
+				status: "Accepted",
 				courseCode: "Course Code",
-				semester: "Semester",
+				semester: "1/1",
 				part: "A",
 				paperCount: 0,
-				teacher: "",
+				teacher: "Teacher Name",
+				dueDate: new Date().toISOString().split("T")[0],
 				clickHandler: clickHandler,
 			},
 			...cards,
@@ -35,7 +36,7 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 
 	return (
 		<div className="max-h-[92vh] min-h-[92vh] max-w-[360px] bg-[#E9E9E9] rounded-xl flex flex-col p-6 mx-3 mb-6 ">
-			<div className="flex justify-between pb-6">
+			<div className="flex justify-between pb-4">
 				<div className="text-sm text-black">{SectionName}</div>
 				<div className="flex">
 					{/* //TODO: Toggle the visibility of the plus icon according to the role */}
@@ -43,7 +44,7 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 					<FaEllipsis />
 				</div>
 			</div>
-			<div className="overflow-y-auto no-scrollbar">
+			<div className="overflow-y-auto no-scrollbar rounded-xl">
 				{cards.map((card, index) => (
 					<TaskCard {...card} key={index} clickHandler={clickHandler} />
 				))}

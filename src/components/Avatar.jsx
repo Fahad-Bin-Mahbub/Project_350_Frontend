@@ -1,5 +1,3 @@
-import React from "react";
-
 const Avatar = ({ content, color = "bg-rose-500" }) => {
 	content = content
 		.split(" ")
@@ -10,7 +8,7 @@ const Avatar = ({ content, color = "bg-rose-500" }) => {
 	return (
 		<div
 			className={
-				`size-7 rounded-full flex justify-center text-center items-center text-sm text-white ` +
+				`size-7 rounded-full flex justify-center text-center items-center text-xs text-white ` +
 				color
 			}
 		>

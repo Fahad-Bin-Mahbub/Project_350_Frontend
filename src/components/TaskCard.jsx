@@ -61,7 +61,7 @@ const TaskCard = ({
 	courseCode = courseCode.toUpperCase();
 	part = part.toUpperCase();
 	status = status.toUpperCase();
-	dueDate = formatDate(new Date(dueDate));
+	const DueDate = formatDate(new Date(dueDate));
 
 	const { taskCardData, updateTaskCardData } = useTaskCard();
 
@@ -114,7 +114,7 @@ const TaskCard = ({
 				<div className="text-[10px] text-right">
 					<div className="">Due</div>
 					{/* //TODO: Change text color according to the date */}
-					<div className="text-alert">{dueDate}</div>
+					<div className="text-alert">{DueDate}</div>
 				</div>
 				{/* <FaCalendarDays /> */}
 			</div>

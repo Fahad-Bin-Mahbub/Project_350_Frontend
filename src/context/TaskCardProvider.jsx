@@ -14,7 +14,7 @@ export const TaskCardProvider = ({ children }) => {
 		part: "A",
 		paperCount: 0,
 		teacher: "Teacher Name",
-		date: new Date(),
+		dueDate: new Date(),
 	});
 
 	const updateTaskCardData = (newTaskCardData) => {
