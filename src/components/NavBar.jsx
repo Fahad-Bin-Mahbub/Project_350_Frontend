@@ -3,8 +3,11 @@ import React from "react";
 import { FaUser } from "react-icons/fa6";
 import { IoIosNotifications } from "react-icons/io";
 const NavBar = () => {
+  const baseUrl = "https://examtrack.up.railway.app";
+
   const handleLogout = async () => {
-    window.location.href = "http://localhost:5000/auth/logout";
+    localStorage.removeItem("token");
+    window.location.href = `${baseUrl}/auth/logout`;
   };
 
   return (
