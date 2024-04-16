@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
 import "./App.css";
 import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -10,19 +10,21 @@ import LoginPage from "./pages/LoginPage";
 function App() {
 	return (
 		<>
-			<Routes>
-				<Route path="/" element={<LoginPage />} />
-				<Route path="/admin/dashboard" element={<AdminDashboard />} />
-				<Route path="/invitationAccept" element={<InvitationAcceptPage />} />
-				<Route
-					path="/dashboard"
-					element={
-						<TaskCardProvider>
-							<DashboardPage />
-						</TaskCardProvider>
-					}
-				/>
-			</Routes>
+			<Router>
+				<Routes>
+					<Route path="/" element={<LoginPage />} />
+					<Route path="/admin/dashboard" element={<AdminDashboard />} />
+					<Route path="/invitationAccept" element={<InvitationAcceptPage />} />
+					<Route
+						path="/dashboard"
+						element={
+							<TaskCardProvider>
+								<DashboardPage />
+							</TaskCardProvider>
+						}
+					/>
+				</Routes>
+			</Router>
 
 			{/* <TaskCardProvider> */}
 			{/* <NavBar /> */}
