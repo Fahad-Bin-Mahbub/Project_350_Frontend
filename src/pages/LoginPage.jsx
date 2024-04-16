@@ -28,8 +28,8 @@ const LoginPage = () => {
     });
     console.log(data);
     if (data.success) {
-      if (data.data.roles.includes("admin")) navigate("/admin/dashboard");
-      toast.success(`Welcome ${data.data.firstName}`);
+      if (data.user.roles.includes("admin")) navigate("/admin/dashboard");
+      toast.success(`Welcome ${data.user.firstName}`);
       localStorage.setItem("token", data.token);
       // To-do: handle unauthorized access
     }
