@@ -31,7 +31,7 @@ const LoginPage = () => {
     console.log(data);
     if (data.success) {
       if (data.user.roles.includes("admin")) navigate("/admin/dashboard");
-      toast.success(`Welcome ${data.user.firstName}`);
+      toast.success(`Welcome ${data.user.email}`);
       localStorage.setItem("token", data.token);
       setAuth({
         ...auth,
