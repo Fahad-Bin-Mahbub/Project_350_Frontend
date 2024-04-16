@@ -1,6 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router,Route, Routes } from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import { SectionProvider } from "./context/SectionProvider";
 import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import DashboardPage from "./pages/DashboardPage";
@@ -18,9 +19,11 @@ function App() {
 					<Route
 						path="/dashboard"
 						element={
-							<TaskCardProvider>
-								<DashboardPage />
-							</TaskCardProvider>
+							<SectionProvider>
+								<TaskCardProvider>
+									<DashboardPage />
+								</TaskCardProvider>
+							</SectionProvider>
 						}
 					/>
 				</Routes>

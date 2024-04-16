@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { FaEllipsis, FaPlus } from "react-icons/fa6";
+import { InlineEdit } from "rsuite";
+import { useSection } from "../context/SectionProvider";
 import TaskCard from "./TaskCard";
 
 const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
@@ -37,11 +39,18 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 	return (
 		<div className="max-h-[92vh] min-h-[92vh] max-w-[360px] bg-[#E9E9E9] rounded-xl flex flex-col p-6 mx-3 mb-6 ">
 			<div className="flex justify-between pb-4">
-				<div className="text-sm text-black">{SectionName}</div>
-				<div className="flex">
+				<div className="text-sm text-black">
+					<InlineEdit defaultValue={SectionName} />
+					{/* {SectionName} */}
+				</div>
+				<div className="flex justify-center content-center items-center">
 					{/* //TODO: Toggle the visibility of the plus icon according to the role */}
-					<FaPlus className="mx-2" onClick={addNewCard} />
-					<FaEllipsis />
+					<div className="hover:bg-gray-300 rounded-full items-center p-1">
+						<FaPlus onClick={addNewCard} />
+					</div>
+					<div className="hover:bg-gray-300 rounded-full items-center p-1">
+						<FaEllipsis />
+					</div>
 				</div>
 			</div>
 			<div className="overflow-y-auto no-scrollbar rounded-xl">
@@ -50,6 +59,18 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 				))}
 				<AddCard onClick={addNewCard} />
 			</div>
+		</div>
+	);
+};
+
+export const AddCardSection = () => {
+	const { updateSectionData } = useSection();
+	return (
+		<div
+			className="w-10 min-h-[92vh] bg-[#D9D9D9] rounded-xl mb-2 flex hover:bg-[#d9d9d9c7] cursor-pointer"
+			onClick={() => {}}
+		>
+			<FaPlus className="mx-auto mt-7" />
 		</div>
 	);
 };

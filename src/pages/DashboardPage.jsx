@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
-import CardSection from "../components/CardSection";
+import CardSection, { AddCardSection } from "../components/CardSection";
 import NavBar from "../components/NavBar";
 import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
+import { useSection } from "../context/SectionProvider.jsx";
 import { taskCardData } from "../data/data.js";
 
 const DashboardPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
+	const { SectionData } = useSection();
 
 	return (
 		<>
@@ -23,45 +25,17 @@ const DashboardPage = () => {
 							>
 								<SlidePane />
 							</Drawer>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-								clickHandler={() => {
-									setIsOpenPane(true);
-								}}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
-							<CardSection
-								TaskCardsData={taskCardData}
-								SectionName={"All cards"}
-							/>
+							<AddCardSection />
+							{SectionData.map((section) => (
+								<CardSection
+									key={section}
+									SectionName={section}
+									TaskCardsData={taskCardData}
+									clickHandler={() => {
+										setIsOpenPane(true);
+									}}
+								/>
+							))}
 						</div>
 					</div>
 				</Sidebar>

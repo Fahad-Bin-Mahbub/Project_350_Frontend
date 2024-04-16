@@ -68,7 +68,7 @@ const TaskCard = ({
 	return (
 		//whole card
 		<div
-			className="w-[312px] h-[172px] bg-white rounded-2xl py-5 px-6 flex flex-col my-2"
+			className="w-[312px] h-[172px] bg-white rounded-2xl py-5 px-6 flex flex-col my-2 hover:bg-gray-50"
 			onClick={() => {
 				clickHandler();
 				updateTaskCardData({
