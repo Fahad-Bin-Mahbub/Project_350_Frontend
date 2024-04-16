@@ -5,12 +5,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button, Input, InputGroup } from "rsuite";
+import { useAuth } from "../context/Auth";
 
 // TODO: place the card center of the page
 const LoginPage = () => {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
   const baseUrl = "https://examtrack.up.railway.app";
 
@@ -28,9 +30,14 @@ const LoginPage = () => {
     });
     console.log(data);
     if (data.success) {
-      if (data.data.roles.includes("admin")) navigate("/admin/dashboard");
-      toast.success(`Welcome ${data.data.firstName}`);
+      if (data.user.roles.includes("admin")) navigate("/admin/dashboard");
+      toast.success(`Welcome ${data.user.firstName}`);
       localStorage.setItem("token", data.token);
+      setAuth({
+        ...auth,
+        user: data.user,
+      });
+      window.localStorage.setItem("auth", JSON.stringify(data));
       // To-do: handle unauthorized access
     }
     // To-do: handle unauthorized access

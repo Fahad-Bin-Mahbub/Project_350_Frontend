@@ -2,11 +2,18 @@ import { Menu, Transition } from "@headlessui/react";
 import React from "react";
 import { FaUser } from "react-icons/fa6";
 import { IoIosNotifications } from "react-icons/io";
+import { useAuth } from "../context/Auth";
 const NavBar = () => {
   const baseUrl = "https://examtrack.up.railway.app";
+  const [auth, setAuth] = useAuth();
 
   const handleLogout = async () => {
     localStorage.removeItem("token");
+    setAuth({
+      ...auth,
+      user: null,
+    });
+    window.localStorage.removeItem("auth");
     window.location.href = `${baseUrl}/auth/logout`;
   };
 
@@ -23,7 +30,7 @@ const NavBar = () => {
           <div>
             <Menu.Button className="inline-flex items-center gap-2 w-full justify-center rounded-md text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
               <div className=" h-8 w-20 rounded-full flex items-center justify-center">
-                <p className="text-black">Admin</p>
+                <p className="text-black">{auth.user.firstName}</p>
               </div>
             </Menu.Button>
           </div>
