@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import Helper from "./components/Helper";
 import { NavbarTitleProvider } from "./context/NavbarTitleProvider";
 import { SectionProvider } from "./context/SectionProvider";
 import { TaskCardProvider } from "./context/TaskCardProvider";
@@ -17,6 +18,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/:id" element={<Helper />} />
           <Route
             path="/admin/dashboard"
             element={
