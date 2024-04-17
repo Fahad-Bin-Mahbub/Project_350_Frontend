@@ -6,11 +6,12 @@ import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
 import { useAuth } from "../context/Auth.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
+import { taskCardData } from "../data/data.js";
 
 const DashboardPage = () => {
   const [isOpenPane, setIsOpenPane] = useState(false);
   const { SectionData } = useSection();
-  const [taskCardData, setTaskCardData] = useState([]);
+  //   const [taskCardData, setTaskCardData] = useState([]);
   const [auth] = useAuth();
   const baseUrl = "https://examtrack.up.railway.app";
 
