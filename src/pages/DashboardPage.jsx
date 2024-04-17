@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
 import CardSection, { AddCardSection } from "../components/CardSection";
@@ -6,8 +7,6 @@ import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
 import { useAuth } from "../context/Auth.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
-import { taskCardData } from "../data/data.js";
-import axios from "axios";
 
 const DashboardPage = () => {
   const [isOpenPane, setIsOpenPane] = useState(false);
@@ -56,7 +55,7 @@ const DashboardPage = () => {
                 <SlidePane />
               </Drawer>
               <AddCardSection />
-              {SectionData.map((section) => (
+              {SectionData?.map((section) => (
                 <CardSection
                   key={section}
                   SectionName={section}

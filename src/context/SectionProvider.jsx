@@ -7,14 +7,14 @@ export const useSection = () => {
 };
 
 export const SectionProvider = ({ children }) => {
-	const [SectionData, setSectionData] = useState(["All Cards", "Exams"]);
+	const [sectionData, setSectionData] = useState(["All Cards", "Exams"]);
 
 	const updateSectionData = (newSectionData) => {
 		setSectionData(newSectionData);
 	};
 
 	return (
-		<SectionContext.Provider value={{ SectionData, updateSectionData }}>
+		<SectionContext.Provider value={{ sectionData, updateSectionData }}>
 			{children}
 		</SectionContext.Provider>
 	);

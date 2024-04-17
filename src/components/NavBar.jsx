@@ -18,8 +18,8 @@ const data = [
 }));
 
 const NavBar = () => {
-	const { SectionData, updateSectionData } = useSection();
-	const [selectedSections, setSelectedSections] = useState(SectionData);
+	const { sectionData, updateSectionData } = useSection();
+	const [selectedSections, setSelectedSections] = useState(sectionData);
 
 	const baseUrl = "https://examtrack.up.railway.app";
 	const [auth, setAuth] = useAuth();
