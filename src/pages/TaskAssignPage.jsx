@@ -10,7 +10,8 @@ import { taskCardData } from "../data/data.js";
 const TaskAssignPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
 	const { sectionData } = useSection();
-
+	console.log(sectionData);
+	const data = ["1/1", "2/1", "3/1", "4/1"];
 	return (
 		<>
 			<div className="bg-blue-950 ">
@@ -25,8 +26,7 @@ const TaskAssignPage = () => {
 							>
 								<SlidePane />
 							</Drawer>
-							<AddCardSection />
-							{sectionData.map((section) => (
+							{data?.map((section) => (
 								<CardSection
 									key={section}
 									SectionName={section}

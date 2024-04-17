@@ -8,11 +8,8 @@ const CiManagementPage = () => {
 		<div className="bg-blue-950">
 			<Sidebar>
 				<div className="w-full h-screen bg-white rounded-s-badge flex-col overflow-auto">
-					<NavBar />
+					<NavBar title="Manage CI" />
 					<div className="flex flex-col overflow-auto">
-						{/* <Tasks />
-						<Department />
-						<Teachers /> */}
 						<Ci />
 					</div>
 				</div>

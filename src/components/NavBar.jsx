@@ -4,6 +4,7 @@ import { FaUser } from "react-icons/fa6";
 import { IoIosNotifications } from "react-icons/io";
 import { CheckPicker, IconButton } from "rsuite";
 import { useAuth } from "../context/Auth";
+import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useSection } from "../context/SectionProvider";
 
 const data = [
@@ -20,6 +21,7 @@ const data = [
 const NavBar = () => {
 	const { sectionData, updateSectionData } = useSection();
 	const [selectedSections, setSelectedSections] = useState(sectionData);
+	const { navbarTitle } = useNavbarTitle();
 
 	const baseUrl = "https://examtrack.up.railway.app";
 	const [auth, setAuth] = useAuth();
@@ -38,7 +40,7 @@ const NavBar = () => {
 	return (
 		<div className="navbar bg-grey-100 w-full rounded-full flex justify-between ">
 			<div className="font-bold text-[30px] text-black pl-8">
-				<div>Dashboard</div>
+				<div>{navbarTitle}</div>
 				<div className="ml-4">
 					<CheckPicker
 						sticky
