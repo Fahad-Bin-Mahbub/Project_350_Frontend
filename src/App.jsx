@@ -9,38 +9,47 @@ import InvitationAcceptPage from "./pages/InvitationAcceptPage";
 import LoginPage from "./pages/LoginPage";
 
 function App() {
-	return (
-		<>
-			<Router>
-				<Routes>
-					<Route path="/" element={<LoginPage />} />
-					<Route path="/admin/dashboard" element={<AdminDashboard />} />
-					<Route path="/invitationAccept" element={<InvitationAcceptPage />} />
-					<Route
-						path="/dashboard"
-						element={
-							<SectionProvider>
-								<TaskCardProvider>
-									<DashboardPage />
-								</TaskCardProvider>
-							</SectionProvider>
-						}
-					/>
-				</Routes>
-			</Router>
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <SectionProvider>
+                <TaskCardProvider>
+                  <AdminDashboard />
+                </TaskCardProvider>
+              </SectionProvider>
+            }
+          />
+          <Route path="/invitationAccept" element={<InvitationAcceptPage />} />
+          <Route
+            path="/dashboard"
+            element={
+              <SectionProvider>
+                <TaskCardProvider>
+                  <DashboardPage />
+                </TaskCardProvider>
+              </SectionProvider>
+            }
+          />
+        </Routes>
+      </Router>
 
-			{/* <TaskCardProvider> */}
-			{/* <NavBar /> */}
-			{/* <OpenSidebar /> */}
-			{/* <ClosedSidebar /> */}
-			{/* <Sidebar /> */}
-			{/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
-			{/* <DashboardPage /> */}
-			{/* <AdminDashboard /> */}
-			{/* <LoginPage /> */}
-			{/* </TaskCardProvider> */}
-		</>
-	);
+      {/* <TaskCardProvider> */}
+      {/* <NavBar /> */}
+      {/* <OpenSidebar /> */}
+      {/* <ClosedSidebar /> */}
+      {/* <Sidebar /> */}
+      {/* <CardSection TaskCardsData={taskCardData} SectionName={"All cards"} /> */}
+      {/* <DashboardPage /> */}
+      {/* <AdminDashboard /> */}
+      {/* <LoginPage /> */}
+      {/* </TaskCardProvider> */}
+    </>
+  );
 }
 
 export default App;
