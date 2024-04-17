@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
 import CardSection, { AddCardSection } from "../components/CardSection";
 import NavBar from "../components/NavBar";
@@ -6,40 +7,38 @@ import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
 import { useAuth } from "../context/Auth.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
-import { taskCardData } from "../data/data.js";
 
 const DashboardPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
-	const { sectionData } = useSection();
-	console.log(sectionData);
-	// const [taskCardData, setTaskCardData] = useState([]);
-	// const [auth] = useAuth();
-	// const baseUrl = "https://examtrack.up.railway.app";
+	const { SectionData } = useSection();
+	const [taskCardData, setTaskCardData] = useState([]);
+	const [auth] = useAuth();
+	const baseUrl = "https://examtrack.up.railway.app";
 
-	//   useEffect(() => {
-	//     const options = {
-	//       method: "GET",
-	//       url: `${baseUrl}/api/task/get-teacher-tasks`,
-	//     };
+	useEffect(() => {
+		const options = {
+			method: "GET",
+			url: `${baseUrl}/api/task/get-teacher-tasks`,
+		};
 
-	//     axios.request(options).then((response) => {
-	//       const { status, data } = response;
-	//       const teacher = `${auth.firstName} ${auth.lastName}`;
-	//       if (status == 200) {
-	//         data.map((item) => {
-	//           setTaskCardData(...taskCardData, {
-	//             status: item.status,
-	//             courseCode: item.courseCode,
-	//             semester: item.semester,
-	//             part: item.part,
-	//             paperCount: item.paperCount,
-	//             teacher: teacher,
-	//             dueDate: item.dueDate.split("T")[0],
-	//           });
-	//         });
-	//       }
-	//     });
-	//   }, []);
+		axios.request(options).then((response) => {
+			const { status, data } = response;
+			const teacher = `${auth.firstName} ${auth.lastName}`;
+			if (status == 200) {
+				data.map((item) => {
+					setTaskCardData(...taskCardData, {
+						status: item.status,
+						courseCode: item.courseCode,
+						semester: item.semester,
+						part: item.part,
+						paperCount: item.paperCount,
+						teacher: teacher,
+						dueDate: item.dueDate.split("T")[0],
+					});
+				});
+			}
+		});
+	}, []);
 
 	return (
 		<>
@@ -55,7 +54,8 @@ const DashboardPage = () => {
 							>
 								<SlidePane />
 							</Drawer>
-							{sectionData?.map((section) => (
+							<AddCardSection />
+							{SectionData?.map((section) => (
 								<CardSection
 									key={section}
 									SectionName={section}
