@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdLogout, MdOutlineDashboard } from "react-icons/md";
@@ -8,6 +8,7 @@ import logo from "../assets/icons/logo.png";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 
 const Sidebar = ({ children }) => {
+	const role = "ci";
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
 		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },
@@ -16,8 +17,38 @@ const Sidebar = ({ children }) => {
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
 		{ name: "Logout", link: "/", icon: MdLogout },
 	];
+	const teacherMenus = [
+		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
+		{ name: "Account", link: "/", icon: AiOutlineUser },
+		{ name: "Settings", link: "/", icon: RiSettings4Line },
+		{ name: "Logout", link: "/", icon: MdLogout },
+	];
+	const headMenus = [
+		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
+		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },
+		{ name: "Account", link: "/", icon: AiOutlineUser },
+		{ name: "Settings", link: "/", icon: RiSettings4Line },
+		{ name: "Logout", link: "/", icon: MdLogout },
+	];
+	const ciMenus = [
+		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
+		{ name: "Assign Tasks", link: "/assign-task", icon: MdLogout },
+		{ name: "Account", link: "/", icon: AiOutlineUser },
+		{ name: "Settings", link: "/", icon: RiSettings4Line },
+		{ name: "Logout", link: "/", icon: MdLogout },
+	];
+
+	const [sidebarMenus, setSidebarMenus] = useState(menus);
 	const [open, setOpen] = useState(false);
 	const { updateNavbarTitle } = useNavbarTitle();
+
+	useEffect(() => {
+		if (role == "teacher") setSidebarMenus(teacherMenus);
+		else if (role == "head") setSidebarMenus(headMenus);
+		else if (role == "ci") setSidebarMenus(ciMenus);
+		else setSidebarMenus(menus);
+	}, [role]);
+
 	return (
 		<section className="flex min-h-screen">
 			<div
@@ -42,7 +73,7 @@ const Sidebar = ({ children }) => {
 					/>
 				</div>
 				<div className="mt-4 flex flex-col gap-4 relative">
-					{menus?.map((menu, i) => (
+					{sidebarMenus?.map((menu, i) => (
 						<Link
 							onClick={() => updateNavbarTitle(menu?.name)}
 							to={menu?.link}

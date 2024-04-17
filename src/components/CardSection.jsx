@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { FaEllipsis, FaPlus } from "react-icons/fa6";
 import { InlineEdit } from "rsuite";
+import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useSection } from "../context/SectionProvider";
 import TaskCard from "./TaskCard";
 
 const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 	const [cards, setCards] = useState(TaskCardsData);
+	const { navbarTitle } = useNavbarTitle();
 	const AddCard = ({ onClick }) => {
 		return (
 			<div
@@ -37,24 +39,32 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 	SectionName = SectionName.toUpperCase();
 
 	return (
-		<div className="max-h-[92vh] min-h-[92vh] max-w-[360px] bg-[#E9E9E9] rounded-xl flex flex-col p-6 mx-3 mb-6 ">
+		<div className="max-h-[92vh] min-h-[92vh] max-w-[360px] min-w-[360px] bg-[#E9E9E9] rounded-xl flex flex-col p-6 mx-3 mb-6 ">
 			<div className="flex justify-between pb-4">
 				<div className="text-sm text-black">{SectionName}</div>
-				<div className="flex justify-center content-center items-center">
-					{/* //TODO: Toggle the visibility of the plus icon according to the role */}
-					<div className="hover:bg-gray-300 rounded-full items-center p-1">
-						<FaPlus onClick={addNewCard} />
+				{navbarTitle != "Dashboard" && (
+					<div className="flex justify-center content-center items-center">
+						{/* //TODO: Toggle the visibility of the plus icon according to the role */}
+						<div className="hover:bg-gray-300 rounded-full items-center p-1">
+							<FaPlus onClick={addNewCard} />
+						</div>
+						<div className="hover:bg-gray-300 rounded-full items-center p-1">
+							<FaEllipsis />
+						</div>
 					</div>
-					<div className="hover:bg-gray-300 rounded-full items-center p-1">
-						<FaEllipsis />
-					</div>
-				</div>
+				)}
 			</div>
 			<div className="overflow-y-auto no-scrollbar rounded-xl">
 				{cards.map((card, index) => (
 					<TaskCard {...card} key={index} clickHandler={clickHandler} />
 				))}
-				<AddCard onClick={addNewCard} />
+				{cards.length == 0 && (
+					<div className="flex items-center justify-center ">
+						{" "}
+						No Cards Available
+					</div>
+				)}
+				{navbarTitle != "Dashboard" && <AddCard onClick={addNewCard} />}
 			</div>
 		</div>
 	);
