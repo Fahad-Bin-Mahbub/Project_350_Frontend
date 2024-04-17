@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import { NavbarTitleProvider } from "./context/NavbarTitleProvider";
 import { SectionProvider } from "./context/SectionProvider";
 import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -23,8 +24,10 @@ function App() {
 						element={
 							<SectionProvider>
 								<TaskCardProvider>
-									<DashboardPage />
-									{/* <AdminDashboard /> */}
+									<NavbarTitleProvider>
+										<DashboardPage />
+										{/* <AdminDashboard /> */}
+									</NavbarTitleProvider>
 								</TaskCardProvider>
 							</SectionProvider>
 						}
@@ -34,7 +37,9 @@ function App() {
 						element={
 							<SectionProvider>
 								<TaskCardProvider>
-									<CiManagementPage />
+									<NavbarTitleProvider>
+										<CiManagementPage />
+									</NavbarTitleProvider>
 								</TaskCardProvider>
 							</SectionProvider>
 						}
@@ -44,7 +49,9 @@ function App() {
 						element={
 							<SectionProvider>
 								<TaskCardProvider>
-									<TaskAssignPage />
+									<NavbarTitleProvider>
+										<TaskAssignPage />
+									</NavbarTitleProvider>
 								</TaskCardProvider>
 							</SectionProvider>
 						}

@@ -5,6 +5,7 @@ import { MdLogout, MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.png";
+import { useNavbarTitle } from "../context/NavbarTitleProvider";
 
 const Sidebar = ({ children }) => {
 	const menus = [
@@ -16,6 +17,7 @@ const Sidebar = ({ children }) => {
 		{ name: "Logout", link: "/", icon: MdLogout },
 	];
 	const [open, setOpen] = useState(false);
+	const { updateNavbarTitle } = useNavbarTitle();
 	return (
 		<section className="flex min-h-screen">
 			<div
@@ -42,6 +44,7 @@ const Sidebar = ({ children }) => {
 				<div className="mt-4 flex flex-col gap-4 relative">
 					{menus?.map((menu, i) => (
 						<Link
+							onClick={() => updateNavbarTitle(menu?.name)}
 							to={menu?.link}
 							key={i}
 							className={` ${

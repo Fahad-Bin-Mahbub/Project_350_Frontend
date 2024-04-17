@@ -10,10 +10,11 @@ import { taskCardData } from "../data/data.js";
 
 const DashboardPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
-	const { SectionData } = useSection();
-	//   const [taskCardData, setTaskCardData] = useState([]);
-	const [auth] = useAuth();
-	const baseUrl = "https://examtrack.up.railway.app";
+	const { sectionData } = useSection();
+	console.log(sectionData);
+	// const [taskCardData, setTaskCardData] = useState([]);
+	// const [auth] = useAuth();
+	// const baseUrl = "https://examtrack.up.railway.app";
 
 	//   useEffect(() => {
 	//     const options = {
@@ -54,8 +55,7 @@ const DashboardPage = () => {
 							>
 								<SlidePane />
 							</Drawer>
-							<AddCardSection />
-							{SectionData?.map((section) => (
+							{sectionData?.map((section) => (
 								<CardSection
 									key={section}
 									SectionName={section}
