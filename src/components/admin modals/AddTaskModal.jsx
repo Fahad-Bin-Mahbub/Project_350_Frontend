@@ -4,6 +4,7 @@ import Button from "../Button";
 const AddTaskModal = () => {
   const [courseCode, setCourseCode] = useState("");
   const [semseter, setSemester] = useState("");
+  const [exam, setExam] = useState("");
   const [part, setPart] = useState("");
   const [paperCount, setPaperCount] = useState("");
   const [teacher, setTeacher] = useState("");
