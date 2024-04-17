@@ -10,7 +10,7 @@ import { useSection } from "../context/SectionProvider.jsx";
 
 const DashboardPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
-	const { SectionData } = useSection();
+	const { sectionData } = useSection();
 	const [taskCardData, setTaskCardData] = useState([]);
 	const [auth] = useAuth();
 	const baseUrl = "https://examtrack.up.railway.app";
@@ -54,8 +54,7 @@ const DashboardPage = () => {
 							>
 								<SlidePane />
 							</Drawer>
-							<AddCardSection />
-							{SectionData?.map((section) => (
+							{sectionData?.map((section) => (
 								<CardSection
 									key={section}
 									SectionName={section}
