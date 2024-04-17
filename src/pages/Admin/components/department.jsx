@@ -23,7 +23,7 @@ const Department = () => {
     axios.request(options).then((response) => {
       const { status, data } = response;
       if (status == 200) {
-        data.map((item) => {
+        data.data.map((item) => {
           setDepartments(...departments, item.name);
         });
         console.log(departments);
