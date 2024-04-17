@@ -8,7 +8,9 @@ import logo from "../assets/icons/logo.png";
 
 const Sidebar = ({ children }) => {
 	const menus = [
-		{ name: "Dashboard", link: "/", icon: MdOutlineDashboard },
+		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
+		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },
+		{ name: "Assign Tasks", link: "/assign-task", icon: MdLogout },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
 		{ name: "Logout", link: "/", icon: MdLogout },

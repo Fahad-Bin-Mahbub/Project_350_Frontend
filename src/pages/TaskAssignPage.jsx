@@ -7,7 +7,7 @@ import SlidePane from "../components/SlidePane.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
 import { taskCardData } from "../data/data.js";
 
-const DashboardPage = () => {
+const TaskAssignPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
 	const { sectionData } = useSection();
 
@@ -45,4 +45,4 @@ const DashboardPage = () => {
 	);
 };
 
-export default DashboardPage;
+export default TaskAssignPage;

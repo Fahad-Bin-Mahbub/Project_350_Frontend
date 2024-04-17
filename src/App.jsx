@@ -4,9 +4,11 @@ import "./App.css";
 import { SectionProvider } from "./context/SectionProvider";
 import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import CiManagementPage from "./pages/CiManagementPage";
 import DashboardPage from "./pages/DashboardPage";
 import InvitationAcceptPage from "./pages/InvitationAcceptPage";
 import LoginPage from "./pages/LoginPage";
+import TaskAssignPage from "./pages/TaskAssignPage";
 
 function App() {
 	return (
@@ -22,6 +24,27 @@ function App() {
 							<SectionProvider>
 								<TaskCardProvider>
 									<DashboardPage />
+									{/* <AdminDashboard /> */}
+								</TaskCardProvider>
+							</SectionProvider>
+						}
+					/>
+					<Route
+						path="/manage-ci"
+						element={
+							<SectionProvider>
+								<TaskCardProvider>
+									<CiManagementPage />
+								</TaskCardProvider>
+							</SectionProvider>
+						}
+					/>
+					<Route
+						path="/assign-task"
+						element={
+							<SectionProvider>
+								<TaskCardProvider>
+									<TaskAssignPage />
 								</TaskCardProvider>
 							</SectionProvider>
 						}
