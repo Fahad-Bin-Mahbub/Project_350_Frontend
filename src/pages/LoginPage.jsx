@@ -48,9 +48,20 @@ const LoginPage = () => {
 
   const doGoogleLogin = async () => {
     // TODO: call api for google login
-    const currentUrl = window.location.href;
-    const encodedParam = encodeURI(`?redirectUrl=${currentUrl}`);
-    window.location.href = `${baseUrl}/auth/google${encodedParam}`;
+    const options = {
+      method: "GET",
+      url: `${baseUrl}/auth/google`,
+    };
+
+    axios.request(options).then((response) => {
+      const { status, data } = response;
+      console.log(status, data);
+      if (status == 200) {
+        navigate("/dashboard");
+      } else {
+        navigate("/");
+      }
+    });
   };
 
   return (

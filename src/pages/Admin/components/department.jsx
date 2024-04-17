@@ -1,9 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { BiSearch } from "react-icons/bi";
 import { LiaEditSolid } from "react-icons/lia";
 import { MdDeleteOutline } from "react-icons/md";
 import AddDepartmentModal from "../../../components/admin modals/AddDepartmentModal";
 const Department = () => {
+  // UI-guys: all department listed in departments. Console log departments to see data format.
+  const [departments, setDepartments] = useState([]);
+  const baseUrl = "https://examtrack.up.railway.app";
+
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      url: `${baseUrl}/api/admin/get-all-departments`,
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    axios.request(options).then((response) => {
+      const { status, data } = response;
+      // console.log(status, data);
+      if (status == 200) {
+        setDepartments(data.data);
+      }
+    });
+  }, []);
+
   const columns = [
     {
       name: "Course Code",
