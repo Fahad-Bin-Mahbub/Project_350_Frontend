@@ -65,7 +65,7 @@ const AddCiModal = () => {
                 <label className="text-sm text-[#0A2463] font-medium">
                   Session
                 </label>
-                <input
+                <Input
                   type="text"
                   placeholder="Enter Session"
                   onChange={(value) => setSession(value)}
@@ -89,7 +89,7 @@ const AddCiModal = () => {
                 <label className="text-sm text-[#0A2463] font-medium">
                   Email
                 </label>
-                <input
+                <Input
                   type="text"
                   placeholder="Enter Email"
                   onChange={(value) => setEmail(value)}
@@ -101,7 +101,7 @@ const AddCiModal = () => {
                   <button className="btn w-40 h-8 rounded-2xl text-[#0A2463] border-[#0A2463] border-2">
                     Cancel
                   </button>
-                  <input
+                  <Input
                     type="submit"
                     onClick={addCi}
                     value="Add CI"
