@@ -14,6 +14,10 @@ const Department = () => {
     const options = {
       method: "GET",
       url: `${baseUrl}/api/admin/get-all-departments`,
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
     };
 
     axios.request(options).then((response) => {
