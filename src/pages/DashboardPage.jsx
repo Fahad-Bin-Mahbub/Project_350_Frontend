@@ -55,7 +55,7 @@ const DashboardPage = () => {
 								<SlidePane />
 							</Drawer>
 							<AddCardSection />
-							{SectionData.map((section) => (
+							{SectionData?.map((section) => (
 								<CardSection
 									key={section}
 									SectionName={section}
