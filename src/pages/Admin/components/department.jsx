@@ -22,10 +22,9 @@ const Department = () => {
 
     axios.request(options).then((response) => {
       const { status, data } = response;
-      console.log(status, data);
+      // console.log(status, data);
       if (status == 200) {
-        setDepartments(data);
-        console.log(departments);
+        setDepartments(data.data);
       }
     });
   }, []);
