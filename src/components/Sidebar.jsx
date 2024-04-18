@@ -6,9 +6,10 @@ import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.png";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
+import { ROLE } from "../data/data";
 
 const Sidebar = ({ children }) => {
-	const role = "ci";
+	const role = ROLE;
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
 		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },

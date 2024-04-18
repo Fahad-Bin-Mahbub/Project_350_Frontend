@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
 import { useTaskCard } from "../context/TaskCardProvider";
+import { ROLE } from "../data/data";
 import Comments from "./Comments";
 import {
 	Datepicker,
@@ -16,6 +17,7 @@ const SlidePane = () => {
 	const [changed, setChanged] = React.useState(false);
 	const { status, courseCode, semester, part, paperCount, teacher, dueDate } =
 		taskCardData;
+	const role = ROLE;
 
 	const formik = useFormik({
 		initialValues: {
@@ -46,14 +48,18 @@ const SlidePane = () => {
 		<div className="h-screen">
 			<Drawer.Header>
 				<Drawer.Title className="flex justify-between items-center">
-					<Whisper
-						placement="rightStart"
-						trigger="click"
-						ref={tempRef}
-						speaker={<MenuPopover onSelect={handleStatusSelection} />}
-					>
-						<IconButton icon={<StatusTag status={formik.values.status} />} />
-					</Whisper>
+					{role == "teacher" ? (
+						<Whisper
+							placement="rightStart"
+							trigger="click"
+							ref={tempRef}
+							speaker={<MenuPopover onSelect={handleStatusSelection} />}
+						>
+							<IconButton icon={<StatusTag status={formik.values.status} />} />
+						</Whisper>
+					) : (
+						<StatusTag status={formik.values.status} />
+					)}
 					{changed && (
 						<Button onClick={handleSaveChanges} appearance="subtle">
 							Save Changes
@@ -73,6 +79,7 @@ const SlidePane = () => {
 								formik.setFieldValue("courseCode", value);
 							}}
 							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none"
+							readOnly={role == "teacher"}
 						/>
 					</Form.Group>
 					<Form.Group controlId="assignee" className="flex">
@@ -88,6 +95,7 @@ const SlidePane = () => {
 								formik.setFieldValue("teacher", value);
 							}}
 							size="lg"
+							readOnly={role == "teacher"}
 						/>
 					</Form.Group>
 					<Form.Group controlId="due-date" className="flex mb-0">
@@ -105,6 +113,8 @@ const SlidePane = () => {
 									new Date(value === null ? new Date() : value)
 								);
 							}}
+							readOnly={role == "teacher"}
+							sticky
 						/>
 					</Form.Group>
 					<Form.Group controlId="exam" className="flex">
@@ -120,6 +130,7 @@ const SlidePane = () => {
 								setChanged(true);
 								formik.setFieldValue("semester", value);
 							}}
+							readOnly={role == "teacher"}
 						/>
 					</Form.Group>
 					<Form.Group controlId="Part" className="flex">
@@ -135,6 +146,7 @@ const SlidePane = () => {
 								setChanged(true);
 								formik.setFieldValue("part", value);
 							}}
+							readOnly={role == "teacher"}
 						/>
 					</Form.Group>
 
@@ -151,6 +163,7 @@ const SlidePane = () => {
 								formik.setFieldValue("paperCount", value);
 							}}
 							size="lg"
+							readOnly={role == "teacher"}
 						/>
 					</Form.Group>
 				</Form>

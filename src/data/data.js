@@ -91,3 +91,9 @@ export const getComments = async () => {
 		},
 	];
 };
+
+export const getSessionData = async () => {
+	return ["2024-1", "2023-2", "2023-1"];
+};
+
+export const ROLE = "ci";

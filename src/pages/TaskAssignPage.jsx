@@ -11,7 +11,7 @@ const TaskAssignPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
 	const { sectionData } = useSection();
 	console.log(sectionData);
-	const data = ["1/1", "2/1", "3/1", "4/1"];
+	const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 	return (
 		<>
 			<div className="bg-blue-950 ">
@@ -26,7 +26,7 @@ const TaskAssignPage = () => {
 							>
 								<SlidePane />
 							</Drawer>
-							{data?.map((section) => (
+							{sections?.map((section) => (
 								<CardSection
 									key={section}
 									SectionName={section}

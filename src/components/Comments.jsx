@@ -32,10 +32,15 @@ const Comments = (userid) => {
 					Comments
 				</div>
 			</div>
-			<div className="w-full h-[25dvh] flex flex-col overflow-y-auto flex-grow no-scrollbar">
-				{comments.map((comment) => (
+			<div className="w-full max-h-[25dvh] flex flex-col overflow-y-auto flex-grow no-scrollbar">
+				{comments?.map((comment) => (
 					<Comment key={comment.id} comment={comment} />
 				))}
+				{comments.length == 0 && (
+					<div className="text-center text-base font-semibold text-gray-400 my-1">
+						No comments yet
+					</div>
+				)}
 			</div>
 			<div className="">
 				<CommentFrom handleSubmit={addComment} />

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
-import CardSection, { AddCardSection } from "../components/CardSection";
+import CardSection from "../components/CardSection";
 import NavBar from "../components/NavBar";
 import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
@@ -10,12 +10,15 @@ import { useSection } from "../context/SectionProvider.jsx";
 
 const DashboardPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
-	const { sectionData } = useSection();
+	const { sectionData, updateSectionData } = useSection();
 	const [taskCardData, setTaskCardData] = useState([]);
 	const [auth] = useAuth();
 	const baseUrl = "https://examtrack.up.railway.app";
+	const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
 	useEffect(() => {
+		updateSectionData([]);
+
 		const options = {
 			method: "GET",
 			url: `${baseUrl}/api/task/get-teacher-tasks`,
@@ -54,7 +57,7 @@ const DashboardPage = () => {
 							>
 								<SlidePane />
 							</Drawer>
-							{sectionData?.map((section) => (
+							{sections.map((section) => (
 								<CardSection
 									key={section}
 									SectionName={section}
@@ -64,6 +67,13 @@ const DashboardPage = () => {
 									}}
 								/>
 							))}
+							{sections.length == 0 && (
+								<div className="flex items-center justify-center content-center m-auto ">
+									<div className="text-2xl text-black">
+										Select Session to view tasks
+									</div>
+								</div>
+							)}
 						</div>
 					</div>
 				</Sidebar>
