@@ -19,7 +19,7 @@ const SlidePane = () => {
 	const [changed, setChanged] = React.useState(false);
 	const { status, courseCode, semester, part, paperCount, teacher, dueDate } =
 		taskCardData;
-	const [auth] = useAuth();
+	const { auth } = useAuth();
 
 	console.log(auth.user);
 	const isAdmin = auth.user.includes("admin");

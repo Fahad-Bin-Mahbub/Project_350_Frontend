@@ -11,7 +11,7 @@ const Helper = () => {
 	// const baseUrl = "http://localhost:5000";
 	const baseUrl = BASE_URL;
 	const navigate = useNavigate();
-	const [auth, setAuth] = useAuth();
+	const { auth, updateAuth } = useAuth();
 
 	useEffect(() => {
 		//call api to fetch user   info using this id and navigate accordingly.
@@ -24,8 +24,8 @@ const Helper = () => {
 			const { status, data } = response;
 			console.log(status, data);
 			if (status == 200) {
-				setAuth({
-					...auth,
+				updateAuth({
+					// ...auth,
 					user: data.data,
 				});
 				window.localStorage.setItem("auth", JSON.stringify(data.data));

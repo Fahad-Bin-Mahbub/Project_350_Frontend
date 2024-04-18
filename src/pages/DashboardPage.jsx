@@ -16,7 +16,7 @@ const DashboardPage = () => {
 	const [taskCardData2, setTaskCardData2] = useState([]);
 	const [taskCardData3, setTaskCardData3] = useState([]);
 	const [taskCardData4, setTaskCardData4] = useState([]);
-	const [auth] = useAuth();
+	const { auth } = useAuth();
 	// const baseUrl = "https://examtrack.up.railway.app";
 	// const baseUrl = "http://localhost:5000";
 	const baseUrl = BASE_URL;
@@ -41,8 +41,8 @@ const DashboardPage = () => {
 							teacher: `${item.teacher.firstName} ${item.teacher.lastName}`,
 							dueDate: item.dueDate.split("T")[0],
 						};
-						console.log(taskCardData);
-						console.log(item.year);
+						// console.log(taskCardData);
+						// console.log(item.year);
 						switch (item.year) {
 							case 1:
 								setTaskCardData1([...taskCardData1, taskCardData]);
@@ -66,10 +66,10 @@ const DashboardPage = () => {
 				console.error("Error fetching teacher tasks:", error);
 			});
 	}, []);
-	console.log("TaskCardData1", taskCardData1);
-	console.log("TaskCardData2", taskCardData2);
-	console.log("TaskCardData3", taskCardData3);
-	console.log("TaskCardData4", taskCardData4);
+	// console.log("TaskCardData1", taskCardData1);
+	// console.log("TaskCardData2", taskCardData2);
+	// console.log("TaskCardData3", taskCardData3);
+	// console.log("TaskCardData4", taskCardData4);
 	return (
 		<>
 			<div className="bg-blue-950 ">

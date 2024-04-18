@@ -20,12 +20,12 @@ const NavBar = () => {
 	// const baseUrl = "https://examtrack.up.railway.app";
 	const baseUrl = BASE_URL;
 	// const auth = JSON.parse(localStorage.getItem("auth"));
-	const [auth, setAuth] = useAuth();
+	const { auth, updateAuth } = useAuth();
 	console.log("Auth is " + JSON.stringify(auth));
 	console.log(localStorage.getItem("auth"));
 	const handleLogout = async () => {
-		localStorage.removeItem("token");
-		setAuth([]);
+		window.localStorage.removeItem("token");
+		updateAuth(null);
 		window.localStorage.removeItem("auth");
 		const options = {
 			method: "GET",
@@ -43,6 +43,7 @@ const NavBar = () => {
 		getSessionData().then((data) => {
 			setSessionData(data);
 		});
+		console.log(auth);
 	}, []);
 
 	return (

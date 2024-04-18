@@ -11,7 +11,7 @@ import { ROLE } from "../data/data";
 
 const Sidebar = ({ children }) => {
 	const role = ROLE;
-	const [auth] = useAuth();
+	const { auth } = useAuth();
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
 		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },
@@ -41,7 +41,7 @@ const Sidebar = ({ children }) => {
 		{ name: "Logout", link: "/", icon: MdLogout },
 	];
 
-	const [sidebarMenus, setSidebarMenus] = useState(menus);
+	const [sidebarMenus, setSidebarMenus] = useState(teacherMenus);
 	const [open, setOpen] = useState(false);
 	const { updateNavbarTitle } = useNavbarTitle();
 
