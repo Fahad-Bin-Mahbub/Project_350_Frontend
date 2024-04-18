@@ -97,4 +97,5 @@ export const getSessionData = async () => {
 };
 
 export const ROLE = "ci";
-export const BASE_URL = "http://localhost:5000";
+// export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://examtrack.up.railway.app";
