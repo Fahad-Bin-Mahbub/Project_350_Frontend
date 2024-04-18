@@ -25,7 +25,7 @@ const Helper = () => {
           ...auth,
           user: data.data,
         });
-        window.localStorage.setItem("auth", JSON.stringify(data));
+        window.localStorage.setItem("auth", JSON.stringify(data.data));
         navigate("/dashboard");
       } else {
         navigate("/");
