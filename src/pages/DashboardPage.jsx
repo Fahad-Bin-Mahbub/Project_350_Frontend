@@ -17,8 +17,9 @@ const DashboardPage = () => {
 	const [taskCardData3, setTaskCardData3] = useState([]);
 	const [taskCardData4, setTaskCardData4] = useState([]);
 	const [auth] = useAuth();
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
 	// const baseUrl = "http://localhost:5000";
+	const baseUrl = BASE_URL;
 	const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
 	useEffect(() => {

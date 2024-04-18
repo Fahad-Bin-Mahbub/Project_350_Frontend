@@ -30,7 +30,8 @@ const randomColors = {
 const TaskCard = ({
 	status,
 	courseCode,
-	semester,
+	session,
+	year,
 	part,
 	paperCount,
 	teacher,
@@ -74,7 +75,8 @@ const TaskCard = ({
 				updateTaskCardData({
 					status,
 					courseCode,
-					semester,
+					session,
+					year,
 					part,
 					paperCount,
 					teacher,
@@ -103,7 +105,7 @@ const TaskCard = ({
 			</div>
 			{/* tags */}
 			<div className="flex">
-				<TaskTag TagName={semester} tagColor={randomColors[semester]} />
+				{/* <TaskTag TagName={semester} tagColor={randomColors[semester]} /> */}
 				<TaskTag TagName={`Part ${part}`} tagColor={randomColors[part]} />
 				<TaskTag TagName={`${paperCount}`} tagColor="bg-tag-count" />
 			</div>

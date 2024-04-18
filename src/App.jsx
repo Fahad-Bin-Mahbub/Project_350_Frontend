@@ -18,8 +18,22 @@ function App() {
 		<>
 			<Router>
 				<Routes>
-					<Route path="/" element={<LoginPage />} />
-					<Route path="/:id" element={<Helper />} />
+					<Route
+						path="/"
+						element={
+							<AuthProvider>
+								<LoginPage />
+							</AuthProvider>
+						}
+					/>
+					<Route
+						path="/:id"
+						element={
+							<AuthProvider>
+								<Helper />
+							</AuthProvider>
+						}
+					/>
 					<Route
 						path="/admin/dashboard"
 						element={

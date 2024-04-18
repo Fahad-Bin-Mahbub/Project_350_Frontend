@@ -17,7 +17,8 @@ const NavBar = () => {
 	const { navbarTitle } = useNavbarTitle();
 	const navigate = useNavigate();
 
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
+	const baseUrl = BASE_URL;
 	// const auth = JSON.parse(localStorage.getItem("auth"));
 	const [auth, setAuth] = useAuth();
 	console.log("Auth is " + JSON.stringify(auth));

@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import React from "react";
 import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
 import { useAuth } from "../context/Auth";
+import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useTaskCard } from "../context/TaskCardProvider";
 import { ROLE } from "../data/data";
 import Comments from "./Comments";
@@ -25,6 +26,8 @@ const SlidePane = () => {
 	const isHead = auth.user.includes("department_head");
 	const isCI = auth.user.includes("ci");
 	const isTeacher = auth.user.includes("teacher");
+	const { navbarTitle } = useNavbarTitle();
+	const isDashboard = navbarTitle === "Dashboard";
 
 	const formik = useFormik({
 		initialValues: {
@@ -55,7 +58,7 @@ const SlidePane = () => {
 		<div className="h-screen">
 			<Drawer.Header>
 				<Drawer.Title className="flex justify-between items-center">
-					{isCI ? (
+					{!isDashboard ? (
 						<StatusTag status={formik.values.status} />
 					) : (
 						<Whisper
@@ -86,7 +89,7 @@ const SlidePane = () => {
 								formik.setFieldValue("courseCode", value);
 							}}
 							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none"
-							readOnly={!isCI}
+							readOnly={isDashboard}
 						/>
 					</Form.Group>
 					<Form.Group controlId="assignee" className="flex">
@@ -102,7 +105,7 @@ const SlidePane = () => {
 								formik.setFieldValue("teacher", value);
 							}}
 							size="lg"
-							readOnly={!isCI}
+							readOnly={isDashboard}
 						/>
 					</Form.Group>
 					<Form.Group controlId="due-date" className="flex mb-0">
@@ -120,7 +123,7 @@ const SlidePane = () => {
 									new Date(value === null ? new Date() : value)
 								);
 							}}
-							readOnly={!isCI}
+							readOnly={isDashboard}
 							sticky
 						/>
 					</Form.Group>
@@ -153,7 +156,7 @@ const SlidePane = () => {
 								setChanged(true);
 								formik.setFieldValue("part", value);
 							}}
-							readOnly={!isCI}
+							readOnly={isDashboard}
 						/>
 					</Form.Group>
 
@@ -170,7 +173,7 @@ const SlidePane = () => {
 								formik.setFieldValue("paperCount", value);
 							}}
 							size="lg"
-							readOnly={!isCI}
+							readOnly={isDashboard}
 						/>
 					</Form.Group>
 				</Form>

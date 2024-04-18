@@ -46,10 +46,11 @@ const Sidebar = ({ children }) => {
 	const { updateNavbarTitle } = useNavbarTitle();
 
 	useEffect(() => {
-		const isAdmin = auth.user.includes("admin");
-		const isHead = auth.user.includes("department_head");
-		const isCI = auth.user.includes("ci");
-		const isTeacher = auth.user.includes("teacher");
+		console.log(auth.user.roles);
+		const isAdmin = auth.user.roles.includes("admin");
+		const isHead = auth.user.roles.includes("department_head");
+		const isCI = auth.user.roles.includes("ci");
+		const isTeacher = auth.user.roles.includes("teacher");
 		if (isAdmin || (isHead && isCI)) setSidebarMenus(menus);
 		else if (isHead) setSidebarMenus(headMenus);
 		else if (isCI) setSidebarMenus(ciMenus);
