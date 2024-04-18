@@ -22,6 +22,7 @@ const DashboardPage = () => {
 
   useEffect(() => {
     updateSectionData([]);
+    console.log(auth);
 
     const options = {
       method: "GET",
