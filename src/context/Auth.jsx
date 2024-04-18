@@ -11,6 +11,8 @@ const AuthProvider = ({ children }) => {
     const data = window.localStorage.getItem("auth");
     if (data) {
       const parsedData = JSON.parse(data);
+      console.log("Inside provider auth")
+      console.log("Parsed Data"+ parsedData.user)
       setAuth({
         ...auth,
         user: parsedData.user,
