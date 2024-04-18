@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/return" element={<Helper />} />
+          <Route path="/:id" element={<Helper />} />
           <Route
             path="/admin/dashboard"
             element={
