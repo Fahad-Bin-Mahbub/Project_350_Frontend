@@ -22,10 +22,10 @@ const SlidePane = () => {
 	const { auth } = useAuth();
 
 	console.log(auth.user);
-	const isAdmin = auth.user.includes("admin");
-	const isHead = auth.user.includes("department_head");
-	const isCI = auth.user.includes("ci");
-	const isTeacher = auth.user.includes("teacher");
+	// const isAdmin = auth.user.roles.includes("admin");
+	// const isHead = auth.user.roles.includes("department_head");
+	// const isCI = auth.user.roles.includes("ci");
+	// const isTeacher = auth.user.roles.includes("teacher");
 	const { navbarTitle } = useNavbarTitle();
 	const isDashboard = navbarTitle === "Dashboard";
 
@@ -140,7 +140,7 @@ const SlidePane = () => {
 								setChanged(true);
 								formik.setFieldValue("semester", value);
 							}}
-							readOnly={!isCI}
+							readOnly={!isDashboard}
 						/>
 					</Form.Group>
 					<Form.Group controlId="Part" className="flex">
