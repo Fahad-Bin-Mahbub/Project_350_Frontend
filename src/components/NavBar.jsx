@@ -18,16 +18,13 @@ const NavBar = () => {
 	const navigate = useNavigate();
 
 	const baseUrl = "https://examtrack.up.railway.app";
-	const auth = JSON.parse(localStorage.getItem("auth"));
-	// const [auth, setAuth] = useAuth();
+	// const auth = JSON.parse(localStorage.getItem("auth"));
+	const [auth, setAuth] = useAuth();
 	console.log("Auth is " + JSON.stringify(auth));
 	console.log(localStorage.getItem("auth"));
 	const handleLogout = async () => {
 		localStorage.removeItem("token");
-		// setAuth({
-		// 	...auth,
-		// 	user: null,
-		// });
+		setAuth([]);
 		window.localStorage.removeItem("auth");
 		const options = {
 			method: "GET",
