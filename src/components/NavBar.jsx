@@ -18,15 +18,13 @@ const NavBar = () => {
 	const navigate = useNavigate();
 
 	const baseUrl = "https://examtrack.up.railway.app";
+	// const auth = JSON.parse(localStorage.getItem("auth"));
 	const [auth, setAuth] = useAuth();
-	console.log("  " + auth);
+	console.log("Auth is " + JSON.stringify(auth));
 	console.log(localStorage.getItem("auth"));
 	const handleLogout = async () => {
 		localStorage.removeItem("token");
-		setAuth({
-			...auth,
-			user: null,
-		});
+		setAuth([]);
 		window.localStorage.removeItem("auth");
 		const options = {
 			method: "GET",
@@ -77,7 +75,7 @@ const NavBar = () => {
 					<div>
 						<Menu.Button className="inline-flex items-center gap-2 w-full justify-center rounded-md text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
 							<div className=" h-8 w-20 rounded-full flex items-center justify-center">
-								<p className="text-black">{auth?.user?.firstName || "User"}</p>
+								<p className="text-black">{auth?.firstName}</p>
 							</div>
 						</Menu.Button>
 					</div>

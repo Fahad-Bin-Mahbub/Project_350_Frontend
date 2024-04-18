@@ -3,18 +3,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({
-    user: null,
-  });
+  const [auth, setAuth] = useState([]);
 
   useEffect(() => {
-    const data = window.localStorage.getItem("auth");
+    const data = JSON.parse(localStorage.getItem("auth"));
     if (data) {
-      const parsedData = JSON.parse(data);
-      setAuth({
-        ...auth,
-        user: parsedData.user,
-      });
+      console.log("Inside provider auth")
+      console.log("Parsed Data"+ JSON.stringify(data))
+      setAuth(data);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
