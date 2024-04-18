@@ -41,17 +41,13 @@ const DashboardPage = () => {
 				const { status, data } = response;
 				console.log(data.data);
 				if (status === 200) {
-					// Assuming `data.data` is an array of tasks
-					const teacher = `${auth?.firstName} ${auth?.lastName}`;
-
-					// Update each task card data based on the year
 					data.data.forEach((item) => {
 						const taskCardData = {
 							status: item.status,
 							courseCode: item.courseCode,
 							part: item.part,
 							paperCount: item.paperCount,
-							teacher: teacher,
+							teacher: `${item.teacher.firstName} ${item.teacher.lastName}`,
 							dueDate: item.dueDate.split("T")[0],
 						};
             console.log(taskCardData)
@@ -69,6 +65,10 @@ const DashboardPage = () => {
 							default:
 								setTaskCardData4((prevData) => [...prevData, taskCardData]);
 						}
+            console.log("TaskCardData1", taskCardData1)
+            console.log("TaskCardData2", taskCardData2)
+            console.log("TaskCardData3", taskCardData3)
+            console.log("TaskCardData4", taskCardData4)
 					});
 				}
 			})
