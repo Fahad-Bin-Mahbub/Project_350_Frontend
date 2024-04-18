@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
 import { useAuth } from "../context/Auth.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
+import { BASE_URL } from "../data/data.js";
 
 const DashboardPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
@@ -17,7 +18,9 @@ const DashboardPage = () => {
 	const [taskCardData3, setTaskCardData3] = useState([]);
 	const [taskCardData4, setTaskCardData4] = useState([]);
 	const [auth] = useAuth();
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "http://localhost:5000";
+	const baseUrl = BASE_URL;
 	const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
 	useEffect(() => {
@@ -28,7 +31,7 @@ const DashboardPage = () => {
 			.get(`${baseUrl}/api/task/get-teacher-tasks`, { withCredentials: true })
 			.then((response) => {
 				const { status, data } = response;
-				console.log(data.data);
+				console.log("respone is " + data.data);
 				if (status === 200) {
 					data.data.forEach((item) => {
 						const taskCardData = {

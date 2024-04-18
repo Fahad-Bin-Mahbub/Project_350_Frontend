@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { Input } from "rsuite";
+import { BASE_URL } from "../../data/data";
 import Button from "../Button";
 
 function AddTeacherModal() {
@@ -9,7 +10,8 @@ function AddTeacherModal() {
 	const [email, setEmail] = useState("");
 	const [role, setRole] = useState("");
 	const [department, setDepartment] = useState("");
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
+	const baseUrl = BASE_URL;
 
 	const addTeacher = async (e) => {
 		e.preventDefault();

@@ -2,13 +2,15 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { Input } from "rsuite";
+import { BASE_URL } from "../../data/data";
 import Button from "../Button";
 
 const AddCiModal = () => {
 	const [ci, setCi] = useState("");
 	const [email, setEmail] = useState("");
 	const [session, setSession] = useState("");
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
+	const baseUrl = BASE_URL;
 
 	const addCi = async (e) => {
 		if (ci == "") return;

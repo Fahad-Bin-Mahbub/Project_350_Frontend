@@ -2,11 +2,13 @@ import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { Input, Modal } from "rsuite";
+import { BASE_URL } from "../../data/data";
 import Button from "../Button";
 
 const AddDepartmentModal = () => {
 	const [dept, setDept] = useState("");
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
+	const baseUrl = BASE_URL;
 
 	const addDepartment = async () => {
 		if (dept == "") return;

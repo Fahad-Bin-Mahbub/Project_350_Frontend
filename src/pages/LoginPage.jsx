@@ -7,6 +7,7 @@ import { Button, ButtonToolbar, Form } from "rsuite";
 import loginbg from "../assets/login_bg.svg";
 import logo from "../assets/sust-logo_login.png";
 import { useAuth } from "../context/Auth";
+import { BASE_URL } from "../data/data";
 
 // TODO: place the card center of the page
 const LoginPage = () => {
@@ -15,8 +16,9 @@ const LoginPage = () => {
 	const [pass, setPass] = useState("");
 	const [auth, setAuth] = useAuth();
 	const navigate = useNavigate();
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
 	// const baseUrl = "http://localhost:5000";
+	const baseUrl = BASE_URL;
 
 	const handleChange = () => {
 		setVisible(!visible);

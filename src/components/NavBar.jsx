@@ -8,7 +8,7 @@ import { CheckPicker, SelectPicker } from "rsuite";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useSection } from "../context/SectionProvider";
-import { getSessionData } from "../data/data";
+import { BASE_URL, getSessionData } from "../data/data";
 
 const NavBar = () => {
 	const { sectionData, updateSectionData } = useSection();
@@ -17,7 +17,8 @@ const NavBar = () => {
 	const { navbarTitle } = useNavbarTitle();
 	const navigate = useNavigate();
 
-	const baseUrl = "https://examtrack.up.railway.app";
+	// const baseUrl = "https://examtrack.up.railway.app";
+	const baseUrl = BASE_URL;
 	// const auth = JSON.parse(localStorage.getItem("auth"));
 	const [auth, setAuth] = useAuth();
 	console.log("Auth is " + JSON.stringify(auth));

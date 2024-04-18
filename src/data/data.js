@@ -97,3 +97,4 @@ export const getSessionData = async () => {
 };
 
 export const ROLE = "ci";
+export const BASE_URL = "http://localhost:5000";
