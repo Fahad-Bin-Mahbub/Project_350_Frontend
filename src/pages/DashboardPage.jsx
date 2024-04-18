@@ -12,15 +12,13 @@ import { BASE_URL } from "../data/data.js";
 const DashboardPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
 	const { sectionData, updateSectionData } = useSection();
-	const [all, setAll] = useState([]);
 	const [taskCardData1, setTaskCardData1] = useState([]);
 	const [taskCardData2, setTaskCardData2] = useState([]);
 	const [taskCardData3, setTaskCardData3] = useState([]);
 	const [taskCardData4, setTaskCardData4] = useState([]);
 	const [auth] = useAuth();
-	// const baseUrl = "https://examtrack.up.railway.app";
+	const baseUrl = "https://examtrack.up.railway.app";
 	// const baseUrl = "http://localhost:5000";
-	const baseUrl = BASE_URL;
 	const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 
 	useEffect(() => {
@@ -31,7 +29,7 @@ const DashboardPage = () => {
 			.get(`${baseUrl}/api/task/get-teacher-tasks`, { withCredentials: true })
 			.then((response) => {
 				const { status, data } = response;
-				console.log("respone is " + data.data);
+				console.log(data.data);
 				if (status === 200) {
 					data.data.forEach((item) => {
 						const taskCardData = {
@@ -46,16 +44,16 @@ const DashboardPage = () => {
 						console.log(item.year);
 						switch (item.year) {
 							case 1:
-								setTaskCardData1(taskCardData);
+								setTaskCardData1([...taskCardData1, taskCardData]);
 								break;
 							case 2:
-								setTaskCardData2(taskCardData);
+								setTaskCardData2([...taskCardData2, taskCardData]);
 								break;
 							case 3:
-								setTaskCardData3(taskCardData);
+								setTaskCardData3([...taskCardData3, taskCardData]);
 								break;
 							case 4:
-								setTaskCardData4(taskCardData);
+								setTaskCardData4([...taskCardData4, taskCardData]);
 								break;
 							default:
 								break;

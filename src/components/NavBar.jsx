@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa6";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { CheckPicker, SelectPicker } from "rsuite";
+import { SelectPicker } from "rsuite";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useSection } from "../context/SectionProvider";
@@ -17,8 +17,7 @@ const NavBar = () => {
 	const { navbarTitle } = useNavbarTitle();
 	const navigate = useNavigate();
 
-	// const baseUrl = "https://examtrack.up.railway.app";
-	const baseUrl = BASE_URL;
+	const baseUrl = "https://examtrack.up.railway.app";
 	// const auth = JSON.parse(localStorage.getItem("auth"));
 	const [auth, setAuth] = useAuth();
 	console.log("Auth is " + JSON.stringify(auth));
@@ -76,7 +75,7 @@ const NavBar = () => {
 					<div>
 						<Menu.Button className="inline-flex items-center gap-2 w-full justify-center rounded-md text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
 							<div className=" h-8 w-20 rounded-full flex items-center justify-center">
-								<p className="text-black">{auth?.firstName}</p>
+								<p className="text-black">{auth?.user.firstName}</p>
 							</div>
 						</Menu.Button>
 					</div>
