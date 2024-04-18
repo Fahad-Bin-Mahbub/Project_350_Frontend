@@ -14,10 +14,7 @@ const Helper = () => {
     //call api to fetch user   info using this id and navigate accordingly.
     const options = {
       method: "GET",
-      url: `${baseUrl}/api/user/get-user`,
-      params: {
-        id: id,
-      },
+      url: `${baseUrl}/api/user/get-user/${id}`,
     };
 
     axios.request(options).then((response) => {
