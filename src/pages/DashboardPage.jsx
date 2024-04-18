@@ -43,24 +43,20 @@ const DashboardPage = () => {
 						console.log(item.year);
 						switch (item.year) {
 							case 1:
-								setTaskCardData1((prevData) => [...prevData, taskCardData]);
+								setTaskCardData1(taskCardData);
 								break;
 							case 2:
-								setTaskCardData2((prevData) => [...prevData, taskCardData]);
+								setTaskCardData2(taskCardData);
 								break;
 							case 3:
-								setTaskCardData3((prevData) => [...prevData, taskCardData]);
+								setTaskCardData3(taskCardData);
 								break;
 							case 4:
-								setTaskCardData4((prevData) => [...prevData, taskCardData]);
+								setTaskCardData4(taskCardData);
 								break;
 							default:
 								break;
 						}
-						console.log("TaskCardData1", taskCardData1);
-						console.log("TaskCardData2", taskCardData2);
-						console.log("TaskCardData3", taskCardData3);
-						console.log("TaskCardData4", taskCardData4);
 					});
 				}
 			})
@@ -68,7 +64,10 @@ const DashboardPage = () => {
 				console.error("Error fetching teacher tasks:", error);
 			});
 	}, []);
-
+	console.log("TaskCardData1", taskCardData1);
+	console.log("TaskCardData2", taskCardData2);
+	console.log("TaskCardData3", taskCardData3);
+	console.log("TaskCardData4", taskCardData4);
 	return (
 		<>
 			<div className="bg-blue-950 ">
