@@ -22,63 +22,71 @@ const DashboardPage = () => {
 
   useEffect(() => {
     updateSectionData([]);
-    console.log(auth);
+    console.log(JSON.stringify(auth));
 
     const options = {
       method: "GET",
       url: `${baseUrl}/api/task/get-teacher-tasks`,
+      withCredentials: true,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
     };
+    console.log(options);
 
-    axios.request(options).then((response) => {
-      const { status, data } = response;
-      console.log(data.data);
-      if (status == 200) {
-        setAll(data.data, () => {
-          console.log(all);
-          const teacher = `${auth.firstName} ${auth.lastName}`;
+    axios
+      .get(`${baseUrl}/api/task/get-teacher-tasks`, { withCredentials: true })
+      .then((response) => {
+        const { status, data } = response;
+        console.log(data.data);
+        if (status == 200) {
+          setAll(data.data, () => {
+            console.log(all);
+            const teacher = `${auth.firstName} ${auth.lastName}`;
 
-          all.map((item) => {
-            if (item.year == 1) {
-              setTaskCardData1(...taskCardData1, {
-                status: item.status,
-                courseCode: item.courseCode,
-                part: item.part,
-                paperCount: item.paperCount,
-                teacher: teacher,
-                dueDate: item.dueDate.split("T")[0],
-              });
-            } else if (item.year == 2) {
-              setTaskCardData2(...taskCardData2, {
-                status: item.status,
-                courseCode: item.courseCode,
-                part: item.part,
-                paperCount: item.paperCount,
-                teacher: teacher,
-                dueDate: item.dueDate.split("T")[0],
-              });
-            } else if (item.year == 3) {
-              setTaskCardData3(...taskCardData3, {
-                status: item.status,
-                courseCode: item.courseCode,
-                part: item.part,
-                paperCount: item.paperCount,
-                teacher: teacher,
-                dueDate: item.dueDate.split("T")[0],
-              });
-            } else {
-              setTaskCardData4(...taskCardData4, {
-                status: item.status,
-                courseCode: item.courseCode,
-                part: item.part,
-                paperCount: item.paperCount,
-                teacher: teacher,
-                dueDate: item.dueDate.split("T")[0],
-              });
-            }
+            all.map((item) => {
+              if (item.year == 1) {
+                setTaskCardData1(...taskCardData1, {
+                  status: item.status,
+                  courseCode: item.courseCode,
+                  part: item.part,
+                  paperCount: item.paperCount,
+                  teacher: teacher,
+                  dueDate: item.dueDate.split("T")[0],
+                });
+              } else if (item.year == 2) {
+                setTaskCardData2(...taskCardData2, {
+                  status: item.status,
+                  courseCode: item.courseCode,
+                  part: item.part,
+                  paperCount: item.paperCount,
+                  teacher: teacher,
+                  dueDate: item.dueDate.split("T")[0],
+                });
+              } else if (item.year == 3) {
+                setTaskCardData3(...taskCardData3, {
+                  status: item.status,
+                  courseCode: item.courseCode,
+                  part: item.part,
+                  paperCount: item.paperCount,
+                  teacher: teacher,
+                  dueDate: item.dueDate.split("T")[0],
+                });
+              } else {
+                setTaskCardData4(...taskCardData4, {
+                  status: item.status,
+                  courseCode: item.courseCode,
+                  part: item.part,
+                  paperCount: item.paperCount,
+                  teacher: teacher,
+                  dueDate: item.dueDate.split("T")[0],
+                });
+              }
+            });
           });
-        });
-      }
-    });
+        }
+      });
   }, []);
 
   return (
