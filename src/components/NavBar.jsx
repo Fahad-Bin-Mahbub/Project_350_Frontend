@@ -19,7 +19,7 @@ const NavBar = () => {
 
 	const baseUrl = "https://examtrack.up.railway.app";
 	const [auth, setAuth] = useAuth();
-	console.log("Auth is " + auth);
+	console.log("  " + auth);
 	console.log(localStorage.getItem("auth"));
 	const handleLogout = async () => {
 		localStorage.removeItem("token");

@@ -5,11 +5,13 @@ import { MdLogout, MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.png";
+import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { ROLE } from "../data/data";
 
 const Sidebar = ({ children }) => {
 	const role = ROLE;
+	const [auth] = useAuth();
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
 		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },
@@ -44,11 +46,16 @@ const Sidebar = ({ children }) => {
 	const { updateNavbarTitle } = useNavbarTitle();
 
 	useEffect(() => {
-		if (role == "teacher") setSidebarMenus(teacherMenus);
-		else if (role == "head") setSidebarMenus(headMenus);
-		else if (role == "ci") setSidebarMenus(ciMenus);
+		const isAdmin = auth.user.includes("admin");
+		const isHead = auth.user.includes("department_head");
+		const isCI = auth.user.includes("ci");
+		const isTeacher = auth.user.includes("teacher");
+		if (isAdmin || (isHead && isCI)) setSidebarMenus(menus);
+		else if (isHead) setSidebarMenus(headMenus);
+		else if (isCI) setSidebarMenus(ciMenus);
+		else if (isTeacher) setSidebarMenus(teacherMenus);
 		else setSidebarMenus(menus);
-	}, [role]);
+	}, []);
 
 	return (
 		<section className="flex min-h-screen">

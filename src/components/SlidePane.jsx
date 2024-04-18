@@ -1,6 +1,7 @@
 import { useFormik } from "formik";
 import React from "react";
 import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
+import { useAuth } from "../context/Auth";
 import { useTaskCard } from "../context/TaskCardProvider";
 import { ROLE } from "../data/data";
 import Comments from "./Comments";
@@ -17,7 +18,13 @@ const SlidePane = () => {
 	const [changed, setChanged] = React.useState(false);
 	const { status, courseCode, semester, part, paperCount, teacher, dueDate } =
 		taskCardData;
-	const role = ROLE;
+	const [auth] = useAuth();
+
+	console.log(auth.user);
+	const isAdmin = auth.user.includes("admin");
+	const isHead = auth.user.includes("department_head");
+	const isCI = auth.user.includes("ci");
+	const isTeacher = auth.user.includes("teacher");
 
 	const formik = useFormik({
 		initialValues: {
@@ -48,7 +55,9 @@ const SlidePane = () => {
 		<div className="h-screen">
 			<Drawer.Header>
 				<Drawer.Title className="flex justify-between items-center">
-					{role == "teacher" ? (
+					{isCI ? (
+						<StatusTag status={formik.values.status} />
+					) : (
 						<Whisper
 							placement="rightStart"
 							trigger="click"
@@ -57,8 +66,6 @@ const SlidePane = () => {
 						>
 							<IconButton icon={<StatusTag status={formik.values.status} />} />
 						</Whisper>
-					) : (
-						<StatusTag status={formik.values.status} />
 					)}
 					{changed && (
 						<Button onClick={handleSaveChanges} appearance="subtle">
@@ -79,7 +86,7 @@ const SlidePane = () => {
 								formik.setFieldValue("courseCode", value);
 							}}
 							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none"
-							readOnly={role == "teacher"}
+							readOnly={!isCI}
 						/>
 					</Form.Group>
 					<Form.Group controlId="assignee" className="flex">
@@ -95,7 +102,7 @@ const SlidePane = () => {
 								formik.setFieldValue("teacher", value);
 							}}
 							size="lg"
-							readOnly={role == "teacher"}
+							readOnly={!isCI}
 						/>
 					</Form.Group>
 					<Form.Group controlId="due-date" className="flex mb-0">
@@ -113,7 +120,7 @@ const SlidePane = () => {
 									new Date(value === null ? new Date() : value)
 								);
 							}}
-							readOnly={role == "teacher"}
+							readOnly={!isCI}
 							sticky
 						/>
 					</Form.Group>
@@ -130,7 +137,7 @@ const SlidePane = () => {
 								setChanged(true);
 								formik.setFieldValue("semester", value);
 							}}
-							readOnly={role == "teacher"}
+							readOnly={!isCI}
 						/>
 					</Form.Group>
 					<Form.Group controlId="Part" className="flex">
@@ -146,7 +153,7 @@ const SlidePane = () => {
 								setChanged(true);
 								formik.setFieldValue("part", value);
 							}}
-							readOnly={role == "teacher"}
+							readOnly={!isCI}
 						/>
 					</Form.Group>
 
@@ -163,7 +170,7 @@ const SlidePane = () => {
 								formik.setFieldValue("paperCount", value);
 							}}
 							size="lg"
-							readOnly={role == "teacher"}
+							readOnly={!isCI}
 						/>
 					</Form.Group>
 				</Form>
