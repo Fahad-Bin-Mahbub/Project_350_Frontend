@@ -14,11 +14,15 @@ const Helper = () => {
     //call api to fetch user   info using this id and navigate accordingly.
     const options = {
       method: "GET",
-      url: `${baseUrl}/api/user/get-user/${id}`,
+      url: `${baseUrl}/api/user/get-user/:id`,
+      params: {
+        id: id,
+      },
     };
 
     axios.request(options).then((response) => {
       const { status, data } = response;
+      console.log(status, data);
       if (status == 200) {
         setAuth({
           ...auth,
@@ -26,6 +30,8 @@ const Helper = () => {
         });
         window.localStorage.setItem("auth", JSON.stringify(data));
         navigate("/dashboard");
+      } else {
+        navigate("/");
       }
     });
   }, []);
