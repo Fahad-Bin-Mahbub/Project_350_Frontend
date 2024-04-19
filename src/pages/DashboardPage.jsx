@@ -45,7 +45,7 @@ const DashboardPage = () => {
 							dueDate: item.dueDate.split("T")[0],
 						};
 						// console.log(taskCardData);
-						// console.log(item.year);
+						console.log(item.year);
 						switch (item.year) {
 							case 1:
 								setTaskCardData1([...taskCardData1, taskCardData]);
