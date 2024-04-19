@@ -4,14 +4,21 @@ import CardSection, { AddCardSection } from "../components/CardSection";
 import NavBar from "../components/NavBar";
 import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
+import { useNavbarTitle } from "../context/NavbarTitleProvider.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
 import { taskCardData } from "../data/data.js";
+import(useNavbarTitle);
 
 const TaskAssignPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);
 	const { sectionData } = useSection();
 	console.log(sectionData);
 	const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
+	const { navbarTitle, updateNavbarTitle } = useNavbarTitle();
+	useEffect(() => {
+		updateNavbarTitle("Assign Tasks");
+	}, []);
+
 	return (
 		<>
 			<div className="bg-blue-950 ">

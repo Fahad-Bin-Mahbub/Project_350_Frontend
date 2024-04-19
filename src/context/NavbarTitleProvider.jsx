@@ -7,7 +7,7 @@ export const useNavbarTitle = () => {
 };
 
 export const NavbarTitleProvider = ({ children }) => {
-	const [navbarTitle, setNavbarTitle] = useState("Dashboard");
+	const [navbarTitle, setNavbarTitle] = useState("");
 
 	const updateNavbarTitle = (newNavbarTitleData) => {
 		setNavbarTitle(newNavbarTitleData);

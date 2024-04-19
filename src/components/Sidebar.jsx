@@ -7,10 +7,8 @@ import { Link } from "react-router-dom";
 import logo from "../assets/icons/logo.png";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
-import { ROLE } from "../data/data";
 
 const Sidebar = ({ children }) => {
-	const role = ROLE;
 	const { auth } = useAuth();
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },

@@ -6,6 +6,7 @@ import NavBar from "../components/NavBar";
 import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
 import { useAuth } from "../context/Auth.jsx";
+import { useNavbarTitle } from "../context/NavbarTitleProvider.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
 import { BASE_URL } from "../data/data.js";
 
@@ -17,6 +18,7 @@ const DashboardPage = () => {
 	const [taskCardData3, setTaskCardData3] = useState([]);
 	const [taskCardData4, setTaskCardData4] = useState([]);
 	const { auth } = useAuth();
+	const { navbarTitle, updateNavbarTitle } = useNavbarTitle();
 	// const baseUrl = "https://examtrack.up.railway.app";
 	// const baseUrl = "http://localhost:5000";
 	const baseUrl = BASE_URL;
@@ -24,6 +26,7 @@ const DashboardPage = () => {
 
 	useEffect(() => {
 		updateSectionData([]);
+		updateNavbarTitle("Dashboard");
 		console.log(JSON.stringify(auth));
 
 		axios

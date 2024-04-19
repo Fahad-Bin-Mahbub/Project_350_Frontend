@@ -10,12 +10,13 @@ export const TaskCardProvider = ({ children }) => {
 	const [taskCardData, setTaskCardData] = useState({
 		status: "Status",
 		courseCode: "Course Code",
-		semester: "1/1",
+		session: "2024-1",
 		part: "A",
 		paperCount: 0,
 		teacher: "Teacher Name",
 		dueDate: new Date(),
 	});
+	// console.log(new Date().getMonth());
 
 	const updateTaskCardData = (newTaskCardData) => {
 		setTaskCardData(newTaskCardData);

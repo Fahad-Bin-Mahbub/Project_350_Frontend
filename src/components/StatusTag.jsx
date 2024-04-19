@@ -2,21 +2,21 @@ import React from "react";
 import { FaCheck, FaCopy, FaRepeat, FaUserCheck } from "react-icons/fa6";
 
 const statusColors = {
-	ACCEPTED: "text-[#4682B4] border-[#4682B4]",
+	ASSIGNED: "text-[#4682B4] border-[#4682B4]",
 	"ON GOING": "text-[#2297F1] border-[#2297F1]",
 	SUBMITTED: "text-[#40856A] border-[#40856A]",
 	CHECKED: "text-[#FFB627] border-[#FFB627]",
 };
 
 const statusBgColors = {
-	ACCEPTED: "bg-[#F1FAF6]",
+	ASSIGNED: "bg-[#F1FAF6]",
 	"ON GOING": "bg-[#DFF1FF]",
 	SUBMITTED: "bg-[#E6F8F1]",
 	CHECKED: "bg-[#FFF0D2]",
 };
 
 const statusIcons = {
-	ACCEPTED: "FaCheck",
+	ASSIGNED: "FaCheck",
 	"ON GOING": "FaRepeat",
 	SUBMITTED: "FaCopy",
 	CHECKED: "FaUserCheck",
@@ -35,7 +35,7 @@ const StatusTag = ({ status = "submitted" }) => {
 					<FaRepeat />
 				) : status === "CHECKED" ? (
 					<FaCopy />
-				) : status === "ACCEPTED" ? (
+				) : status === "ASSIGNED" ? (
 					<FaUserCheck />
 				) : (
 					<></>
