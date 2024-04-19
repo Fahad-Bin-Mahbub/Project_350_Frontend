@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCalendar } from "react-icons/fa";
 import { DatePicker, Dropdown, Popover, SelectPicker } from "rsuite";
+import MenuItem from "./MenuItem";
 import StatusTag from "./StatusTag";
 
 export const Datepicker = React.forwardRef((props, ref) => (
@@ -16,33 +17,101 @@ export const Datepicker = React.forwardRef((props, ref) => (
 	/>
 ));
 
-export const SemesterSelection = React.forwardRef((props, ref) => {
-	const data = ["1/1", "1/2", "2/1", "2/2", "3/1", "3/2", "4/1", "4/2"].map(
-		(item) => ({ label: item, value: item })
-	);
+Datepicker.displayName = "Datepicker";
+
+export const sessionSelection = React.forwardRef((props, ref) => {
+	const data = [
+		"2024-2",
+		"2024-1",
+		"2023-2",
+		"2023-1",
+		"2022-2",
+		"2022-1",
+		"2021-2",
+		"2021-1",
+	].map((item) => ({
+		label: item,
+		value: item,
+	}));
 	return <SelectPicker {...props} data={data} block size="lg" ref={ref} />;
 });
 
+sessionSelection.displayName = "sessionSelection";
+
 export const PaperSelection = React.forwardRef((props, ref) => {
 	const data = ["A", "B"].map((item) => ({ label: item, value: item }));
-	return <SelectPicker {...props} data={data} block size="lg" ref={ref} />;
+	return (
+		<SelectPicker
+			{...props}
+			data={data}
+			block
+			size="lg"
+			ref={ref}
+			searchable={false}
+		/>
+	);
 });
+PaperSelection.displayName = "PaperSelection";
 
 export const MenuPopover = React.forwardRef(({ onSelect, ...rest }, ref) => (
 	<Popover ref={ref} {...rest} full>
 		<Dropdown.Menu onSelect={onSelect}>
-			<Dropdown.Item eventKey="checked">
+			{/* <Dropdown.Item eventKey="checked">
 				<StatusTag status="checked" />
-			</Dropdown.Item>
+			</Dropdown.Item> */}
 			<Dropdown.Item eventKey="submitted">
 				<StatusTag status="submitted" />
 			</Dropdown.Item>
 			<Dropdown.Item eventKey="on going">
 				<StatusTag status="On going" />
 			</Dropdown.Item>
-			<Dropdown.Item eventKey="accepted">
-				<StatusTag status="accepted" />
+			<Dropdown.Item eventKey="assigned">
+				<StatusTag status="assigned" />
 			</Dropdown.Item>
 		</Dropdown.Menu>
 	</Popover>
 ));
+MenuPopover.displayName = "MenuPopover";
+
+export const TeacherSelection = React.forwardRef((props, ref) => {
+	const data = [
+		{
+			name: "Ayesha Tasnim",
+			email: "ayesha@teacher.sust.edu",
+			imageUrl: "https://api.api-ninjas.com/v1/randomimage?category=wildlife",
+		},
+		{
+			name: "Farida Chowdhury",
+			email: "farida@teacher.sust.edu",
+			imageUrl: "https://randomuser.me/api/portraits",
+		},
+		{
+			name: "Ishtiak Zahid",
+			email: "ishtiak@teacher.sust.edu",
+			imageUrl: "https://api.api-ninjas.com/v1/randomimage?category=wildlife",
+		},
+		{
+			name: "Enamul Haque",
+			email: "enamul@teacher.sust.edu",
+			imageUrl: "https://api.api-ninjas.com/v1/randomimage?category=wildlife",
+		},
+	].map((item) => ({ label: item.name, value: item.name }));
+	return (
+		<SelectPicker
+			{...props}
+			data={data}
+			block
+			size="lg"
+			ref={ref}
+			renderMenuItem={(label, item) => (
+				<MenuItem
+					name={item.name}
+					email={item.email}
+					imageUrl={item.imageUrl}
+				/>
+			)}
+		/>
+	);
+});
+
+TeacherSelection.displayName = "TeacherSelection";

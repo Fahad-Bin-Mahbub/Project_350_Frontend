@@ -2,7 +2,7 @@ export const taskCardData = [
 	{
 		status: "Submitted",
 		courseCode: "CSE461",
-		semester: "1/1",
+		session: "2024-1",
 		part: "A",
 		paperCount: 3,
 		teacher: "Ayesha Tasnim",
@@ -11,7 +11,7 @@ export const taskCardData = [
 	{
 		status: "on going",
 		courseCode: "CSE450",
-		semester: "1/2",
+		session: "2024-1",
 		part: "A",
 		paperCount: 3,
 		teacher: "Farida Chowdhury",
@@ -20,7 +20,7 @@ export const taskCardData = [
 	{
 		status: "Submitted",
 		courseCode: "CSE460",
-		semester: "2/1",
+		session: "2024-1",
 		part: "B",
 		paperCount: 3,
 		teacher: "Ishtiak Zahid",
@@ -29,43 +29,43 @@ export const taskCardData = [
 	{
 		status: "checked",
 		courseCode: "CSE103",
-		semester: "2/2",
+		session: "2024-1",
 		part: "A",
 		paperCount: 3,
 		teacher: "Enamul Haque",
 		dueDate: "2024-01-01",
 	},
 	{
-		status: "accepted",
+		status: "assigned",
 		courseCode: "PHY203",
-		semester: "3/1",
+		session: "2024-1",
 		part: "B",
 		paperCount: 3,
 		teacher: "John Doe",
 		dueDate: "2024-03-01",
 	},
 	{
-		status: "accepted",
+		status: "assigned",
 		courseCode: "PHY203",
-		semester: "3/2",
+		session: "2024-1",
 		part: "B",
 		paperCount: 3,
 		teacher: "Jhonny Doe",
 		dueDate: "2024-03-20",
 	},
 	{
-		status: "accepted",
+		status: "assigned",
 		courseCode: "PHY203",
-		semester: "4/1",
+		session: "2024-1",
 		part: "B",
 		paperCount: 3,
 		teacher: "Jafor Iqbal",
 		dueDate: "2024-02-02",
 	},
 	{
-		status: "accepted",
+		status: "assigned",
 		courseCode: "PHY203",
-		semester: "4/2",
+		session: "2024-1",
 		part: "B",
 		paperCount: 3,
 		teacher: "Saifur Rahman",
@@ -96,6 +96,5 @@ export const getSessionData = async () => {
 	return ["2024-1", "2023-2", "2023-1"];
 };
 
-export const ROLE = "ci";
 // export const BASE_URL = "http://localhost:5000";
 export const BASE_URL = "https://examtrack.up.railway.app";

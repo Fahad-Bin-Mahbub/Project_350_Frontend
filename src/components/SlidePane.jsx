@@ -1,27 +1,28 @@
 import { useFormik } from "formik";
 import React from "react";
+import { PiImageSquareLight } from "react-icons/pi";
 import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useTaskCard } from "../context/TaskCardProvider";
-import { ROLE } from "../data/data";
 import Comments from "./Comments";
 import {
 	Datepicker,
 	MenuPopover,
 	PaperSelection,
-	SemesterSelection,
+	TeacherSelection,
+	sessionSelection,
 } from "./SlidePaneFormComponents";
 import StatusTag from "./StatusTag";
 
 const SlidePane = () => {
 	const { taskCardData } = useTaskCard();
 	const [changed, setChanged] = React.useState(false);
-	const { status, courseCode, semester, part, paperCount, teacher, dueDate } =
+	const { status, courseCode, session, part, paperCount, teacher, dueDate } =
 		taskCardData;
 	const { auth } = useAuth();
 
-	console.log(auth.user);
+	// console.log(auth.user);
 	// const isAdmin = auth.user.roles.includes("admin");
 	// const isHead = auth.user.roles.includes("department_head");
 	// const isCI = auth.user.roles.includes("ci");
@@ -33,7 +34,7 @@ const SlidePane = () => {
 		initialValues: {
 			status: status,
 			courseCode: courseCode,
-			semester: semester,
+			session: session,
 			part: part,
 			paperCount: paperCount,
 			teacher: teacher,
@@ -41,6 +42,9 @@ const SlidePane = () => {
 		},
 		onSubmit: (values) => {},
 	});
+	console.log(session);
+
+	console.log(formik.values.session);
 
 	const tempRef = React.useRef();
 	const handleStatusSelection = (status) => {
@@ -88,7 +92,7 @@ const SlidePane = () => {
 								setChanged(true);
 								formik.setFieldValue("courseCode", value);
 							}}
-							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none"
+							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none text-opacity-50"
 							readOnly={isDashboard}
 						/>
 					</Form.Group>
@@ -97,8 +101,9 @@ const SlidePane = () => {
 							Assignee
 						</Form.ControlLabel>
 						<Form.Control
+							// accepter={TeacherSelection}
 							name="Assignee"
-							placeholder={`Assignee`}
+							placeholder={`Assign Teacher`}
 							value={formik.values.teacher}
 							onChange={(value) => {
 								setChanged(true);
@@ -124,23 +129,23 @@ const SlidePane = () => {
 								);
 							}}
 							readOnly={isDashboard}
-							sticky
 						/>
 					</Form.Group>
-					<Form.Group controlId="exam" className="flex">
+
+					<Form.Group controlId="session" className="flex">
 						<Form.ControlLabel className="w-[50%] text-xl my-auto">
-							Exam
+							Session
 						</Form.ControlLabel>
 						<Form.Control
-							accepter={SemesterSelection}
-							name="exam"
-							placeholder={`semester`}
-							value={formik.values.semester}
+							accepter={sessionSelection}
+							name="session"
+							placeholder={`Select Session`}
+							value={formik.values.session}
 							onChange={(value) => {
 								setChanged(true);
-								formik.setFieldValue("semester", value);
+								formik.setFieldValue("session", value);
 							}}
-							readOnly={!isDashboard}
+							readOnly={isDashboard}
 						/>
 					</Form.Group>
 					<Form.Group controlId="Part" className="flex">

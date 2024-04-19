@@ -23,7 +23,7 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
     setCards([
       {
         //TODO: Determine and add appropriate default values for the new card
-        status: "Accepted",
+        status: "Assigned",
         courseCode: "Course Code",
         semester: "1/1",
         part: "A",

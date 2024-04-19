@@ -7,7 +7,7 @@ import Avatar from "./Avatar";
 import TaskTag from "./TaskTag";
 
 const statusColors = {
-	ACCEPTED: "bg-[#4682B4]",
+	ASSIGNED: "bg-[#4682B4]",
 	"ON GOING": "bg-[#2297F1]",
 	SUBMITTED: "bg-[#40856A]",
 	CHECKED: "bg-[#FFB627]",
@@ -24,6 +24,7 @@ const randomColors = {
 	"3/2": "bg-tag-6",
 	"4/1": "bg-tag-7",
 	"4/2": "bg-tag-8",
+	session: "bg-tag-1",
 };
 
 // TODO: pass the date prop to the TaskCard
@@ -105,7 +106,7 @@ const TaskCard = ({
 			</div>
 			{/* tags */}
 			<div className="flex">
-				{/* <TaskTag TagName={semester} tagColor={randomColors[semester]} /> */}
+				<TaskTag TagName={session} tagColor={randomColors["session"]} />
 				<TaskTag TagName={`Part ${part}`} tagColor={randomColors[part]} />
 				<TaskTag TagName={`${paperCount}`} tagColor="bg-tag-count" />
 			</div>
