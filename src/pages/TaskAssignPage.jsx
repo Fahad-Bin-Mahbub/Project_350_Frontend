@@ -7,7 +7,6 @@ import SlidePane from "../components/SlidePane.jsx";
 import { useNavbarTitle } from "../context/NavbarTitleProvider.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
 import { taskCardData } from "../data/data.js";
-import(useNavbarTitle);
 
 const TaskAssignPage = () => {
 	const [isOpenPane, setIsOpenPane] = useState(false);

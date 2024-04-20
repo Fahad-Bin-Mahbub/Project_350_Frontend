@@ -10,8 +10,8 @@ import {
 	Datepicker,
 	MenuPopover,
 	PaperSelection,
+	SessionSelection,
 	TeacherSelection,
-	sessionSelection,
 } from "./SlidePaneFormComponents";
 import StatusTag from "./StatusTag";
 
@@ -37,14 +37,15 @@ const SlidePane = () => {
 			session: session,
 			part: part,
 			paperCount: paperCount,
+			//TODO: ekhane teacher er id pass korba
 			teacher: teacher,
 			date: dueDate,
 		},
 		onSubmit: (values) => {},
 	});
-	console.log(session);
+	// console.log(session);
 
-	console.log(formik.values.session);
+	// console.log(formik.values.session);
 
 	const tempRef = React.useRef();
 	const handleStatusSelection = (status) => {
@@ -101,13 +102,15 @@ const SlidePane = () => {
 							Assignee
 						</Form.ControlLabel>
 						<Form.Control
-							// accepter={TeacherSelection}
+							accepter={TeacherSelection}
 							name="Assignee"
 							placeholder={`Assign Teacher`}
 							value={formik.values.teacher}
 							onChange={(value) => {
 								setChanged(true);
 								formik.setFieldValue("teacher", value);
+								//TODO: ekhane value return korbe id oita theke teacher er nam ber korba
+								console.log(value);
 							}}
 							size="lg"
 							readOnly={isDashboard}
@@ -137,7 +140,7 @@ const SlidePane = () => {
 							Session
 						</Form.ControlLabel>
 						<Form.Control
-							accepter={sessionSelection}
+							accepter={SessionSelection}
 							name="session"
 							placeholder={`Select Session`}
 							value={formik.values.session}
