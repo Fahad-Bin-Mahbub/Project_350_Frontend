@@ -8,11 +8,12 @@ import { SelectPicker } from "rsuite";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useSection } from "../context/SectionProvider";
+import { useSession } from "../context/SessionProvider";
 import { BASE_URL, getSessionData } from "../data/data";
 
 const NavBar = () => {
 	const { sectionData, updateSectionData } = useSection();
-
+	const { sessionSelection, updateSession } = useSession();
 	const [sessionData, setSessionData] = useState([]);
 	const { navbarTitle } = useNavbarTitle();
 	const navigate = useNavigate();
@@ -58,7 +59,12 @@ const NavBar = () => {
 							className="w-60"
 							onSelect={(value) => {
 								updateSectionData([value]);
+								updateSession(value);
 							}}
+							onChange={(value) => {
+								updateSession(value);
+							}}
+							value={sessionSelection}
 							placeholder="Select Session"
 							onClean={() => {
 								updateSectionData([]);
