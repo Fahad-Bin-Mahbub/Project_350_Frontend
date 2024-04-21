@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaCalendar } from "react-icons/fa";
 import { DatePicker, Dropdown, Popover, SelectPicker } from "rsuite";
 import MenuItem from "./MenuItem";
@@ -19,7 +19,7 @@ export const Datepicker = React.forwardRef((props, ref) => (
 
 Datepicker.displayName = "Datepicker";
 
-export const sessionSelection = React.forwardRef((props, ref) => {
+export const SessionSelection = React.forwardRef((props, ref) => {
 	const data = [
 		"2024-2",
 		"2024-1",
@@ -33,10 +33,12 @@ export const sessionSelection = React.forwardRef((props, ref) => {
 		label: item,
 		value: item,
 	}));
-	return <SelectPicker {...props} data={data} block size="lg" ref={ref} />;
+	return (
+		<SelectPicker {...props} data={data} block size="lg" ref={ref} readOnly />
+	);
 });
 
-sessionSelection.displayName = "sessionSelection";
+SessionSelection.displayName = "SessionSelection";
 
 export const PaperSelection = React.forwardRef((props, ref) => {
 	const data = ["A", "B"].map((item) => ({ label: item, value: item }));
@@ -76,26 +78,36 @@ MenuPopover.displayName = "MenuPopover";
 export const TeacherSelection = React.forwardRef((props, ref) => {
 	const data = [
 		{
+			id: "0269648",
 			name: "Ayesha Tasnim",
 			email: "ayesha@teacher.sust.edu",
-			imageUrl: "https://api.api-ninjas.com/v1/randomimage?category=wildlife",
+			imageUrl: "https://random-image-pepebigotes.vercel.app/api/random-image",
 		},
 		{
+			id: "029128",
 			name: "Farida Chowdhury",
 			email: "farida@teacher.sust.edu",
-			imageUrl: "https://randomuser.me/api/portraits",
+			imageUrl: "https://random-image-pepebigotes.vercel.app/api/random-image",
 		},
 		{
+			id: "129368",
 			name: "Ishtiak Zahid",
 			email: "ishtiak@teacher.sust.edu",
-			imageUrl: "https://api.api-ninjas.com/v1/randomimage?category=wildlife",
+			imageUrl: "https://random-image-pepebigotes.vercel.app/api/random-image",
 		},
 		{
+			id: "914862",
 			name: "Enamul Haque",
 			email: "enamul@teacher.sust.edu",
-			imageUrl: "https://api.api-ninjas.com/v1/randomimage?category=wildlife",
+			imageUrl: "https://random-image-pepebigotes.vercel.app/api/random-image",
 		},
-	].map((item) => ({ label: item.name, value: item.name }));
+	].map((item) => ({
+		email: item.email,
+		name: item.name,
+		imageUrl: item.imageUrl,
+		label: item.name,
+		value: item.id,
+	}));
 	return (
 		<SelectPicker
 			{...props}
@@ -103,13 +115,16 @@ export const TeacherSelection = React.forwardRef((props, ref) => {
 			block
 			size="lg"
 			ref={ref}
-			renderMenuItem={(label, item) => (
-				<MenuItem
-					name={item.name}
-					email={item.email}
-					imageUrl={item.imageUrl}
-				/>
-			)}
+			renderMenuItem={(label, item) => {
+				// console.log(item);
+				return (
+					<MenuItem
+						name={item.name}
+						email={item.email}
+						imageUrl={item.imageUrl}
+					/>
+				);
+			}}
 		/>
 	);
 });

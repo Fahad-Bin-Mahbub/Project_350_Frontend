@@ -5,6 +5,7 @@ import Helper from "./components/Helper";
 import { AuthProvider } from "./context/Auth";
 import { NavbarTitleProvider } from "./context/NavbarTitleProvider";
 import { SectionProvider } from "./context/SectionProvider";
+import { SessionProvider } from "./context/SessionProvider";
 import { TaskCardProvider } from "./context/TaskCardProvider";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
 import CiManagementPage from "./pages/CiManagementPage";
@@ -38,13 +39,15 @@ function App() {
 						path="/admin/dashboard"
 						element={
 							<AuthProvider>
-								<SectionProvider>
-									<TaskCardProvider>
-										<NavbarTitleProvider>
-											<AdminDashboard />
-										</NavbarTitleProvider>
-									</TaskCardProvider>
-								</SectionProvider>
+								<SessionProvider>
+									<SectionProvider>
+										<TaskCardProvider>
+											<NavbarTitleProvider>
+												<AdminDashboard />
+											</NavbarTitleProvider>
+										</TaskCardProvider>
+									</SectionProvider>
+								</SessionProvider>
 							</AuthProvider>
 						}
 					/>
@@ -53,13 +56,15 @@ function App() {
 						path="/dashboard"
 						element={
 							<AuthProvider>
-								<SectionProvider>
-									<TaskCardProvider>
-										<NavbarTitleProvider>
-											<DashboardPage />
-										</NavbarTitleProvider>
-									</TaskCardProvider>
-								</SectionProvider>
+								<SessionProvider>
+									<SectionProvider>
+										<TaskCardProvider>
+											<NavbarTitleProvider>
+												<DashboardPage />
+											</NavbarTitleProvider>
+										</TaskCardProvider>
+									</SectionProvider>
+								</SessionProvider>
 							</AuthProvider>
 						}
 					/>
@@ -67,13 +72,15 @@ function App() {
 						path="/manage-ci"
 						element={
 							<AuthProvider>
-								<SectionProvider>
-									<TaskCardProvider>
-										<NavbarTitleProvider>
-											<CiManagementPage />
-										</NavbarTitleProvider>
-									</TaskCardProvider>
-								</SectionProvider>
+								<SessionProvider>
+									<SectionProvider>
+										<TaskCardProvider>
+											<NavbarTitleProvider>
+												<CiManagementPage />
+											</NavbarTitleProvider>
+										</TaskCardProvider>
+									</SectionProvider>
+								</SessionProvider>
 							</AuthProvider>
 						}
 					/>
@@ -81,13 +88,15 @@ function App() {
 						path="/assign-task"
 						element={
 							<AuthProvider>
-								<SectionProvider>
-									<TaskCardProvider>
-										<NavbarTitleProvider>
-											<TaskAssignPage />
-										</NavbarTitleProvider>
-									</TaskCardProvider>
-								</SectionProvider>
+								<SessionProvider>
+									<SectionProvider>
+										<TaskCardProvider>
+											<NavbarTitleProvider>
+												<TaskAssignPage />
+											</NavbarTitleProvider>
+										</TaskCardProvider>
+									</SectionProvider>
+								</SessionProvider>
 							</AuthProvider>
 						}
 					/>
