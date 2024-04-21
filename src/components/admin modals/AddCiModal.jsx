@@ -83,7 +83,6 @@ const AddCiModal = () => {
 									setEmail(value.email);
 									setCi(value.name);
 								}}
-								value={ci}
 							/>
 							{/* Assignee */}
 							<div className="flex flex-col gap-y-1.5 pb-8">
