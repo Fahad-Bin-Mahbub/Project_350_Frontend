@@ -68,6 +68,7 @@ const TaskCard = ({
 	const { taskCardData, updateTaskCardData } = useTaskCard();
 	const imageUrl =
 		"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx8SS7C08lGlVTCDpZrNbrgTJR0EBK0pgq9-0lfg3mG3ffN2InjG74ZnsPLRdJd-mUwKk&usqp=CAU";
+
 	return (
 		//whole card
 		<div
@@ -114,7 +115,7 @@ const TaskCard = ({
 			<div className="flex-grow"></div>
 			<div className="flex justify-between items-center">
 				{/* //TODO:  set the image Url*/}
-				<Avatar circle src={imageUrl} size="sm" />
+				<Avatar circle src={teacher.photo} size="sm" />
 				{/* //TODO: display different item by role */}
 				<div className="text-[10px] text-right">
 					<div className="">Due</div>
