@@ -37,7 +37,7 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 				year: year,
 				part: "A",
 				paperCount: 0,
-				teacher: null,
+				teacher: "teacher",
 				dueDate: new Date().toISOString().split("T")[0],
 				clickHandler: clickHandler,
 			},
