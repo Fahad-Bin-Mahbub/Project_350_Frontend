@@ -98,7 +98,11 @@ const SlidePane = () => {
 	const handleSaveChanges = async (e) => {
 		console.log("edit card");
 	};
-	const isNewCard = teacher === null;
+	const [isNewCard, setIsNewCard] = useState(true);
+	useEffect(() => {
+		console.log("teacher = " + teacher);
+		setIsNewCard(taskCardData.courseCode === "COURSE CODE");
+	}, []);
 
 	return (
 		<div className="h-screen">
