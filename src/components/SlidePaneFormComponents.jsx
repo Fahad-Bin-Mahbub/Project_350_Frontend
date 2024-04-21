@@ -90,7 +90,7 @@ export const TeacherSelection = React.forwardRef((props, ref) => {
 		const fetchTeacherData = async () => {
 			try {
 				const response = await axios.get(
-					`${baseUrl}/api/admin/teachers/get-all-teachers`,
+					`${baseUrl}/api/admin/get-all-teachers`,
 					{ withCredentials: true }
 				);
 				const { status, data } = response;
