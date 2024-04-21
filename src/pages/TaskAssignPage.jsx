@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
 import CardSection from "../components/CardSection";
 import NavBar from "../components/NavBar";
@@ -6,7 +6,6 @@ import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
 import { useNavbarTitle } from "../context/NavbarTitleProvider.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
-import(useNavbarTitle);
 
 const TaskAssignPage = () => {
   const [isOpenPane, setIsOpenPane] = useState(false);
