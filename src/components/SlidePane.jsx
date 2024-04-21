@@ -98,11 +98,13 @@ const SlidePane = () => {
 	const handleSaveChanges = async (e) => {
 		console.log("edit card");
 	};
-	const [isNewCard, setIsNewCard] = useState(true);
-	useEffect(() => {
-		console.log("teacher = " + teacher);
-		setIsNewCard(taskCardData.courseCode === "COURSE CODE");
-	}, []);
+	// const [isNewCard, setIsNewCard] = useState(true);
+	// useEffect(() => {
+	// 	console.log("teacher = " + teacher);
+	// 	setIsNewCard(taskCardData.courseCode === "COURSE CODE");
+	// }, []);
+	const isNewCard = formik.values.teacher == null;
+	console.log(isNewCard);
 
 	return (
 		<div className="h-screen">
@@ -125,11 +127,9 @@ const SlidePane = () => {
 							Assign Task
 						</Button>
 					) : (
-						changed && (
-							<Button onClick={handleSaveChanges} appearance="subtle">
-								Save Changes
-							</Button>
-						)
+						<Button onClick={handleSaveChanges} appearance="subtle">
+							Save Changes
+						</Button>
 					)}
 				</Drawer.Title>
 			</Drawer.Header>
