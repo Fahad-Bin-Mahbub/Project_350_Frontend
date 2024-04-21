@@ -1,24 +1,37 @@
+import axios from "axios";
 import { useFormik } from "formik";
 import React from "react";
+import { toast } from "react-toastify";
 import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useTaskCard } from "../context/TaskCardProvider";
+import { BASE_URL } from "../data/data";
 import Comments from "./Comments";
 import {
   Datepicker,
   MenuPopover,
   PaperSelection,
-  sessionSelection,
+  SessionSelection,
+  TeacherSelection,
 } from "./SlidePaneFormComponents";
 import StatusTag from "./StatusTag";
 
 const SlidePane = () => {
   const { taskCardData } = useTaskCard();
   const [changed, setChanged] = React.useState(false);
-  const { status, courseCode, session, part, paperCount, teacher, dueDate } =
-    taskCardData;
+  const {
+    status,
+    year,
+    courseCode,
+    session,
+    part,
+    paperCount,
+    teacher,
+    dueDate,
+  } = taskCardData;
   const { auth } = useAuth();
+  const baseUrl = BASE_URL;
 
   // console.log(auth.user);
   // const isAdmin = auth.user.roles.includes("admin");
@@ -28,22 +41,21 @@ const SlidePane = () => {
   const { navbarTitle } = useNavbarTitle();
   const isDashboard = navbarTitle === "Dashboard";
 
-	const formik = useFormik({
-		initialValues: {
-			status: status,
-			courseCode: courseCode,
-			session: session,
-			part: part,
-			paperCount: paperCount,
-			//TODO: ekhane teacher er id pass korba
-			teacher: teacher,
-			date: dueDate,
-		},
-		onSubmit: (values) => {},
-	});
-	// console.log(session);
+  const formik = useFormik({
+    initialValues: {
+      status: status,
+      courseCode: courseCode,
+      session: session,
+      part: part,
+      paperCount: paperCount,
+      //TODO: ekhane teacher er id pass korba
+      teacher: teacher,
+      date: dueDate,
+    },
+    onSubmit: (values) => {},
+  });
 
-	// console.log(formik.values.session);
+  // console.log(formik.values.session);
 
   const tempRef = React.useRef();
   const handleStatusSelection = (status) => {
@@ -52,12 +64,38 @@ const SlidePane = () => {
     tempRef.current.close();
   };
 
-  const handleSaveChanges = () => {
+  const handleSaveChanges = async (e) => {
     //TODO: save changes to the database and API call
-    console.log(formik.values);
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${baseUrl}/api/task/create`,
+        {
+          status: formik.values.status,
+          courseCode: formik.values.courseCode,
+          session: formik.values.session,
+          part: formik.values.part,
+          paperCount: formik.values.paperCount,
+          teacher: formik.values.teacher,
+          year: year,
+          dueDate: formik.values.date,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      const { status } = response;
+      if (status === 201) {
+        toast.success("Task assigned successfully");
+      } else {
+        toast.error("Could not assign task");
+      }
+    } catch (error) {
+      toast.error("Could not assign task");
+    }
   };
 
-<<<<<<< HEAD
   return (
     <div className="h-screen">
       <Drawer.Header>
@@ -101,13 +139,15 @@ const SlidePane = () => {
               Assignee
             </Form.ControlLabel>
             <Form.Control
-              // accepter={TeacherSelection}
+              accepter={TeacherSelection}
               name="Assignee"
               placeholder={`Assign Teacher`}
               value={formik.values.teacher}
               onChange={(value) => {
                 setChanged(true);
                 formik.setFieldValue("teacher", value);
+                //TODO: ekhane value return korbe id oita theke teacher er nam ber korba
+                console.log(value);
               }}
               size="lg"
               readOnly={isDashboard}
@@ -137,7 +177,7 @@ const SlidePane = () => {
               Session
             </Form.ControlLabel>
             <Form.Control
-              accepter={sessionSelection}
+              accepter={SessionSelection}
               name="session"
               placeholder={`Select Session`}
               value={formik.values.session}
@@ -164,116 +204,6 @@ const SlidePane = () => {
               readOnly={isDashboard}
             />
           </Form.Group>
-=======
-	return (
-		<div className="h-screen">
-			<Drawer.Header>
-				<Drawer.Title className="flex justify-between items-center">
-					{!isDashboard ? (
-						<StatusTag status={formik.values.status} />
-					) : (
-						<Whisper
-							placement="rightStart"
-							trigger="click"
-							ref={tempRef}
-							speaker={<MenuPopover onSelect={handleStatusSelection} />}
-						>
-							<IconButton icon={<StatusTag status={formik.values.status} />} />
-						</Whisper>
-					)}
-					{changed && (
-						<Button onClick={handleSaveChanges} appearance="subtle">
-							Save Changes
-						</Button>
-					)}
-				</Drawer.Title>
-			</Drawer.Header>
-			<Drawer.Body className="no-scrollbar">
-				<Form fluid className="pb-3">
-					<Form.Group controlId="course-code">
-						<Form.Control
-							name="Course"
-							placeholder={`Course`}
-							value={formik.values.courseCode}
-							onChange={(value) => {
-								setChanged(true);
-								formik.setFieldValue("courseCode", value);
-							}}
-							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none text-opacity-50"
-							readOnly={isDashboard}
-						/>
-					</Form.Group>
-					<Form.Group controlId="assignee" className="flex">
-						<Form.ControlLabel className="w-[50%] text-xl">
-							Assignee
-						</Form.ControlLabel>
-						<Form.Control
-							accepter={TeacherSelection}
-							name="Assignee"
-							placeholder={`Assign Teacher`}
-							value={formik.values.teacher}
-							onChange={(value) => {
-								setChanged(true);
-								formik.setFieldValue("teacher", value);
-								//TODO: ekhane value return korbe id oita theke teacher er nam ber korba
-								console.log(value);
-							}}
-							size="lg"
-							readOnly={isDashboard}
-						/>
-					</Form.Group>
-					<Form.Group controlId="due-date" className="flex mb-0">
-						<Form.ControlLabel className="w-[50%] text-xl my-auto">
-							Due Date
-						</Form.ControlLabel>
-						<Form.Control
-							accepter={Datepicker}
-							name="due"
-							value={new Date(formik.values.date)}
-							onChange={(value) => {
-								setChanged(true);
-								formik.setFieldValue(
-									"date",
-									new Date(value === null ? new Date() : value)
-								);
-							}}
-							readOnly={isDashboard}
-						/>
-					</Form.Group>
-
-					<Form.Group controlId="session" className="flex">
-						<Form.ControlLabel className="w-[50%] text-xl my-auto">
-							Session
-						</Form.ControlLabel>
-						<Form.Control
-							accepter={SessionSelection}
-							name="session"
-							placeholder={`Select Session`}
-							value={formik.values.session}
-							onChange={(value) => {
-								setChanged(true);
-								formik.setFieldValue("session", value);
-							}}
-							readOnly={isDashboard}
-						/>
-					</Form.Group>
-					<Form.Group controlId="Part" className="flex">
-						<Form.ControlLabel className="w-[50%] text-xl my-auto">
-							Part
-						</Form.ControlLabel>
-						<Form.Control
-							accepter={PaperSelection}
-							name="part"
-							placeholder={`part`}
-							value={formik.values.part}
-							onChange={(value) => {
-								setChanged(true);
-								formik.setFieldValue("part", value);
-							}}
-							readOnly={isDashboard}
-						/>
-					</Form.Group>
->>>>>>> 13e291ea76b7239756348dbb79573e14a4c94389
 
           <Form.Group controlId="Paper Count" className="flex">
             <Form.ControlLabel className="w-[50%] text-xl my-auto">

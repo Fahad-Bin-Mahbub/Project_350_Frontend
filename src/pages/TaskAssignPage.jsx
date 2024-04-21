@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Drawer } from "rsuite";
 import CardSection from "../components/CardSection";
@@ -6,6 +7,7 @@ import Sidebar from "../components/Sidebar.jsx";
 import SlidePane from "../components/SlidePane.jsx";
 import { useNavbarTitle } from "../context/NavbarTitleProvider.jsx";
 import { useSection } from "../context/SectionProvider.jsx";
+import { BASE_URL } from "../data/data.js";
 
 const TaskAssignPage = () => {
   const [isOpenPane, setIsOpenPane] = useState(false);
@@ -17,8 +19,51 @@ const TaskAssignPage = () => {
   console.log(sectionData);
   const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
   const { navbarTitle, updateNavbarTitle } = useNavbarTitle();
+  const baseUrl = BASE_URL;
+
   useEffect(() => {
     updateNavbarTitle("Assign Tasks");
+
+    axios
+      .get(`${baseUrl}/api/task/get-creator-tasks`, { withCredentials: true })
+      .then((response) => {
+        const { status, data } = response;
+        console.log(data.data);
+        if (status === 200) {
+          data.data.forEach((item) => {
+            const taskCardData = {
+              status: item.status,
+              courseCode: item.courseCode,
+              session: item.session,
+              part: item.part,
+              paperCount: item.paperCount,
+              teacher: item.teacher,
+              dueDate: item.dueDate.split("T")[0],
+            };
+            // console.log(taskCardData);
+            console.log(item.year);
+            switch (item.year) {
+              case 1:
+                setTaskCardData1([...taskCardData1, taskCardData]);
+                break;
+              case 2:
+                setTaskCardData2([...taskCardData2, taskCardData]);
+                break;
+              case 3:
+                setTaskCardData3([...taskCardData3, taskCardData]);
+                break;
+              case 4:
+                setTaskCardData4([...taskCardData4, taskCardData]);
+                break;
+              default:
+                break;
+            }
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching teacher tasks:", error);
+      });
   }, []);
 
   return (

@@ -1,13 +1,21 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaEllipsis, FaPlus } from "react-icons/fa6";
+import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useSection } from "../context/SectionProvider";
+import { BASE_URL } from "../data/data.js";
 import TaskCard from "./TaskCard";
 
 const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
   //   console.log(TaskCardsData);
   const [cards, setCards] = useState(TaskCardsData);
   const { navbarTitle } = useNavbarTitle();
+  const [session, setSession] = useState();
+  const [year, setYear] = useState();
+  const { auth } = useAuth();
+  const baseUrl = BASE_URL;
+
   const AddCard = ({ onClick }) => {
     return (
       <div
@@ -25,7 +33,8 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
         //TODO: Determine and add appropriate default values for the new card
         status: "Assigned",
         courseCode: "Course Code",
-        semester: "1/1",
+        session: session,
+        year: year,
         part: "A",
         paperCount: 0,
         teacher: "Teacher Name",
@@ -40,8 +49,46 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
     setCards(TaskCardsData);
   }, [TaskCardsData]);
 
+  useEffect(() => {
+    const getSessionData = async () => {
+      try {
+        const id = auth.user._id;
+        const response = await axios.get(
+          `${baseUrl}/api/ci/get-session/${id}`,
+          { withCredentials: true }
+        );
+        const { status, data } = response;
+        if (status === 200) {
+          setSession(data.data);
+        } else {
+          console.log("Failed to fetch session");
+        }
+      } catch (error) {
+        console.log("Failed to fetch session", error);
+      }
+    };
+
+    getSessionData();
+    switch (SectionName.toUpperCase()) {
+      case "1ST YEAR":
+        setYear(1);
+        break;
+      case "2ND YEAR":
+        setYear(2);
+        break;
+      case "3RD YEAR":
+        setYear(3);
+        break;
+      case "4TH YEAR":
+        setYear(4);
+        break;
+      default:
+        break;
+    }
+  }, []);
+
   SectionName = SectionName.toUpperCase();
-  // console.log(cards);
+  console.log(SectionName, year, session);
 
   return (
     <div className="max-h-[92vh] min-h-[92vh] max-w-[360px] min-w-[360px] bg-[#E9E9E9] rounded-xl flex flex-col p-6 mx-3 mb-6 ">

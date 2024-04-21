@@ -96,5 +96,5 @@ export const getSessionData = async () => {
 	return ["2024-1", "2023-2", "2023-1"];
 };
 
-export const BASE_URL = "http://localhost:5000";
-// export const BASE_URL = "https://examtrack.up.railway.app";
+// export const BASE_URL = "http://localhost:5000";
+export const BASE_URL = "https://examtrack.up.railway.app";
