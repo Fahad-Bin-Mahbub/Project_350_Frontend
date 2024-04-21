@@ -1,9 +1,9 @@
 // import React from "react";
 import { FaCalendarDays, FaEllipsis } from "react-icons/fa6";
-import { Badge } from "rsuite";
+import { Avatar, Badge } from "rsuite";
 import "rsuite/dist/rsuite.min.css";
 import { useTaskCard } from "../context/TaskCardProvider";
-import Avatar from "./Avatar";
+// import Avatar from "./Avatar";
 import TaskTag from "./TaskTag";
 
 const statusColors = {
@@ -112,7 +112,8 @@ const TaskCard = ({
 			</div>
 			<div className="flex-grow"></div>
 			<div className="flex justify-between items-center">
-				<Avatar content={teacher} />
+				{/* //TODO:  set the image Url*/}
+				{/* <Avatar circle src={imageUrl} /> */}
 				{/* //TODO: display different item by role */}
 				<div className="text-[10px] text-right">
 					<div className="">Due</div>
