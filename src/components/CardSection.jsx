@@ -37,7 +37,7 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 				year: year,
 				part: "A",
 				paperCount: 0,
-				teacher: "Teacher Name",
+				teacher: null,
 				dueDate: new Date().toISOString().split("T")[0],
 				clickHandler: clickHandler,
 			},
@@ -123,7 +123,7 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 
 export const AddCardSection = () => {
 	const { sectionData, updateSectionData } = useSection();
-	const [newSectionName, setNewSectionName] = useState("New Section");
+	// const [newSectionName, setNewSectionName] = useState("New Section");
 	return (
 		<div
 			className="w-10 min-h-[92vh] bg-[#D9D9D9] rounded-xl mb-2 flex hover:bg-[#d9d9d9c7] cursor-pointer"
