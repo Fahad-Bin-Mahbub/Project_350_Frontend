@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
 import { useAuth } from "../context/Auth";
@@ -98,7 +98,6 @@ const SlidePane = () => {
 	const handleSaveChanges = async (e) => {
 		console.log("edit card");
 	};
-
 	const isNewCard = teacher === null;
 
 	return (
