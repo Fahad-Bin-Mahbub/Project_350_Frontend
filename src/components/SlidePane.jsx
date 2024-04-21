@@ -99,7 +99,7 @@ const SlidePane = () => {
 		console.log("edit card");
 	};
 
-	const isNewCard = courseCode === "Course Code";
+	const isNewCard = teacher === null;
 
 	return (
 		<div className="h-screen">

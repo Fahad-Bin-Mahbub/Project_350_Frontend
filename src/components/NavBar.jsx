@@ -75,7 +75,7 @@ const NavBar = () => {
 			</div>
 			<div className="flex gap-7">
 				<IoIosNotifications size={30} />
-				<Avatar size="lg" circle src={auth?.user.photo} />
+				<Avatar circle src={auth?.user.photo} />
 				<Menu
 					as="div"
 					className="outline-none relative inline-block text-center"
