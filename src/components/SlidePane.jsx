@@ -101,7 +101,7 @@ const SlidePane = () => {
 	const [isNewCard, setIsNewCard] = useState(true);
 	useEffect(() => {
 		console.log("teacher = " + teacher);
-		setIsNewCard(taskCardData.teacher === "COURSE CODE");
+		setIsNewCard(typeof teacher === "string");
 	}, []);
 	// const isNewCard = formik.values.teacher == null;
 	// console.log(isNewCard);
