@@ -8,7 +8,7 @@ import { SessionSelection, TeacherSelection } from "../SlidePaneFormComponents";
 
 const AddCiModal = () => {
 	const [ci, setCi] = useState("");
-	const [email, setEmail] = useState("");
+	const [id, setId] = useState("");
 	const [session, setSession] = useState("");
 	// const baseUrl = "https://examtrack.up.railway.app";
 	const baseUrl = BASE_URL;
@@ -16,14 +16,14 @@ const AddCiModal = () => {
 	const addCi = async (e) => {
 		// if (ci == "") return;
 		e.preventDefault();
-		console.log(ci, session, email);
+		console.log(ci, session, id);
 
 		axios
 			.post(
 				`${baseUrl}/api/head/create-ci`,
 				{
 					session,
-					email,
+					id,
 				},
 				{
 					withCredentials: true,
@@ -107,7 +107,7 @@ const AddCiModal = () => {
 										// formik.setFieldValue("teacher", value);
 										//TODO: ekhane value return korbe id oita theke teacher er nam ber korba
 										console.log(value);
-										setEmail(value.email);
+										setId(value);
 										console.log(value);
 									}}
 									size="lg"

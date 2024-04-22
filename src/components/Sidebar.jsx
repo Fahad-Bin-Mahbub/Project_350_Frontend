@@ -13,7 +13,7 @@ const Sidebar = ({ children }) => {
 	const { auth } = useAuth();
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-		{ name: "Manage CI", link: "/manage-ci", icon: FaUserTie },
+		{ name: "Manage CI", link: "/manage-ci", icon: FaChalkboardUser },
 		{ name: "Assign Tasks", link: "/assign-task", icon: FaClipboardCheck },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
@@ -33,7 +33,7 @@ const Sidebar = ({ children }) => {
 	];
 	const headMenus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-		{ name: "Manage CI", link: "/manage-ci", icon: FaUserTie },
+		{ name: "Manage CI", link: "/manage-ci", icon: FaChalkboardUser },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
 		{ name: "Logout", link: "/", icon: MdLogout },
