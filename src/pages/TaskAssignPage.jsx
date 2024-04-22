@@ -40,20 +40,19 @@ const TaskAssignPage = () => {
               teacher: item.teacher,
               dueDate: item.dueDate.split("T")[0],
             };
-            // console.log(taskCardData);
             console.log(item.year);
             switch (item.year) {
               case 1:
-                setTaskCardData1([...taskCardData1, taskCardData]);
+                setTaskCardData1((prevData) => [...prevData, taskCardData]);
                 break;
               case 2:
-                setTaskCardData2([...taskCardData2, taskCardData]);
+                setTaskCardData2((prevData) => [...prevData, taskCardData]);
                 break;
               case 3:
-                setTaskCardData3([...taskCardData3, taskCardData]);
+                setTaskCardData3((prevData) => [...prevData, taskCardData]);
                 break;
               case 4:
-                setTaskCardData4([...taskCardData4, taskCardData]);
+                setTaskCardData4((prevData) => [...prevData, taskCardData]);
                 break;
               default:
                 break;
@@ -65,6 +64,8 @@ const TaskAssignPage = () => {
         console.error("Error fetching teacher tasks:", error);
       });
   }, []);
+
+  console.log(taskCardData1, taskCardData2, taskCardData3, taskCardData4);
 
   return (
     <>
