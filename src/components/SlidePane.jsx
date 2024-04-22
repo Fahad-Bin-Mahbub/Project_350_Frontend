@@ -100,7 +100,7 @@ const SlidePane = () => {
 	};
 	const [isNewCard, setIsNewCard] = useState(true);
 	useEffect(() => {
-		console.log("teacher = " + teacher);
+		console.log(teacher);
 		setIsNewCard(typeof teacher === "string");
 	}, []);
 	// const isNewCard = formik.values.teacher == null;
@@ -127,7 +127,11 @@ const SlidePane = () => {
 							Assign Task
 						</Button>
 					) : (
-						<Button onClick={handleSaveChanges} appearance="subtle">
+						<Button
+							onClick={handleSaveChanges}
+							appearance="subtle"
+							hidden={isDashboard}
+						>
 							Save Changes
 						</Button>
 					)}
@@ -156,7 +160,7 @@ const SlidePane = () => {
 							accepter={TeacherSelection}
 							name="Assignee"
 							placeholder={`Assign Teacher`}
-							value={formik.values.teacher}
+							value={formik.values.teacher._id}
 							onChange={(value) => {
 								setChanged(true);
 								formik.setFieldValue("teacher", value);

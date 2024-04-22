@@ -48,6 +48,7 @@ const Ci = () => {
 					withCredentials: true,
 				});
 				const { status, data } = response;
+				console.log(data);
 
 				if (status === 200) {
 					const newData = [];
@@ -61,6 +62,8 @@ const Ci = () => {
 							`${baseUrl}/api/user/get-user/${userId}`
 						);
 						const userData = response1.data.data;
+						console.log("userData " + userData);
+						console.log(userData);
 
 						name = `${userData.firstName} ${userData.lastName}`;
 						email = userData.email;
@@ -115,8 +118,6 @@ const Ci = () => {
 						/>
 						<BiSearch className="absolute right-0 top-0 mt-5 mr-4" />
 					</div>
-					{/* <Button className="w-44" title="Add Department" /> */}
-					{/* <AddDepartmentModal></AddDepartmentModal> */}
 					<AddCiModal />
 				</div>
 			</div>

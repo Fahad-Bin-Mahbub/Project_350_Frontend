@@ -36,9 +36,7 @@ export const SessionSelection = React.forwardRef((props, ref) => {
 		label: item,
 		value: item,
 	}));
-	return (
-		<SelectPicker {...props} data={data} block size="lg" ref={ref} readOnly />
-	);
+	return <SelectPicker {...props} data={data} block size="lg" ref={ref} />;
 });
 
 SessionSelection.displayName = "SessionSelection";
