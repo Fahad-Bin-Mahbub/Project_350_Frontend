@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { Input } from "rsuite";
+import { Form, Input, Modal } from "rsuite";
 import { BASE_URL } from "../../data/data";
 import Button from "../Button";
 import { SessionSelection, TeacherSelection } from "../SlidePaneFormComponents";
@@ -14,7 +14,7 @@ const AddCiModal = () => {
 	const baseUrl = BASE_URL;
 
 	const addCi = async (e) => {
-		if (ci == "") return;
+		// if (ci == "") return;
 		e.preventDefault();
 		console.log(ci, session, email);
 
@@ -44,17 +44,34 @@ const AddCiModal = () => {
 				toast.error("Could not create Chief Invigilator");
 			});
 		setCi("");
+		handleClose();
 	};
+
+	const handleClose = () => {
+		setOpen(false);
+		console.log(closed);
+	};
+	const handleOpen = () => {
+		setOpen(true);
+		console.log(open);
+	};
+	const [open, setOpen] = useState(false);
 
 	return (
 		<div>
-			<Button
-				onClick={() => document.getElementById("add-ci-modal").showModal()}
-				className="w-44"
-				title="Add CI"
-			/>
-			<dialog id="add-ci-modal" className="modal">
-				<div className="modal-box bg-gray-200">
+			<Button onClick={handleOpen} className="w-44" title="Add CI" />
+
+			<Modal
+				backdrop
+				// keyboard={false}
+
+				open={open}
+				onClose={handleClose}
+				className="bg-gray-200 rounded-lg m-auto mt-20"
+				size={"sm"}
+				dialogAs="div"
+			>
+				<div className=" bg-gray-200 p-8 rounded-xl">
 					<div className="flex justify-center p-11 bg-gray-200">
 						<h1 className="text-3xl font-semibold text-[#0A2463]">
 							Add Chief Invigilator
@@ -62,69 +79,62 @@ const AddCiModal = () => {
 					</div>
 
 					<div className="flex justify-center">
-						<form>
-							<div className="flex flex-col gap-y-1.5 pb-8">
-								<label className="text-sm text-[#0A2463] font-medium">
+						<Form fluid className="mb-4">
+							<Form.Group controlId="session">
+								<Form.ControlLabel className="text-xl my-auto">
 									Session
-								</label>
-								<SessionSelection
+								</Form.ControlLabel>
+								<Form.Control
+									accepter={SessionSelection}
 									name="session"
-									placeholder="Select Session"
+									placeholder={`Select Session`}
+									// value={formik.values.session}
 									onChange={(value) => {
+										// formik.setFieldValue("session", value);
 										setSession(value);
 									}}
 								/>
-							</div>
-							{/* Department */}
-							<TeacherSelection
-								name="Chief Invigilator"
-								placeholder={`Add Chief Invigilator`}
-								onChange={(value) => {
-									setEmail(value.email);
-									setCi(value.name);
-								}}
-							/>
-							{/* Assignee */}
-							<div className="flex flex-col gap-y-1.5 pb-8">
-								<label className="text-sm text-[#0A2463] font-medium">
+							</Form.Group>
+							<Form.Group controlId="assignee">
+								<Form.ControlLabel className=" text-xl">
 									Chief Invigilator
-								</label>
-								<Input
-									type="text"
-									placeholder="Chief Invigilator"
-									onChange={(value) => setCi(value)}
-									className="input input-bordered w-[365px] h-11 rounded-sm bg-gray-300"
+								</Form.ControlLabel>
+								<Form.Control
+									accepter={TeacherSelection}
+									name="chief-invigilator"
+									placeholder={`Assign Chief Invigilator`}
+									// value={formik.values.teacher._id}
+									onChange={(value) => {
+										// setChanged(true);
+										// formik.setFieldValue("teacher", value);
+										//TODO: ekhane value return korbe id oita theke teacher er nam ber korba
+										console.log(value);
+										setEmail(value.email);
+										console.log(value);
+									}}
+									size="lg"
 								/>
-							</div>
-							{/* Department Head */}
-							<div className="flex flex-col gap-y-1.5 pb-8">
-								<label className="text-sm text-[#0A2463] font-medium">
-									Email
-								</label>
+							</Form.Group>
+							{/* <div> */}
+							<div className="flex gap-2">
+								<button
+									onClick={() => setOpen(false)}
+									className="btn w-40 h-8 rounded-2xl text-[#0A2463] border-[#0A2463] border-2 bg-gray-300 hover:bg-gray-300"
+								>
+									Cancel
+								</button>
 								<Input
-									type="text"
-									placeholder="Enter Email"
-									onChange={(value) => setEmail(value)}
-									className="input input-bordered w-[365px] h-11 rounded-sm bg-gray-300"
+									type="submit"
+									onClick={addCi}
+									value="Add CI"
+									className="btn w-40 h-8 rounded-2xl bg-[#0A2463] text-white hover:bg-primary"
 								/>
+								{/* </div> */}
 							</div>
-							<div className="modal-action">
-								<form method="dialog" className="flex gap-2">
-									<button className="btn w-40 h-8 rounded-2xl text-[#0A2463] border-[#0A2463] border-2 bg-gray-300 hover:bg-gray-300">
-										Cancel
-									</button>
-									<Input
-										type="submit"
-										onClick={addCi}
-										value="Add CI"
-										className="btn w-40 h-8 rounded-2xl bg-[#0A2463] text-white hover:bg-primary"
-									/>
-								</form>
-							</div>
-						</form>
+						</Form>
 					</div>
 				</div>
-			</dialog>
+			</Modal>
 		</div>
 	);
 };
