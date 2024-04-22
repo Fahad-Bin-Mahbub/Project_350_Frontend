@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa6";
 import { IoIosNotifications } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import { SelectPicker } from "rsuite";
+import { Avatar, SelectPicker } from "rsuite";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 import { useSection } from "../context/SectionProvider";
@@ -75,7 +75,7 @@ const NavBar = () => {
 			</div>
 			<div className="flex gap-7">
 				<IoIosNotifications size={30} />
-				<FaUser size={30} />
+				<Avatar circle src={auth?.user.photo} />
 				<Menu
 					as="div"
 					className="outline-none relative inline-block text-center"

@@ -13,7 +13,7 @@ export const TaskCardProvider = ({ children }) => {
 		session: "2024-1",
 		part: "A",
 		paperCount: 0,
-		teacher: "Teacher Name",
+		teacher: null,
 		dueDate: new Date(),
 	});
 	// console.log(new Date().getMonth());

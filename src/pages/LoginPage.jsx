@@ -16,6 +16,7 @@ const LoginPage = () => {
 	const [pass, setPass] = useState("");
 	const { auth, updateAuth } = useAuth();
 	const navigate = useNavigate();
+	const [isAdmin, setIsAdmin] = useState(false);
 	// const baseUrl = "https://examtrack.up.railway.app";
 	// const baseUrl = "http://localhost:5000";
 	const baseUrl = BASE_URL;
@@ -67,44 +68,58 @@ const LoginPage = () => {
 							<div className="text-5xl mb-8">PaperWatch</div>
 							<div>Welcome back! Please enter your details.</div>
 						</div>
-						<div className="mb-8">
-							<Form fluid>
-								<Form.Group controlId="email">
-									<Form.ControlLabel>Email</Form.ControlLabel>
-									<Form.Control
-										name="email"
-										type="email"
-										placeholder="Enter your email"
-										onChange={(value) => setEmail(value)}
-									/>
-								</Form.Group>
-								<Form.Group controlId="password">
-									<Form.ControlLabel>Password</Form.ControlLabel>
-									<Form.Control
-										name="password"
-										type="password"
-										autoComplete="off"
-										onChange={(value) => setPass(value)}
-									/>
-								</Form.Group>
-							</Form>
-						</div>
+						{isAdmin && (
+							<div className="mb-8">
+								<Form fluid>
+									<Form.Group controlId="email">
+										<Form.ControlLabel>Email</Form.ControlLabel>
+										<Form.Control
+											name="email"
+											type="email"
+											placeholder="Enter your email"
+											onChange={(value) => setEmail(value)}
+										/>
+									</Form.Group>
+									<Form.Group controlId="password">
+										<Form.ControlLabel>Password</Form.ControlLabel>
+										<Form.Control
+											name="password"
+											type="password"
+											autoComplete="off"
+											onChange={(value) => setPass(value)}
+										/>
+									</Form.Group>
+								</Form>
+							</div>
+						)}
 						<div>
 							<ButtonToolbar>
+								{isAdmin && (
+									<Button
+										className="text-white hover:text-white focus:text-white bg-primary hover:bg-primary focus:bg-primary"
+										block
+										onClick={doLogin}
+									>
+										Sign in
+									</Button>
+								)}
+								{!isAdmin && (
+									<Button
+										block
+										className="flex items-center justify-center border bg-gray-100"
+										startIcon={<FcGoogle />}
+										onClick={doGoogleLogin}
+									>
+										Sign in with Google
+									</Button>
+								)}
 								<Button
 									className="text-white hover:text-white focus:text-white bg-primary hover:bg-primary focus:bg-primary"
 									block
-									onClick={doLogin}
+									onClick={() => setIsAdmin(!isAdmin)}
 								>
-									Sign in
-								</Button>
-								<Button
-									block
-									className="flex items-center justify-center border bg-gray-100"
-									startIcon={<FcGoogle />}
-									onClick={doGoogleLogin}
-								>
-									Sign in with Google
+									{isAdmin ? "User Login" : "Admin Login"}
+									{/* Are you Admin? */}
 								</Button>
 							</ButtonToolbar>
 						</div>

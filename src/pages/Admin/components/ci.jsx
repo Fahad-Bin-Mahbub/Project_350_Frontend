@@ -12,11 +12,11 @@ const Ci = () => {
   const columns = [
     {
       name: "Session",
-      selector: (row) => row.courseCode,
+      selector: (row) => row.session,
     },
     {
       name: "Name",
-      selector: (row) => row.assignee,
+      selector: (row) => row.name,
     },
     {
       name: "Email Address",
@@ -56,6 +56,7 @@ const Ci = () => {
             let email = "";
             let department = "";
             const userId = item.user;
+            console.log(userId);
 
             const response1 = await axios.get(
               `${baseUrl}/api/user/get-user/${userId}`
@@ -75,8 +76,8 @@ const Ci = () => {
             department = departmentData.name;
 
             newData.push({
-              courseCode: item.session,
-              assignee: name,
+              session: item.session,
+              name: name,
               email,
               department,
               action: "View",

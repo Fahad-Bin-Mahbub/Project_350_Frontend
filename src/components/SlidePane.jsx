@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Button, Drawer, Form, IconButton, Whisper } from "rsuite";
 import { useAuth } from "../context/Auth";
@@ -20,6 +20,7 @@ import StatusTag from "./StatusTag";
 const SlidePane = () => {
   const { taskCardData } = useTaskCard();
   const [changed, setChanged] = React.useState(false);
+  const [isNewCard, setIsNewCard] = useState(true);
   const {
     status,
     year,
@@ -48,8 +49,7 @@ const SlidePane = () => {
       session: session,
       part: part,
       paperCount: paperCount,
-      //TODO: ekhane teacher er id pass korba
-      teacher: teacher,
+      teacher: teacher._id,
       date: dueDate,
     },
     onSubmit: (values) => {},
@@ -59,9 +59,43 @@ const SlidePane = () => {
 
   const tempRef = React.useRef();
   const handleStatusSelection = (status) => {
-    setChanged(true);
+    // setChanged(true);
     formik.setFieldValue("status", status);
+    // TODO: call api to update status
     tempRef.current.close();
+  };
+
+  const handleCreateCard = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `${baseUrl}/api/task/create`,
+        {
+          status: formik.values.status,
+          courseCode: formik.values.courseCode,
+          session: formik.values.session,
+          part: formik.values.part,
+          paperCount: formik.values.paperCount,
+          teacher: formik.values.teacher,
+          year: year,
+          dueDate: formik.values.date,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      const { status } = response;
+      if (status === 201) {
+        toast.success("Task assigned successfully");
+        setChanged(false);
+        setIsNewCard(false);
+      } else {
+        toast.error("Could not assign task");
+      }
+    } catch (error) {
+      toast.error("Could not assign task");
+    }
   };
 
   const handleSaveChanges = async (e) => {
@@ -70,34 +104,17 @@ const SlidePane = () => {
     try {
       const checkResponse = await axios.get(
         `${baseUrl}/api/task/get-unique-task`,
-        { withCredentials: true }
-      );
-      if (checkResponse.status === 204) {
-        const response = await axios.post(
-          `${baseUrl}/api/task/create`,
-          {
-            status: formik.values.status,
-            courseCode: formik.values.courseCode,
-            session: formik.values.session,
-            part: formik.values.part,
-            paperCount: formik.values.paperCount,
-            teacher: formik.values.teacher,
-            year: year,
-            dueDate: formik.values.date,
+        {
+          params: {
+            courseCode: courseCode,
+            part: part,
+            session: session,
           },
-          {
-            withCredentials: true,
-          }
-        );
-
-        const { status } = response;
-        if (status === 201) {
-          toast.success("Task assigned successfully");
-          setChanged(false);
-        } else {
-          toast.error("Could not assign task");
+          withCredentials: true,
         }
-      } else if (checkResponse.status === 200) {
+      );
+      console.log(courseCode, part, session, checkResponse.status);
+      if (checkResponse.status === 200) {
         const id = checkResponse.data.data._id;
         const response = await axios.put(
           `${baseUrl}/api/task/update/${id}`,
@@ -122,12 +139,17 @@ const SlidePane = () => {
           toast.error("Could not update task");
         }
       } else {
-        toast.error("Could not assign task");
+        toast.error("Could not update task");
       }
     } catch (error) {
-      toast.error("Could not assign task");
+      toast.error("Could not update task");
     }
   };
+
+  useEffect(() => {
+    console.log("teacher = " + teacher);
+    setIsNewCard(typeof teacher === "string");
+  }, []);
 
   return (
     <div className="h-screen">
@@ -145,7 +167,11 @@ const SlidePane = () => {
               <IconButton icon={<StatusTag status={formik.values.status} />} />
             </Whisper>
           )}
-          {changed && (
+          {isNewCard ? (
+            <Button onClick={handleCreateCard} appearance="subtle">
+              Assign Task
+            </Button>
+          ) : (
             <Button onClick={handleSaveChanges} appearance="subtle">
               Save Changes
             </Button>
