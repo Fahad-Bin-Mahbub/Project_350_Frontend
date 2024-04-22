@@ -58,19 +58,10 @@ const Ci = () => {
             const userId = item.user;
             console.log(userId);
 
-<<<<<<< HEAD
             const response1 = await axios.get(
               `${baseUrl}/api/user/get-user/${userId}`
             );
             const userData = response1.data.data;
-=======
-						const response1 = await axios.get(
-							`${baseUrl}/api/user/get-user/${userId}`
-						);
-						const userData = response1.data.data;
-						console.log("userData " + userData);
-						console.log(userData);
->>>>>>> 6a8fbe3c71493699baedd2b2e672f3d5afab8b64
 
             name = `${userData.firstName} ${userData.lastName}`;
             email = userData.email;
@@ -104,7 +95,6 @@ const Ci = () => {
 
   console.log(tableData);
 
-<<<<<<< HEAD
   return (
     <div className="w-full p-10 flex flex-col gap-4">
       <div className="flex items-center justify-between p-3">
@@ -126,8 +116,6 @@ const Ci = () => {
             />
             <BiSearch className="absolute right-0 top-0 mt-5 mr-4" />
           </div>
-          {/* <Button className="w-44" title="Add Department" /> */}
-          {/* <AddDepartmentModal></AddDepartmentModal> */}
           <AddCiModal />
         </div>
       </div>
@@ -155,56 +143,6 @@ const Ci = () => {
       />
     </div>
   );
-=======
-	return (
-		<div className="w-full p-10 flex flex-col gap-4">
-			<div className="flex items-center justify-between p-3">
-				<div>
-					<div className="font-bold font-inter text-black text-[20px]">
-						Manage Chief Invigilator
-					</div>
-					<div className="text-black text-sm">
-						Here is a list of all Chief Invigilator
-					</div>
-				</div>
-				<div className="flex gap-4 items-center flex-wrap">
-					<div className="pt-2 relative mx-auto text-gray-600">
-						<input
-							className="border-2 border-gray-300 bg-white h-10 p-3 rounded-full text-sm focus:outline-none"
-							type="search"
-							name="search"
-							placeholder="Search"
-						/>
-						<BiSearch className="absolute right-0 top-0 mt-5 mr-4" />
-					</div>
-					<AddCiModal />
-				</div>
-			</div>
-			<DataTable
-				columns={columns}
-				className=" min-h-fit-content"
-				customStyles={{
-					rows: {
-						style: {
-							position: "relative",
-							paddingTop: "20px",
-							paddingBottom: "20px",
-						},
-					},
-					headRow: {
-						style: {
-							backgroundColor: "#E3E9ED",
-							color: "#2F4551",
-						},
-					},
-				}}
-				data={tableData}
-				selectableRows
-				// pagination
-			/>
-		</div>
-	);
->>>>>>> 6a8fbe3c71493699baedd2b2e672f3d5afab8b64
 };
 
 export default Ci;
