@@ -68,26 +68,59 @@ const SlidePane = () => {
     //TODO: save changes to the database and API call
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${baseUrl}/api/task/create`,
-        {
-          status: formik.values.status,
-          courseCode: formik.values.courseCode,
-          session: formik.values.session,
-          part: formik.values.part,
-          paperCount: formik.values.paperCount,
-          teacher: formik.values.teacher,
-          year: year,
-          dueDate: formik.values.date,
-        },
-        {
-          withCredentials: true,
-        }
+      const checkResponse = await axios.get(
+        `${baseUrl}/api/task/get-unique-task`,
+        { withCredentials: true }
       );
+      if (checkResponse.status === 204) {
+        const response = await axios.post(
+          `${baseUrl}/api/task/create`,
+          {
+            status: formik.values.status,
+            courseCode: formik.values.courseCode,
+            session: formik.values.session,
+            part: formik.values.part,
+            paperCount: formik.values.paperCount,
+            teacher: formik.values.teacher,
+            year: year,
+            dueDate: formik.values.date,
+          },
+          {
+            withCredentials: true,
+          }
+        );
 
-      const { status } = response;
-      if (status === 201) {
-        toast.success("Task assigned successfully");
+        const { status } = response;
+        if (status === 201) {
+          toast.success("Task assigned successfully");
+          setChanged(false);
+        } else {
+          toast.error("Could not assign task");
+        }
+      } else if (checkResponse.status === 200) {
+        const id = checkResponse.data.data._id;
+        const response = await axios.put(
+          `${baseUrl}/api/task/update/${id}`,
+          {
+            status: formik.values.status,
+            courseCode: formik.values.courseCode,
+            session: formik.values.session,
+            part: formik.values.part,
+            paperCount: formik.values.paperCount,
+            teacher: formik.values.teacher,
+            year: year,
+            dueDate: formik.values.date,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        if (response.status === 200) {
+          toast.success("Task updated successfully");
+          setChanged(false);
+        } else {
+          toast.error("Could not update task");
+        }
       } else {
         toast.error("Could not assign task");
       }
