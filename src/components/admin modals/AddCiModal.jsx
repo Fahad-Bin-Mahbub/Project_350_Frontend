@@ -63,8 +63,6 @@ const AddCiModal = () => {
 
 			<Modal
 				backdrop
-				// keyboard={false}
-
 				open={open}
 				onClose={handleClose}
 				className="bg-gray-200 rounded-lg m-auto mt-20"
