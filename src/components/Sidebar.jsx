@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
+import { FaChalkboardUser, FaClipboardCheck, FaUserTie } from "react-icons/fa6";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { MdLogout, MdOutlineDashboard } from "react-icons/md";
 import { RiSettings4Line } from "react-icons/ri";
@@ -12,8 +13,14 @@ const Sidebar = ({ children }) => {
 	const { auth } = useAuth();
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },
-		{ name: "Assign Tasks", link: "/assign-task", icon: MdLogout },
+		{ name: "Manage CI", link: "/manage-ci", icon: FaUserTie },
+		{ name: "Assign Tasks", link: "/assign-task", icon: FaClipboardCheck },
+		{ name: "Account", link: "/", icon: AiOutlineUser },
+		{ name: "Settings", link: "/", icon: RiSettings4Line },
+		{ name: "Logout", link: "/", icon: MdLogout },
+	];
+	const adminMenus = [
+		{ name: "Dashboard", link: "/admin/dashboard", icon: MdOutlineDashboard },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
 		{ name: "Logout", link: "/", icon: MdLogout },
@@ -26,14 +33,14 @@ const Sidebar = ({ children }) => {
 	];
 	const headMenus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-		{ name: "Manage CI", link: "/manage-ci", icon: MdLogout },
+		{ name: "Manage CI", link: "/manage-ci", icon: FaUserTie },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
 		{ name: "Logout", link: "/", icon: MdLogout },
 	];
 	const ciMenus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
-		{ name: "Assign Tasks", link: "/assign-task", icon: MdLogout },
+		{ name: "Assign Tasks", link: "/assign-task", icon: FaClipboardCheck },
 		{ name: "Account", link: "/", icon: AiOutlineUser },
 		{ name: "Settings", link: "/", icon: RiSettings4Line },
 		{ name: "Logout", link: "/", icon: MdLogout },
@@ -49,11 +56,12 @@ const Sidebar = ({ children }) => {
 		const isHead = auth.user.roles.includes("department_head");
 		const isCI = auth.user.roles.includes("ci");
 		const isTeacher = auth.user.roles.includes("teacher");
-		if (isAdmin || (isHead && isCI)) setSidebarMenus(menus);
+		if (isAdmin) setSidebarMenus(adminMenus);
+		else if (isHead && isCI) setSidebarMenus(menus);
 		else if (isHead) setSidebarMenus(headMenus);
 		else if (isCI) setSidebarMenus(ciMenus);
 		else if (isTeacher) setSidebarMenus(teacherMenus);
-		else setSidebarMenus(menus);
+		// else setSidebarMenus(menus);
 	}, []);
 
 	return (
