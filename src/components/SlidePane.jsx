@@ -17,7 +17,7 @@ import {
 } from "./SlidePaneFormComponents";
 import StatusTag from "./StatusTag";
 
-const SlidePane = () => {
+const SlidePane = ({ closeHandler }) => {
 	const { taskCardData } = useTaskCard();
 	const [changed, setChanged] = React.useState(false);
 	const [isNewCard, setIsNewCard] = useState(true);
@@ -96,6 +96,7 @@ const SlidePane = () => {
 		} catch (error) {
 			toast.error("Could not assign task");
 		}
+		closeHandler(false);
 	};
 
 	const handleSaveChanges = async (e) => {
@@ -144,10 +145,11 @@ const SlidePane = () => {
 		} catch (error) {
 			toast.error("Could not update task");
 		}
+		closeHandler(false);
 	};
 
 	useEffect(() => {
-		console.log("teacher = " + teacher);
+		// console.log("teacher = " + teacher);
 		setIsNewCard(typeof teacher === "string");
 	}, []);
 
@@ -183,13 +185,13 @@ const SlidePane = () => {
 					<Form.Group controlId="course-code">
 						<Form.Control
 							name="Course"
-							placeholder={`Course`}
+							placeholder={`Enter Course Code`}
 							value={formik.values.courseCode}
 							onChange={(value) => {
 								setChanged(true);
 								formik.setFieldValue("courseCode", value);
 							}}
-							className="h-24 text-5xl font-medium focus:outline-none border-none focus:border-none text-opacity-50"
+							className="h-24 text-5xl  font-medium focus:outline-none border-none focus:border-none text-opacity-50"
 							readOnly={isDashboard}
 						/>
 					</Form.Group>

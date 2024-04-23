@@ -32,7 +32,7 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 			{
 				//TODO: Determine and add appropriate default values for the new card
 				status: "Assigned",
-				courseCode: "Course Code",
+				courseCode: "",
 				session: session,
 				year: year,
 				part: "A",
@@ -88,10 +88,10 @@ const CardSection = ({ SectionName, TaskCardsData, clickHandler }) => {
 	}, []);
 
 	SectionName = SectionName.toUpperCase();
-	console.log(SectionName, year, session);
+	// console.log(SectionName, year, session);
 
 	return (
-		<div className="max-h-[92vh] min-h-[92vh] max-w-[360px] min-w-[360px] bg-[#E9E9E9] rounded-xl flex flex-col p-6 mx-3 mb-6 ">
+		<div className="max-h-[92vh] min-h-[92vh] max-w-full min-w-[360px] bg-[#E9E9E9] rounded-xl flex flex-col p-6 mx-3 mb-6 ">
 			<div className="flex justify-between pb-4">
 				<div className="text-sm text-black">{SectionName}</div>
 				{navbarTitle != "Dashboard" && (

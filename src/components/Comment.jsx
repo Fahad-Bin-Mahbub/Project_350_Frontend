@@ -1,7 +1,17 @@
 import React from "react";
 import Avatar from "./Avatar";
 
+const capitalize = (data) => {
+	const strArr = data.toLowerCase().split(" ");
+	// console.log(strArr);
+	strArr.forEach((element, index) => {
+		strArr[index] = element.charAt(0).toUpperCase() + element.slice(1);
+	});
+	return strArr.join(" ");
+};
+
 const Comment = ({ comment }) => {
+	console.log("comment e jeta ashtese", comment);
 	const timePassed = new Date() - new Date(comment.createdAt);
 	// console.log(timePassed);
 	var days = Math.floor(timePassed / (1000 * 60 * 60 * 24));
@@ -27,17 +37,17 @@ const Comment = ({ comment }) => {
 		<div className="my-2">
 			<div className="w-full flex items-center gap-2">
 				<div>
-					<Avatar content={comment.username} />
+					<Avatar content={comment.author.firstName} />
 				</div>
 				<div className="font-bold text-lg text-gray-500 flex-none">
-					{comment.username}
+					{capitalize(comment.author.firstName)}
 				</div>
 				<div className="text-md font-bold text-gray-500 flex-none">
 					&middot;
 					{getTimePassed()}
 				</div>
 			</div>
-			<div className="text-lg pl-9 pb-2 border-b">{comment.body}</div>
+			<div className="text-lg pl-9 pb-2 border-b">{comment.content}</div>
 		</div>
 	);
 };
