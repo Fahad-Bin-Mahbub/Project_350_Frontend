@@ -37,7 +37,6 @@ const CommentFrom = ({ handleSubmit }) => {
 			const { status, data } = response;
 			if (status === 201) {
 				toast.success("Commented successfully");
-				console.log("create comment response data", data);
 				// setChanged(false);
 				// setIsNewCard(false);
 			} else {

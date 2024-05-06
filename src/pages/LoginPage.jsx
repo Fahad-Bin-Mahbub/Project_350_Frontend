@@ -33,7 +33,7 @@ const LoginPage = () => {
 			email,
 			password: pass,
 		});
-		console.log(data);
+
 		if (data.success) {
 			if (data.user.roles.includes("admin")) {
 				navigate("/admin/dashboard");
@@ -43,7 +43,7 @@ const LoginPage = () => {
 					// ...auth,
 					user: data.user,
 				});
-				console.log(auth);
+
 				window.localStorage.setItem("auth", JSON.stringify(data));
 			} else toast.info("Invalid Email/Password");
 		} else toast.info("Invalid Email/Password");

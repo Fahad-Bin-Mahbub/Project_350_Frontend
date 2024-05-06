@@ -8,7 +8,6 @@ export const useSession = () => {
 
 export const SessionProvider = ({ children }) => {
 	const [sessionSelection, setSessionSelection] = useState("");
-
 	const updateSession = (newSession) => {
 		setSessionSelection(newSession);
 	};

@@ -16,7 +16,7 @@ const AddCiModal = () => {
 	const addCi = async (e) => {
 		// if (ci == "") return;
 		e.preventDefault();
-		console.log(ci, session, id);
+
 
 		axios
 			.post(
@@ -31,7 +31,6 @@ const AddCiModal = () => {
 			)
 			.then((response) => {
 				const { status, data } = response;
-				console.log(status, data);
 
 				if (status == 200) {
 					toast.success(`${ci} Chief Invigilator created successfully`);
@@ -106,9 +105,7 @@ const AddCiModal = () => {
 										// setChanged(true);
 										// formik.setFieldValue("teacher", value);
 										//TODO: ekhane value return korbe id oita theke teacher er nam ber korba
-										console.log(value);
 										setId(value);
-										console.log(value);
 									}}
 									size="lg"
 								/>

@@ -27,13 +27,12 @@ const DashboardPage = () => {
 	useEffect(() => {
 		updateSectionData([]);
 		updateNavbarTitle("Dashboard");
-		console.log(JSON.stringify(auth));
 
 		axios
 			.get(`${baseUrl}/api/task/get-teacher-tasks`, { withCredentials: true })
 			.then((response) => {
 				const { status, data } = response;
-				console.log(data.data);
+
 				if (status === 200) {
 					data.data.forEach((item) => {
 						const taskCardData = {

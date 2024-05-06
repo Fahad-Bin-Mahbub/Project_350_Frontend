@@ -16,7 +16,7 @@ const TaskAssignPage = () => {
 	const [taskCardData2, setTaskCardData2] = useState([]);
 	const [taskCardData3, setTaskCardData3] = useState([]);
 	const [taskCardData4, setTaskCardData4] = useState([]);
-	console.log(sectionData);
+
 	const sections = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
 	const { navbarTitle, updateNavbarTitle } = useNavbarTitle();
 	const baseUrl = BASE_URL;
@@ -28,7 +28,7 @@ const TaskAssignPage = () => {
 			.get(`${baseUrl}/api/task/get-creator-tasks`, { withCredentials: true })
 			.then((response) => {
 				const { status, data } = response;
-				console.log(data.data);
+
 				if (status === 200) {
 					data.data.forEach((item) => {
 						const taskCardData = {
@@ -41,7 +41,7 @@ const TaskAssignPage = () => {
 							teacher: item.teacher,
 							dueDate: item.dueDate.split("T")[0],
 						};
-						console.log(item.year);
+
 						switch (item.year) {
 							case 1:
 								setTaskCardData1((prevData) => [...prevData, taskCardData]);
@@ -66,7 +66,7 @@ const TaskAssignPage = () => {
 			});
 	}, []);
 
-	console.log(taskCardData1, taskCardData2, taskCardData3, taskCardData4);
+
 
 	return (
 		<>

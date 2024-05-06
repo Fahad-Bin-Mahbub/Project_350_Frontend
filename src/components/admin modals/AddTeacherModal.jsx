@@ -15,7 +15,7 @@ function AddTeacherModal() {
 
 	const addTeacher = async (e) => {
 		e.preventDefault();
-		console.log(name, email, role, department);
+
 
 		if (email == "" || role == "" || department == "") return;
 		let firstName = "",
@@ -38,16 +38,16 @@ function AddTeacherModal() {
 			},
 		};
 
-		console.log(options);
+
 
 		axios
 			.request(options)
 			.then((response) => {
 				const { status, data } = response;
-				console.log(status, data);
+
 				if (status == 200) {
 					const id = data.id;
-					console.log(id);
+
 
 					const noptions = {
 						method: "POST",
@@ -67,7 +67,7 @@ function AddTeacherModal() {
 
 					axios.request(noptions).then((nresponse) => {
 						const { status } = nresponse;
-						console.log(status);
+
 
 						if (status == 200) {
 							toast.success("Invitation sent successfully");
@@ -83,12 +83,15 @@ function AddTeacherModal() {
 		setEmail("");
 		setRole("");
 		setDepartment("");
+		document.getElementById("add-teacher-modal").close();
 	};
 
 	return (
 		<div>
 			<Button
-				onClick={() => document.getElementById("add-teacher-modal").showModal()}
+				onClick={() => {
+					document.getElementById("add-teacher-modal").showModal();
+				}}
 				className="w-44"
 				title="Add Teacher"
 			/>
@@ -157,7 +160,12 @@ function AddTeacherModal() {
 							</div>
 							<div className="modal-action">
 								<form method="dialog" className="flex gap-2">
-									<button className="btn w-40 h-8 rounded-2xl text-[#0A2463] border-[#0A2463] border-2 bg-gray-300  hover:bg-gray-300">
+									<button
+										onClick={() => {
+											document.getElementById("add-teacher-modal").close();
+										}}
+										className="btn w-40 h-8 rounded-2xl text-[#0A2463] border-[#0A2463] border-2 bg-gray-300  hover:bg-gray-300"
+									>
 										Cancel
 									</button>
 									<input

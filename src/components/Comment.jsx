@@ -11,7 +11,6 @@ const capitalize = (data) => {
 };
 
 const Comment = ({ comment }) => {
-	console.log("comment e jeta ashtese", comment);
 	const timePassed = new Date() - new Date(comment.createdAt);
 	// console.log(timePassed);
 	var days = Math.floor(timePassed / (1000 * 60 * 60 * 24));

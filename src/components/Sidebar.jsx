@@ -9,8 +9,15 @@ import logo from "../assets/icons/logo.png";
 import { useAuth } from "../context/Auth";
 import { useNavbarTitle } from "../context/NavbarTitleProvider";
 
-const Sidebar = ({ children }) => {
+const Sidebar = ({ children}) => {
+	
 	const { auth } = useAuth();
+	// const auth = JSON.parse(localStorage.getItem("auth"));
+	// useEffect(() => {
+	// 	if (auth && auth.user && auth.user.roles) {
+	// 		console.log("Sidebar Auth" + JSON.stringify(auth));
+	// 	}
+	// }, [auth]);
 	const menus = [
 		{ name: "Dashboard", link: "/dashboard", icon: MdOutlineDashboard },
 		{ name: "Manage CI", link: "/manage-ci", icon: FaChalkboardUser },
@@ -49,13 +56,12 @@ const Sidebar = ({ children }) => {
 	const [sidebarMenus, setSidebarMenus] = useState(teacherMenus);
 	const [open, setOpen] = useState(false);
 	const { updateNavbarTitle } = useNavbarTitle();
-
+	// console.log(auth)
 	useEffect(() => {
-		console.log(auth.user.roles);
-		const isAdmin = auth.user.roles.includes("admin");
-		const isHead = auth.user.roles.includes("department_head");
-		const isCI = auth.user.roles.includes("ci");
-		const isTeacher = auth.user.roles.includes("teacher");
+		const isAdmin = auth?.user?.roles?.includes("admin");
+		const isHead = auth?.user?.roles?.includes("department_head");
+		const isCI = auth?.user?.roles?.includes("ci");
+		const isTeacher = auth?.user?.roles?.includes("teacher");
 		if (isAdmin) setSidebarMenus(adminMenus);
 		else if (isHead && isCI) setSidebarMenus(menus);
 		else if (isHead) setSidebarMenus(headMenus);

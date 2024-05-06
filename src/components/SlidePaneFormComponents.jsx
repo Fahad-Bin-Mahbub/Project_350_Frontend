@@ -92,7 +92,7 @@ export const TeacherSelection = React.forwardRef((props, ref) => {
 					{ withCredentials: true }
 				);
 				const { status, data } = response;
-				console.log(status, data.data);
+
 				if (status === 200) {
 					setTeacherData(
 						data.data.map((item) => ({

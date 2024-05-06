@@ -6,7 +6,7 @@ import { BASE_URL } from "../data/data";
 
 const Helper = () => {
 	const { id } = useParams();
-	console.log(id);
+
 	// const baseUrl = "https://examtrack.up.railway.app";
 	// const baseUrl = "http://localhost:5000";
 	const baseUrl = BASE_URL;
@@ -22,7 +22,6 @@ const Helper = () => {
 
 		axios.request(options).then((response) => {
 			const { status, data } = response;
-			console.log(status, data);
 			if (status == 200) {
 				updateAuth({
 					// ...auth,

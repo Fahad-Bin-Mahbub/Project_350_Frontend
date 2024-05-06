@@ -3,7 +3,10 @@ import Sidebar from "../../components/Sidebar";
 import Tasks from "./components/tasks";
 import Department from "./components/department";
 import Teachers from "./components/teachers";
+import { useAuth } from "../../context/Auth";
 const AdminDashboard = () => {
+	const {auth} = useAuth();
+
 	return (
 		<div className="bg-blue-950">
 			<Sidebar>

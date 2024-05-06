@@ -11,15 +11,13 @@ const AuthProvider = ({ children }) => {
 		setAuth(newAuth);
 	};
 
-	// useEffect(() => {
-	// 	const data = JSON.parse(localStorage.getItem("auth"));
-	// 	if (data) {
-	// 		console.log("Inside provider auth");
-	// 		console.log("Parsed Data" + JSON.stringify(data));
-	// 		setAuth(data);
-	// 	}
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// }, []);
+	useEffect(() => {
+		const data = JSON.parse(localStorage.getItem("auth"));
+		if (data) {
+			setAuth(data);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<AuthContext.Provider value={{ auth, updateAuth }}>
 			{children}

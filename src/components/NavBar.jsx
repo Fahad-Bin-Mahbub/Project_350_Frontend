@@ -20,10 +20,8 @@ const NavBar = () => {
 
 	// const baseUrl = "https://examtrack.up.railway.app";
 	const baseUrl = BASE_URL;
-	// const auth = JSON.parse(localStorage.getItem("auth"));
 	const { auth, updateAuth } = useAuth();
-	console.log("Auth is " + JSON.stringify(auth));
-	console.log(localStorage.getItem("auth"));
+
 	const handleLogout = async () => {
 		window.localStorage.removeItem("token");
 		updateAuth(null);
@@ -44,7 +42,7 @@ const NavBar = () => {
 		getSessionData().then((data) => {
 			setSessionData(data);
 		});
-		console.log(auth);
+
 	}, []);
 
 	return (
@@ -75,7 +73,7 @@ const NavBar = () => {
 			</div>
 			<div className="flex gap-7">
 				<IoIosNotifications size={30} />
-				<Avatar circle src={auth?.user.photo} />
+				<Avatar circle src={auth?.user?.photo} />
 				<Menu
 					as="div"
 					className="outline-none relative inline-block text-center"
@@ -83,7 +81,7 @@ const NavBar = () => {
 					<div>
 						<Menu.Button className="inline-flex items-center gap-2 w-full justify-center rounded-md text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
 							<div className=" h-8 w-20 rounded-full flex items-center justify-center">
-								<p className="text-black">{auth?.user.firstName}</p>
+								<p className="text-black">{auth?.user?.firstName}</p>
 							</div>
 						</Menu.Button>
 					</div>

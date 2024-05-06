@@ -12,7 +12,7 @@ const AddDepartmentModal = () => {
 
 	const addDepartment = async () => {
 		if (dept == "") return;
-		console.log(dept);
+
 
 		const options = {
 			method: "POST",
@@ -30,7 +30,6 @@ const AddDepartmentModal = () => {
 			.request(options)
 			.then((response) => {
 				const { data } = response;
-				console.log(data);
 
 				if (data.success) {
 					toast.success(`${dept} department created successfully`);
